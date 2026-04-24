@@ -1,0 +1,47 @@
+Nouveaux contenus gratuits
+Mockups PSD/PNG (t-shirts, mugs, cadres, téléphones) — créateurs cherchent ça tout le temps
+Templates Canva/Figma liens partageables gratuits
+Overlays vidéo (grain, fuites lumière, VHS, pluie, neige) pour monteurs
+LUTs gratuits colorimétrie photo/vidéo
+Presets Lightroom .xmp
+Patterns SVG tileables + code CSS prêt
+Gradients CSS copiables (collection + générateur)
+Loops audio (lofi, ambient, cinematic) libres droit
+Bruitages catégorisés (UI clicks, whoosh, notifications)
+Voix IA TTS échantillons téléchargeables
+Prompts IA (Midjourney, Stable Diffusion, ChatGPT) par thème
+Coloring pages PDF imprimables enfants/adultes
+Wallpapers 4K/mobile tri ratio
+Stickers PNG transparents pack
+Icônes Lottie animées JSON
+Emojis custom Discord/Slack packs
+Outils webmaster ajout
+Compresseur image PNG/JPG/WebP navigateur (pas serveur)
+Convertisseur format (HEIC→JPG, WebP→PNG, SVG→PNG)
+Suppresseur fond image IA local
+Générateur favicon multi-taille
+Générateur QR code personnalisable
+Générateur meta tags SEO + OpenGraph
+Générateur robots.txt / sitemap.xml
+Minifier HTML/CSS/JS
+Convertisseur couleur HEX/RGB/HSL/CMYK
+Extracteur palette depuis image
+Générateur dégradé CSS/SVG
+Générateur box-shadow / border-radius / clip-path
+Lorem Ipsum multi-langue + image placeholder
+Testeur contraste WCAG accessibilité
+Générateur .htaccess redirections courantes
+Navigation/UX (priorité)
+Barre recherche globale indexant tout — manque critique
+Tags/filtres par type, couleur, style, taille
+Menu hiérarchique fixe (actuellement liste plate écrasante)
+Page "Nouveautés" datée flux RSS
+Mode sombre toggle
+PWA installable hors-ligne favoris
+Système favoris localStorage (sans compte)
+Communauté gratuite
+Soumission ressources utilisateurs (formulaire)
+Commentaires/notes par collection
+Newsletter nouveautés hebdo
+Tutoriels courts (GIMP, Inkscape, Audacity, Blender) — outils libres
+Challenges créatifs mensuels
