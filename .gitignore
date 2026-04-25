@@ -1,0 +1,66 @@
+# =============================================================================
+#  .gitignore
+# -----------------------------------------------------------------------------
+#  Exclut images, videos, musiques. Garde structure des dossiers (tiroirs)
+#  via .gitkeep si besoin.
+# =============================================================================
+
+# --- Images ---
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.bmp
+*.avif
+*.svg
+*.ico
+*.tif
+*.tiff
+*.heic
+*.heif
+*.raw
+*.psd
+*.ai
+*.eps
+
+# --- Videos ---
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+*.wmv
+*.flv
+*.m4v
+*.mpg
+*.mpeg
+*.3gp
+*.ts
+*.vob
+
+# --- Audio / musique ---
+*.mp3
+*.wav
+*.ogg
+*.flac
+*.aac
+*.m4a
+*.wma
+*.opus
+*.aiff
+*.mid
+*.midi
+
+# --- Archives binaires (souvent images/videos zippees) ---
+*.rar
+*.7z
+*.zip
+
+# --- Garder les dossiers vides (tiroirs) ---
+!.gitkeep
+
+# --- Divers ---
+Thumbs.db
+desktop.ini
+.DS_Store

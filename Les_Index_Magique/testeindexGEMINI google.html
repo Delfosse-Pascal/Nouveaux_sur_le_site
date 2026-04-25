@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Le site de Pascal Delfosse - Artiste Contemporain</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="canonical" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/index.html">
+    <link rel="icon" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/favicondepascal.ico" sizes="any">
+    
+    <link rel="stylesheet" type="text/css" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/style.css">
+    <link rel="stylesheet" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/basedusite.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Dégradé 24 couleurs pastel */
+            background: linear-gradient(-45deg, 
+                #ffb3ba, #ffdfba, #ffffba, #baffc9, #bae1ff, #eecbff, 
+                #fdd7e4, #e2f0cb, #c5e1a5, #fff59d, #ffcc80, #ef9a9a,
+                #ce93d8, #9fa8da, #90caf9, #81d4fa, #80deea, #80cbc4,
+                #a5d6a7, #c5e1a5, #e6ee9c, #fff59d, #ffe082, #ffcc80);
+            background-size: 1000% 1000%; 
+            animation: gradientShift 40s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 100%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 0%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Particules */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 1.8rem;
+            opacity: 0.5;
+            animation: float 4s infinite ease-in-out;
+            user-select: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-40px) rotate(180deg); }
+        }
+
+        /* Grille de Galerie */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery {
+            display: grid;
+            /* Priorité à 4 colonnes, mini 280px pour éviter l'écrasement */
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            aspect-ratio: 4 / 3; /* Garde la forme rectangulaire sans écraser */
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            z-index: 5;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* L'image remplit le cadre sans déformation */
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Menu Social */
+        .social-menu {
+            padding: 20px;
+            text-align: center;
+        }
+        .social-menu ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .social-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            background: rgba(255,255,255,0.4);
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        .social-menu a:hover { background: #fff; }
+    </style>
+</head>
+<body>
+<header></header>
+    <div class="particles" id="particles"></div>
+
+    <nav class="social-menu" style="position: relative; z-index: 10;">
+        <ul>
+            <li><a href="https://fr.pinterest.com/pascal509/mes-tableaux-tous-genre/" target="_blank">Pinterest</a></li>
+            <li><a href="https://www.flickr.com/photos/delfossepascal" target="_blank">Flickr</a></li>
+            <li><a href="https://www.tumblr.com/lestoilesdepascal" target="_blank">Tumblr</a></li>
+            <li><a href="https://x.com/PascalDelfossee" target="_blank">X</a></li>
+            <li><a href="https://www.tiktok.com/@delfossepascal" target="_blank">TikTok</a></li>
+            <li><a href="https://www.youtube.com/c/DelfossePascal" target="_blank">YouTube</a></li>
+        </ul> 
+    </nav>
+<p>&nbsp;</p>        
+    
+
+    <main class="container">
+        <div class="gallery">
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+1" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+2" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+3" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+4" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+5" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+6" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+7" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+8" alt="Art"></div>
+			<div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+9" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+10" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+11" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+12" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+13" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+14" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+15" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+16" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+17" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+18" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+19" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+20" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+21" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+22" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+23" alt="Art"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/600x450?text=Art+24" alt="Art"></div>
+        </div>
+    </main>
+
+    <script src="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/script.js"></script>
+    <script src="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/menu.js" defer></script>
+
+    <script>
+        // Génération des 60+ motifs
+        const particlesContainer = document.getElementById('particles');
+        const emojis = [
+            '🎨', '🖼️', '🎬', '🎵', '✨', '💫', '🌟', '⭐', '🎪', '🎭',
+            '🖍️', '✒️', '🖋️', '🖌️', '📝', '🌈', '🌙', '☀️', '🔥', '💧',
+            '🌊', '🍀', '🌸', '🌵', '🌴', '💎', '🔮', '🧿', '🧬', '🔭',
+            '🪐', '🚀', '🛸', '🦄', '🕊️', '🦋', '🦢', '🎐', '🎹', '🎻', 
+            '🎸', '🎷', '🎺', '🎧', '📸', '📽️', '💡', '🏮', '💠', '🌀', 
+            '🔆', '🔱', '⚜️', '⚛️', '🕉️', '☯️', '⚡', '👾', '🍄', '🍦', 
+            '🎈', '🛰️', '☄️', '🌋'
+        ];
+        
+        for (let i = 0; i < 45; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            // Vitesse rapide : entre 2 et 4 secondes
+            particle.style.animationDuration = (Math.random() * 2 + 2) + 's'; 
+            particle.style.fontSize = (Math.random() * 1 + 1) + 'rem';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Animation d'apparition au scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            observer.observe(item);
+        });
+    </script>
+
+<p>&nbsp;</p>        
+<p>&nbsp;</p>        
+<p>&nbsp;</p>        
+
+</body>
+</html>

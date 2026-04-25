@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compteur de visites</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .counter {
+            font-size: 2em;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <p class="counter">Chargement du compteur...</p>
+    <script>
+        try {
+            // Récupère la valeur actuelle du compteur depuis localStorage
+            let visits = localStorage.getItem('visits');
+
+            // Si aucune valeur n'existe encore, on initialise à 0
+            if (visits === null) {
+                visits = 0;
+            } else {
+                visits = parseInt(visits, 10);
+                if (isNaN(visits)) visits = 0; // Sécurité si la valeur est corrompue
+            }
+
+            // Incrémente le compteur
+            visits++;
+
+            // Sauvegarde la nouvelle valeur
+            localStorage.setItem('visits', visits);
+
+            // Affiche le compteur
+            document.querySelector('.counter').textContent =
+                `Nombre de visites sur cette page : ${visits}`;
+        } catch (error) {
+            console.error("Erreur avec le compteur :", error);
+            document.querySelector('.counter').textContent =
+                "Impossible de charger le compteur.";
+        }
+    </script>
+
+</body>
+</html>

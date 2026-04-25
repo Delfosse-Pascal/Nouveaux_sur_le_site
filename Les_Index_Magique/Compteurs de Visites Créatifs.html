@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compteur de Visites Créatif</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 50px;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Style 1: Compteur Digital */
+        .counter-digital {
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .counter-digital h2 {
+            color: #00ff88;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .digital-display {
+            background: #0f0f0f;
+            padding: 20px;
+            border-radius: 10px;
+            border: 3px solid #00ff88;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .digital-number {
+            font-family: 'Courier New', monospace;
+            font-size: 3em;
+            color: #00ff88;
+            font-weight: bold;
+            text-shadow: 0 0 10px #00ff88;
+            letter-spacing: 5px;
+        }
+
+        /* Style 2: Compteur Animé avec Cartes */
+        .counter-animated {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .counter-animated h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .flip-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .flip-card {
+            background: linear-gradient(145deg, #667eea, #764ba2);
+            color: white;
+            width: 60px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 2.5em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .flip-card:hover {
+            transform: scale(1.1) rotateY(10deg);
+        }
+
+        /* Style 3: Compteur Circulaire */
+        .counter-circular {
+            background: linear-gradient(145deg, #ff6b6b, #ee5a6f);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .counter-circular h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .circular-display {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        .circle-bg {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .circle-number {
+            font-size: 3em;
+            color: white;
+            font-weight: bold;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(180deg, transparent, rgba(255,255,255,0.4));
+            border-radius: 50%;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Style 4: Compteur Néon */
+        .counter-neon {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .counter-neon h2 {
+            color: #ff00ff;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+
+        .neon-number {
+            font-size: 3.5em;
+            color: #00ffff;
+            font-weight: bold;
+            text-shadow: 
+                0 0 5px #00ffff,
+                0 0 10px #00ffff,
+                0 0 20px #00ffff,
+                0 0 40px #00ffff;
+            animation: neon-flicker 3s infinite alternate;
+        }
+
+        @keyframes neon-flicker {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 5px #00ffff,
+                    0 0 10px #00ffff,
+                    0 0 20px #00ffff,
+                    0 0 40px #00ffff;
+            }
+            50% { 
+                text-shadow: 
+                    0 0 2px #00ffff,
+                    0 0 5px #00ffff,
+                    0 0 10px #00ffff,
+                    0 0 20px #00ffff;
+            }
+        }
+
+        .info-text {
+            color: rgba(255,255,255,0.7);
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Bouton de reset */
+        .reset-btn {
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(0,0,0,0.4);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🎯 Compteurs de Visites Créatifs</h1>
+    
+    <div class="container">
+        <!-- Compteur Digital -->
+        <div class="counter-digital">
+            <h2>⚡ Compteur Digital</h2>
+            <div class="digital-display">
+                <div class="digital-number" id="counter1">00000</div>
+            </div>
+            <p class="info-text">Style rétro numérique</p>
+        </div>
+
+        <!-- Compteur Animé -->
+        <div class="counter-animated">
+            <h2>🎴 Compteur à Cartes</h2>
+            <div class="flip-container" id="flipCounter">
+                <div class="flip-card">0</div>
+                <div class="flip-card">0</div>
+                <div class="flip-card">0</div>
+                <div class="flip-card">0</div>
+                <div class="flip-card">0</div>
+            </div>
+            <p class="info-text">Animation flip moderne</p>
+        </div>
+
+        <!-- Compteur Circulaire -->
+        <div class="counter-circular">
+            <h2>🔮 Compteur Circulaire</h2>
+            <div class="circular-display">
+                <div class="circle-bg">
+                    <div class="wave"></div>
+                    <div class="circle-number" id="counter3">0</div>
+                </div>
+            </div>
+            <p class="info-text">Design circulaire animé</p>
+        </div>
+
+        <!-- Compteur Néon -->
+        <div class="counter-neon">
+            <h2>💫 Compteur Néon</h2>
+            <div class="neon-number" id="counter4">0</div>
+            <p class="info-text">Effet néon cyberpunk</p>
+        </div>
+    </div>
+
+    <button class="reset-btn" onclick="resetCounter()">🔄 Réinitialiser les Compteurs</button>
+
+    <script>
+        // Fonction pour obtenir le nombre de visites
+        function getVisitCount() {
+            let count = localStorage.getItem('visitCount');
+            if (count === null) {
+                count = 0;
+            } else {
+                count = parseInt(count);
+            }
+            return count;
+        }
+
+        // Fonction pour incrémenter le compteur
+        function incrementVisit() {
+            let count = getVisitCount();
+            count++;
+            localStorage.setItem('visitCount', count);
+            return count;
+        }
+
+        // Fonction pour formater le nombre avec des zéros
+        function formatNumber(num, digits = 5) {
+            return num.toString().padStart(digits, '0');
+        }
+
+        // Fonction d'animation pour le compteur
+        function animateCounter(element, target, duration = 1000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current).toLocaleString('fr-FR');
+            }, 16);
+        }
+
+        // Mise à jour de tous les compteurs
+        function updateAllCounters(count) {
+            // Compteur 1: Digital
+            document.getElementById('counter1').textContent = formatNumber(count);
+
+            // Compteur 2: Flip cards
+            const flipContainer = document.getElementById('flipCounter');
+            const digits = formatNumber(count).split('');
+            const cards = flipContainer.querySelectorAll('.flip-card');
+            digits.forEach((digit, index) => {
+                if (cards[index]) {
+                    cards[index].textContent = digit;
+                    cards[index].style.animation = 'none';
+                    setTimeout(() => {
+                        cards[index].style.animation = '';
+                    }, 10);
+                }
+            });
+
+            // Compteur 3: Circulaire avec animation
+            animateCounter(document.getElementById('counter3'), count);
+
+            // Compteur 4: Néon avec animation
+            animateCounter(document.getElementById('counter4'), count);
+        }
+
+        // Fonction de réinitialisation
+        function resetCounter() {
+            if (confirm('Voulez-vous vraiment réinitialiser les compteurs ?')) {
+                localStorage.setItem('visitCount', '0');
+                updateAllCounters(0);
+            }
+        }
+
+        // Initialisation au chargement de la page
+        window.addEventListener('load', () => {
+            const visitCount = incrementVisit();
+            updateAllCounters(visitCount);
+
+            // Animation d'entrée
+            document.querySelectorAll('.counter-digital, .counter-animated, .counter-circular, .counter-neon').forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    el.style.transition = 'all 0.5s ease';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        });
+
+        // Effet de survol pour les cartes
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.flip-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'scale(1.1) rotateY(10deg)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'scale(1) rotateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

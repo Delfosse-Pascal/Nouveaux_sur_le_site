@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Arbre des Rêves</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #0a0e27 0%, #1a1f4f 50%, #2d1b3d 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            font-size: 3em;
+            margin: 30px 0;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
+        }
+
+        .intro {
+            text-align: center;
+            color: #e0e0ff;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .input-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            background: rgba(255, 255, 255, 0.9);
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus {
+            background: white;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .plant-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .plant-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .tree-container {
+            position: relative;
+            min-height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            margin-top: 50px;
+        }
+
+        .trunk {
+            width: 60px;
+            height: 200px;
+            background: linear-gradient(to bottom, #4a3728 0%, #6b4e3d 100%);
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .branches {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .dream-bubble {
+            position: absolute;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(138, 43, 226, 0.4));
+            border-radius: 50%;
+            padding: 15px 20px;
+            color: #1a1a3e;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            animation: float 4s ease-in-out infinite;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .dream-bubble:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.6);
+        }
+
+        .dream-bubble.removing {
+            animation: pop 0.5s forwards;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        .stats {
+            text-align: center;
+            margin-top: 40px;
+            color: #e0e0ff;
+            font-size: 1.3em;
+        }
+
+        .stats span {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 215, 0, 0.8);
+            border-radius: 50%;
+            animation: rise 3s infinite;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        .quote {
+            text-align: center;
+            color: #b8a4ff;
+            font-style: italic;
+            margin: 30px 0;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <h1>🌙 L'Arbre des Rêves 🌙</h1>
+        
+        <div class="intro">
+            Plante tes rêves, désirs et aspirations...<br>
+            Regarde-les fleurir sous les étoiles ✨
+        </div>
+
+        <div class="input-section">
+            <div class="input-group">
+                <input type="text" id="dreamInput" placeholder="Écris ton rêve ici..." maxlength="50">
+                <button class="plant-btn" onclick="plantDream()">🌱 Planter</button>
+            </div>
+            <p class="quote">"Les rêves sont les graines de la réalité"</p>
+        </div>
+
+        <div class="tree-container">
+            <div class="trunk">
+                <div class="branches" id="branches"></div>
+            </div>
+        </div>
+
+        <div class="stats">
+            Rêves plantés : <span id="dreamCount">0</span>
+        </div>
+    </div>
+
+    <script>
+        // Créer les étoiles
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // État des rêves en mémoire
+        let dreams = [];
+        let dreamCount = 0;
+
+        // Couleurs variées pour les bulles
+        const colors = [
+            'radial-gradient(circle at 30% 30%, rgba(255, 182, 193, 0.8), rgba(255, 105, 180, 0.4))',
+            'radial-gradient(circle at 30% 30%, rgba(173, 216, 230, 0.8), rgba(70, 130, 180, 0.4))',
+            'radial-gradient(circle at 30% 30%, rgba(255, 218, 185, 0.8), rgba(255, 140, 0, 0.4))',
+            'radial-gradient(circle at 30% 30%, rgba(221, 160, 221, 0.8), rgba(147, 112, 219, 0.4))',
+            'radial-gradient(circle at 30% 30%, rgba(152, 251, 152, 0.8), rgba(34, 139, 34, 0.4))'
+        ];
+
+        function plantDream() {
+            const input = document.getElementById('dreamInput');
+            const dreamText = input.value.trim();
+            
+            if (dreamText === '') {
+                input.style.animation = 'shake 0.5s';
+                setTimeout(() => input.style.animation = '', 500);
+                return;
+            }
+
+            // Créer des particules magiques
+            createParticles();
+
+            // Créer la bulle de rêve
+            const bubble = document.createElement('div');
+            bubble.className = 'dream-bubble';
+            bubble.textContent = dreamText;
+            bubble.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Position aléatoire autour de l'arbre
+            const angle = (Math.random() * 240) - 120; // -120 à 120 degrés
+            const distance = Math.random() * 200 + 150;
+            const x = Math.sin(angle * Math.PI / 180) * distance;
+            const y = -Math.abs(Math.cos(angle * Math.PI / 180) * distance) - 100;
+            
+            bubble.style.left = `calc(50% + ${x}px)`;
+            bubble.style.top = `${y}px`;
+            bubble.style.animationDelay = Math.random() * 2 + 's';
+            
+            // Clic pour faire disparaître
+            bubble.onclick = function() {
+                this.classList.add('removing');
+                setTimeout(() => {
+                    this.remove();
+                    dreamCount--;
+                    updateCount();
+                }, 500);
+            };
+
+            document.getElementById('branches').appendChild(bubble);
+            
+            dreams.push(dreamText);
+            dreamCount++;
+            updateCount();
+            
+            input.value = '';
+            input.focus();
+        }
+
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.bottom = '0';
+                particle.style.animationDelay = Math.random() * 1 + 's';
+                particlesContainer.appendChild(particle);
+                
+                setTimeout(() => particle.remove(), 3000);
+            }
+        }
+
+        function updateCount() {
+            document.getElementById('dreamCount').textContent = dreamCount;
+        }
+
+        // Entrée avec la touche Enter
+        document.getElementById('dreamInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                plantDream();
+            }
+        });
+
+        // Animation de shake
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
