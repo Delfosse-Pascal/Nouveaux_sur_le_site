@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Page avec fond vidéo</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Georgia', serif;
+    }
+
+    /* Vidéo en fond de page */
+    #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .falling-image {
+      position: absolute;
+      width: 250px;
+      height: 200px;
+      top: -250px;
+      opacity: 0;
+      animation: fallAndBounce 8s ease-in forwards;
+    }
+
+    @keyframes fallAndBounce {
+      0%   { top: -250px; opacity: 0; }
+      10%  { opacity: 1; }
+      60%  { top: calc(100vh - 200px); }
+      75%  { top: calc(100vh - 220px); }
+      85%  { top: calc(100vh - 200px); }
+      92%  { top: calc(100vh - 210px); }
+      100% { top: calc(100vh - 200px); }
+    }
+
+    .effect1  { filter: brightness(1.2); }
+    .effect2  { filter: grayscale(100%) contrast(1.2); }
+    .effect3  { transform: rotate(-10deg); }
+    .effect4  { filter: sepia(80%) hue-rotate(30deg); }
+    .effect5  { transform: scale(1.1); opacity: 0.85; }
+    .effect6  { filter: blur(1px); }
+    .effect7  { transform: rotate(20deg) scale(0.9); }
+    .effect8  { filter: contrast(2); }
+    .effect9  { transform: rotateY(180deg); }
+    .effect10 { filter: drop-shadow(0px 0px 10px #333); }
+  </style>
+</head>
+<body>
+
+  <!-- Vidéo de fond -->
+  <video id="background-video" autoplay muted loop playsinline>
+    <source src="images/video.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la vidéo HTML5.
+  </video>
+
+  <script>
+    const imageLinks = [
+      "https://lestoilesdepascal.be/56_Video_Tik_Tok_D/sitevideo.html",
+      "https://lestoilesdepascal.be/200_Diverse-Video/index.html",
+      "https://lestoilesdepascal.be/Optical_Full_Life/index.htm",
+      "https://lestoilesdepascal.be/Textures_2026_Fond_Visible_D/online.html",
+      "https://lestoilesdepascal.be/Musique_Finale_2026/index.html",
+      "https://lestoilesdepascal.be/3234_Dolls_Collector/html_output/index.html",
+      "https://lestoilesdepascal.be/Ma_Galerie_Les_Toiles/",
+      "https://lestoilesdepascal.be/3200_PNG_Explosion_A_PNG/index.html",
+      "https://lestoilesdepascal.be/3422_Figurines_3D/index.html",
+      "https://lestoilesdepascal.be/6000_Texture_Pastel/index.html"
+    ];
+
+    const usedPositions = new Set();
+
+    function getUniqueLeftPosition() {
+      let left;
+      let attempts = 0;
+      do {
+        left = Math.floor(Math.random() * (window.innerWidth - 260));
+        attempts++;
+      } while ([...usedPositions].some(pos => Math.abs(pos - left) < 270) && attempts < 20);
+      usedPositions.add(left);
+      setTimeout(() => usedPositions.delete(left), 9000);
+      return left;
+    }
+
+    function createFallingImage(i) {
+      const img = document.createElement("img");
+      img.src = `images/image${i}.jpg`;
+      img.className = `falling-image effect${i}`;
+      img.style.left = getUniqueLeftPosition() + "px";
+
+      const link = document.createElement("a");
+      link.href = imageLinks[i - 1];
+      link.target = "_blank";
+      link.appendChild(img);
+      document.body.appendChild(link);
+
+      setTimeout(() => {
+        link.remove();
+      }, 8500);
+    }
+
+    function startFallingLoop() {
+      function launchFallingSet() {
+        for (let i = 1; i <= 10; i++) {
+          setTimeout(() => {
+            createFallingImage(i);
+          }, i * 600);
+        }
+      }
+
+      launchFallingSet();
+      setInterval(launchFallingSet, 10000);
+    }
+
+    startFallingLoop();
+  </script>
+
+</body>
+</html>

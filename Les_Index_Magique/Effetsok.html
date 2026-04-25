@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)file:///C:/Users/Pascal509/Downloads/Effets.html -->
+<html lang="fr" style="--full-width: 1913px;" class=" atqtetzbyq idc0_343"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+                                                                  :root{
+                                                                    --sh-bg: rgba(15,16,32,.62);
+                                                                    --sh-text: rgba(255,255,255,.92);
+                                                                    --sh-muted: rgba(255,255,255,.72);
+                                                                
+                                                                    --sh-copper: #d99066;
+                                                                    --sh-copperGlow: rgba(217,144,102,.35);
+                                                                    --sh-neonGlow: rgba(0,212,255,.26);
+                                                                
+                                                                    --sh-radius: 18px;
+                                                                  }
+                                                                
+                                                                  .shDemoPanel{
+                                                                    border: 1px solid rgba(217,144,102,.55);
+                                                                    border-radius: var(--sh-radius);
+                                                                    padding: 18px;
+                                                                    background: var(--sh-bg);
+                                                                    backdrop-filter: blur(8px);
+                                                                    color: var(--sh-text);
+                                                                    box-shadow:
+                                                                      0 0 0 1px rgba(217,144,102,.18) inset,
+                                                                      0 20px 60px rgba(0,0,0,.35);
+                                                                    position: relative;
+                                                                    overflow: hidden;
+                                                                  }
+                                                                
+                                                                  .shDemoPanel::before{
+                                                                    content:"";
+                                                                    position:absolute;
+                                                                    inset:-2px;
+                                                                    background:
+                                                                      radial-gradient(700px 240px at 15% 10%, var(--sh-copperGlow), transparent 60%),
+                                                                      radial-gradient(700px 240px at 85% 20%, var(--sh-neonGlow), transparent 60%),
+                                                                      linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.01));
+                                                                    pointer-events:none;
+                                                                    z-index:0;
+                                                                  }
+                                                                  .shDemoPanel > *{ position:relative; z-index:1; }
+                                                                
+                                                                  .shDemoPanel__head{ margin-bottom: 14px; }
+                                                                  .shDemoPanel__tag{
+                                                                    display:inline-flex;
+                                                                    align-items:center;
+                                                                    padding:6px 10px;
+                                                                    border-radius:999px;
+                                                                    border:1px solid rgba(217,144,102,.55);
+                                                                    background: rgba(0,0,0,.20);
+                                                                    letter-spacing:.6px;
+                                                                    font-weight:800;
+                                                                    font-size:12px;
+                                                                  }
+                                                                  .shDemoPanel__sub{
+                                                                    margin: 10px 0 0;
+                                                                    color: var(--sh-muted);
+                                                                    line-height: 1.45;
+                                                                  }
+                                                                
+                                                                  .shDemoGrid{
+                                                                    display:grid;
+                                                                    grid-template-columns: repeat(3, minmax(0,1fr));
+                                                                    gap: 12px;
+                                                                  }
+                                                                
+                                                                  .shDemoCard{
+                                                                    border: 1px solid rgba(217,144,102,.40);
+                                                                    border-radius: 16px;
+                                                                    background: rgba(255,255,255,.035);
+                                                                    color: inherit;
+                                                                    padding: 14px;
+                                                                    text-align: left;
+                                                                    cursor: pointer;
+                                                                    transition: transform .12s ease, background .12s ease, border-color .12s ease;
+                                                                    min-height: 210px;
+                                                                    display:flex;
+                                                                    flex-direction: column;
+                                                                    justify-content: space-between;
+                                                                  }
+                                                                  .shDemoCard:hover{
+                                                                    transform: translateY(-2px);
+                                                                    background: rgba(255,255,255,.06);
+                                                                    border-color: rgba(217,144,102,.65);
+                                                                  }
+                                                                
+                                                                  .shDemoCard__top{
+                                                                    display:flex;
+                                                                    align-items:center;
+                                                                    justify-content:flex-start;
+                                                                    gap:10px;
+                                                                    margin-bottom: 10px;
+                                                                  }
+                                                                  .shDemoCard__pill{
+                                                                    display:inline-flex;
+                                                                    align-items:center;
+                                                                    padding:6px 10px;
+                                                                    border-radius:999px;
+                                                                    font-weight:800;
+                                                                    border:1px solid rgba(217,144,102,.55);
+                                                                    background: rgba(217,144,102,.12);
+                                                                  }
+                                                                
+                                                                  .shDemoCard__title{
+                                                                    display:block;
+                                                                    margin: 0 0 6px;
+                                                                    font-size: 18px;
+                                                                    letter-spacing:.2px;
+                                                                  }
+                                                                  .shDemoCard__text{
+                                                                    margin: 0;
+                                                                    color: rgba(255,255,255,.76);
+                                                                    line-height: 1.35;
+                                                                  }
+                                                                
+                                                                  /* ===================== BOUTON "VOIR" (Bevel 3D + push) ===================== */
+                                                                  .shDemoCard__cta{
+                                                                    margin-top: 14px;
+                                                                    display:inline-flex;
+                                                                    align-items:center;
+                                                                    justify-content:center;
+                                                                    width: fit-content;
+                                                                    padding: 10px 18px;
+                                                                    border-radius: 999px;
+                                                                
+                                                                    border: 1px solid rgba(217,144,102,.90);
+                                                                    background: linear-gradient(
+                                                                      to bottom,
+                                                                      rgba(255,255,255,.08),
+                                                                      rgba(217,144,102,.10) 40%,
+                                                                      rgba(0,0,0,.22)
+                                                                    );
+                                                                    color: #d99066;
+                                                                
+                                                                    box-shadow:
+                                                                      0 1px 0 rgba(255,255,255,.18) inset,
+                                                                      0 -1px 0 rgba(0,0,0,.28) inset,
+                                                                      0 10px 22px rgba(0,0,0,.28),
+                                                                      0 0 0 1px rgba(217,144,102,.18) inset;
+                                                                
+                                                                    font-weight: 950;
+                                                                    letter-spacing:.35px;
+                                                                
+                                                                    margin-left: auto;
+                                                                    margin-right: auto;
+                                                                
+                                                                    transform: translateY(0);
+                                                                    transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+                                                                  }
+                                                                
+                                                                  .shDemoCard:hover .shDemoCard__cta{
+                                                                    filter: brightness(1.05);
+                                                                    box-shadow:
+                                                                      0 1px 0 rgba(255,255,255,.22) inset,
+                                                                      0 -1px 0 rgba(0,0,0,.30) inset,
+                                                                      0 12px 26px rgba(0,0,0,.34),
+                                                                      0 0 0 1px rgba(217,144,102,.22) inset;
+                                                                  }
+                                                                
+                                                                  .shDemoCard:active .shDemoCard__cta{
+                                                                    transform: translateY(2px);
+                                                                    box-shadow:
+                                                                      0 1px 0 rgba(255,255,255,.12) inset,
+                                                                      0 -1px 0 rgba(0,0,0,.38) inset,
+                                                                      0 6px 14px rgba(0,0,0,.26),
+                                                                      0 0 0 1px rgba(217,144,102,.16) inset;
+                                                                  }
+                                                                
+                                                                  .shDemoPanel__foot{
+                                                                    margin-top: 14px;
+                                                                    display:flex;
+                                                                    flex-direction: column;
+                                                                    align-items:center;
+                                                                    gap: 10px;
+                                                                  }
+                                                                
+                                                                  /* ===================== STOP (Bevel 3D + push) ===================== */
+                                                                  .shStopBtn{
+                                                                    appearance:none;
+                                                                    border-radius: 999px;
+                                                                    padding: 12px 20px;
+                                                                    min-width: 170px;
+                                                                    cursor: pointer;
+                                                                
+                                                                    border: 1px solid rgba(217,144,102,.92);
+                                                                    background: linear-gradient(
+                                                                      to bottom,
+                                                                      rgba(255,255,255,.08),
+                                                                      rgba(217,144,102,.12) 42%,
+                                                                      rgba(0,0,0,.24)
+                                                                    );
+                                                                    color: #d99066;
+                                                                
+                                                                    box-shadow:
+                                                                      0 1px 0 rgba(255,255,255,.18) inset,
+                                                                      0 -1px 0 rgba(0,0,0,.30) inset,
+                                                                      0 14px 30px rgba(0,0,0,.36),
+                                                                      0 0 0 1px rgba(217,144,102,.18) inset;
+                                                                
+                                                                    font-weight: 950;
+                                                                    letter-spacing: .7px;
+                                                                
+                                                                    transform: translateY(0);
+                                                                    transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+                                                                  }
+                                                                
+                                                                  .shStopBtn:hover{
+                                                                    filter: brightness(1.06);
+                                                                    box-shadow:
+                                                                      0 1px 0 rgba(255,255,255,.22) inset,
+                                                                      0 -1px 0 rgba(0,0,0,.34) inset,
+                                                                      0 16px 34px rgba(0,0,0,.40),
+                                                                      0 0 0 1px rgba(217,144,102,.22) inset;
+                                                                  }
+                                                                
+                                                                  .shStopBtn:active{
+                                                                    transform: translateY(2px);
+                                                                    box-shadow:
+                                                                      0 1px 0 rgba(255,255,255,.12) inset,
+                                                                      0 -1px 0 rgba(0,0,0,.40) inset,
+                                                                      0 8px 18px rgba(0,0,0,.30),
+                                                                      0 0 0 1px rgba(217,144,102,.16) inset;
+                                                                  }
+                                                                
+                                                                  /* ===================== LIEN CATALOGUE (cuivre tout le temps, underline au hover) ===================== */
+                                                                  .shCatalogLink{
+                                                                    display:inline;
+                                                                    margin-top: 2px;
+                                                                    color: #d99066;               /* cuivre par défaut */
+                                                                    text-decoration: none;        /* pas souligné */
+                                                                    font-weight: 750;
+                                                                    letter-spacing: .1px;
+                                                                    padding: 0;
+                                                                    border: 0;
+                                                                    background: transparent;
+                                                                    box-shadow: none;
+                                                                    transition: opacity .12s ease, text-decoration-color .12s ease;
+                                                                  }
+                                                                
+                                                                  .shCatalogLink:hover{
+                                                                    text-decoration: underline;   /* souligné au survol */
+                                                                    text-decoration-thickness: 2px;
+                                                                    text-underline-offset: 4px;
+                                                                    opacity: .95;
+                                                                  }
+                                                                
+                                                                  .shCatalogLink:active{
+                                                                    opacity: .88;
+                                                                  }
+                                                                
+                                                                  .shDemoPanel__status{
+                                                                    min-height: 18px;
+                                                                    font-size: 13px;
+                                                                    color: rgba(255,255,255,.70);
+                                                                  }
+                                                                
+                                                                  @media (max-width: 900px){
+                                                                    .shDemoGrid{ grid-template-columns: 1fr; }
+                                                                  }
+                                                                </style>
+                        
+                        <style>
+                          .accroche-banner {
+                            display:block;
+                            width:100%;
+                            margin:2.5rem auto;
+                            padding:1.5rem 0;
+                            text-align:center;
+                            font:900 clamp(32px,7vw,54px)/1.2 system-ui;
+                            background:rgba(255,255,255,.05);
+                            border-top:3px solid color-mix(in oklab, var(--acc-1) 60%, transparent);
+                            border-bottom:3px solid color-mix(in oklab, var(--acc-2) 60%, transparent);
+                            color:#f2f5ff;
+                            backdrop-filter:blur(4px);
+                            box-shadow:0 10px 30px rgba(0,0,0,.25) inset;
+                          }
+                          .accroche-banner span {
+                            background:linear-gradient(90deg, var(--acc-1), var(--acc-2));
+                            -webkit-background-clip:text;
+                            background-clip:text;
+                            color:transparent;
+                          }
+                        </style>
+                        
+                    <style>
+                                          .btn{
+                                            display:inline-flex;align-items:center;gap:8px;
+                                            padding:12px 18px;border-radius:14px;
+                                            background:
+                                              radial-gradient(circle at 0% 0%, rgba(217,144,102,.32) 0%, rgba(217,144,102,0) 60%),
+                                              #1b1d3a;
+                                            border:1px solid rgba(217,144,102,.65);
+                                            color:var(--cuivre,#d99066);
+                                            font-weight:700;
+                                            transform-origin:center center; transform:translateZ(0);
+                                            transition:
+                                              transform .14s ease-out,
+                                              background .14s ease-out,
+                                              border-color .14s ease-out,
+                                              box-shadow .14s ease-out,
+                                              color .14s ease-out;
+                                            text-decoration:none;
+                                            box-shadow:
+                                              0 18px 40px rgba(0,0,0,.9),
+                                              0 0 0 1px rgba(217,144,102,.4),
+                                              0 0 26px rgba(217,144,102,.38);
+                                          }
+                                        
+                                          .btn:hover,
+                                          .btn:focus{
+                                            transform:scale(1.04) translateZ(0);
+                                            background:
+                                              radial-gradient(circle at 0% 0%, rgba(217,144,102,.45) 0%, rgba(217,144,102,0) 60%),
+                                              #20254b;
+                                            border-color:var(--cuivre,#d99066);
+                                            color:var(--cuivre,#d99066);
+                                            box-shadow:
+                                              0 24px 55px rgba(0,0,0,.95),
+                                              0 0 0 1px rgba(217,144,102,.7),
+                                              0 0 34px rgba(217,144,102,.6);
+                                            text-decoration:none;
+                                          }
+                                        
+                                          /* PLUS GROS + gestion du long texte */
+                                          .btn-catalogue-lg{
+                                            padding:16px 26px;
+                                            border-radius:18px;
+                                            font-size:1.03rem;
+                                            line-height:1.25;
+                                        
+                                            /* important pour une phrase longue */
+                                            text-align:center;
+                                            white-space:normal;
+                                            max-width:min(820px, 100%);
+                                          }
+                                        
+                                          /* Zéro soulignement quoi qu’il arrive (même si a:hover underline ailleurs) */
+                                          .btn-catalogue,
+                                          .btn-catalogue:hover,
+                                          .btn-catalogue:focus,
+                                          .btn-catalogue:active,
+                                          .btn-catalogue:visited{
+                                            text-decoration:none !important;
+                                          }
+                                        </style>
+<style>
+                              .contact-wrap{
+                                --cuivre:#d99066;
+                                --txt:#e9edff;
+                                --bg:#0f1020;
+                                --panel:#1b1d3a;
+                                --edge:rgba(217,144,102,.25);
+                                --placeholder:#a8b3d9;
+                              }
+                              @media (prefers-color-scheme: dark){
+                                .contact-wrap{
+                                  --txt:#e9edff;
+                                  --bg:#0f1020;
+                                  --panel:#1b1d3a;
+                                  --edge:rgba(217,144,102,.38);
+                                }
+                              }
+                            
+                              .contact-container{
+                                max-width: 980px;
+                                margin: 0 auto;
+                                padding: clamp(16px,2.5vw,28px);
+                              }
+                            
+                              .contact-form{
+                                margin-top: 14px;
+                                border:2px solid rgba(217,144,102,.7);
+                                border-radius: 14px;
+                                padding: clamp(16px,2.2vw,22px);
+                                background:
+                                  radial-gradient(circle at 0% 0%, rgba(217,144,102,.18) 0%, rgba(217,144,102,0) 55%),
+                                  var(--panel);
+                                color: var(--txt);
+                                box-shadow: 0 24px 60px rgba(0,0,0,.9);
+                              }
+                              .contact-form:focus-within{
+                                box-shadow:
+                                  0 0 0 2px rgba(217,144,102,.65),
+                                  0 26px 70px rgba(0,0,0,.95);
+                              }
+                            
+                              .grid{
+                                display:grid;
+                                grid-template-columns: 1fr 1fr;
+                                gap: 14px clamp(14px,2vw,22px);
+                              }
+                              .field{
+                                display:flex;
+                                flex-direction:column;
+                                gap:8px;
+                              }
+                              .field--full{ grid-column: 1/-1; }
+                              .field--consent{ margin-top: 2px; }
+                            
+                              label{
+                                font-weight:600;
+                                font-size: 0.95rem;
+                                color: var(--txt);
+                              }
+                              .req{
+                                color: var(--cuivre);
+                                font-weight: 700;
+                              }
+                            
+                              input[type=text], input[type=email], select, textarea{
+                                font: inherit;
+                                color: #111;
+                                background: #ffffff;
+                                border:1px solid var(--edge);
+                                border-radius: 12px;
+                                padding: 12px 14px;
+                                outline: none;
+                                transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+                              }
+                              textarea{
+                                resize: vertical;
+                                min-height: 140px;
+                              }
+                            
+                              input::placeholder,
+                              textarea::placeholder{
+                                color: var(--placeholder);
+                              }
+                            
+                              input:focus,
+                              select:focus,
+                              textarea:focus{
+                                border-color: color-mix(in oklab, var(--cuivre) 65%, var(--edge));
+                                box-shadow: 0 0 0 3px color-mix(in oklab, var(--cuivre) 24%, transparent);
+                                background:#ffffff;
+                              }
+                            
+                              .checkbox{
+                                display:flex;
+                                align-items:flex-start;
+                                gap:10px;
+                                cursor: pointer;
+                                color: var(--txt);
+                              }
+                              .checkbox input{
+                                inline-size: 18px;
+                                block-size: 18px;
+                                margin-top: 2px;
+                                accent-color: var(--cuivre);
+                              }
+                            
+                              .error{
+                                color: #c0392b;
+                                font-size: .9rem;
+                                min-height: 1em;
+                                margin: 0;
+                              }
+                            
+                              .form-actions{
+                                display:flex;
+                                align-items:center;
+                                gap: 12px;
+                                flex-wrap:wrap;
+                                margin-top: 6px;
+                              }
+                              .btn-cuivre{
+                                display:inline-flex;
+                                align-items:center;
+                                gap:8px;
+                                padding: 12px 16px;
+                                border-radius: 12px;
+                                border:1px solid rgba(217,144,102,.75);
+                                background:
+                                  radial-gradient(circle at 0% 0%, rgba(217,144,102,.35) 0%, rgba(217,144,102,0) 60%),
+                                  #182047;
+                                color: var(--txt);
+                                font-weight:700;
+                                letter-spacing:.2px;
+                                cursor:pointer;
+                                transition:
+                                  transform .1s ease,
+                                  box-shadow .2s ease,
+                                  background .2s ease,
+                                  border-color .2s ease;
+                                box-shadow:
+                                  0 18px 40px rgba(0,0,0,.9),
+                                  0 0 0 1px rgba(217,144,102,.35),
+                                  0 0 24px rgba(217,144,102,.35);
+                              }
+                              .btn-cuivre:focus-visible{
+                                outline: none;
+                                box-shadow:
+                                  0 0 0 3px color-mix(in oklab, var(--cuivre) 32%, transparent),
+                                  0 22px 60px rgba(0,0,0,.95);
+                              }
+                              .btn-cuivre:hover{
+                                transform: translateY(-1px) scale(1.02);
+                                background:
+                                  radial-gradient(circle at 0% 0%, rgba(217,144,102,.45) 0%, rgba(217,144,102,0) 60%),
+                                  #20254b;
+                                border-color: rgba(217,144,102,1);
+                                box-shadow:
+                                  0 24px 60px rgba(0,0,0,1),
+                                  0 0 0 1px rgba(217,144,102,.7),
+                                  0 0 32px rgba(217,144,102,.6);
+                              }
+                              .btn-ico{
+                                width: 18px;
+                                height: 18px;
+                                fill: currentColor;
+                                opacity:.9;
+                              }
+                            
+                              .form-note{
+                                opacity:.78;
+                                font-size:.92rem;
+                                color: var(--txt);
+                              }
+                              .form-status{
+                                margin-top: 6px;
+                                min-height: 1.25em;
+                              }
+                            
+                              .hp{
+                                position: absolute;
+                                left:-9999px;
+                                width:1px;
+                                height:1px;
+                                overflow:hidden;
+                              }
+                            
+                              /* Accessibilité : utilitaire de masquage visuel */
+                              .visually-hidden{
+                                position:absolute !important;
+                                width:1px;
+                                height:1px;
+                                margin:-1px;
+                                padding:0;
+                                border:0;
+                                overflow:hidden;
+                                clip:rect(0 0 0 0);
+                                clip-path: inset(50%);
+                                white-space:nowrap;
+                              }
+                            
+                              @media (max-width: 760px){
+                                .grid{ grid-template-columns: 1fr; }
+                              }
+                            </style>
+<style>
+                                [data-faq=v1]{
+                                  --cuivre:#d99066;
+                                  --titre:#e9edff;
+                                  --texte:#c7cff7;
+                                  --bg1:#0f1020;
+                                  --bg2:#1b1d3a;
+                                  --shadow-profond:0 24px 60px rgba(0,0,0,.85);
+                                  --badge-cuivre:rgba(217,144,102,.9);
+                                }
+                            
+                                [data-faq=v1] .faq-section{
+                                  isolation:isolate;
+                                  max-width:900px; margin:3rem auto; padding:2rem 1.5rem;
+                                  background:
+                                    radial-gradient(circle at 0% 0%, rgba(217,144,102,.14) 0%, rgba(217,144,102,0) 55%),
+                                    linear-gradient(180deg,var(--bg1),var(--bg2));
+                                  border-radius:20px;
+                                  border:1px solid rgba(217,144,102,.40);
+                                  box-shadow:var(--shadow-profond);
+                                }
+                            
+                                [data-faq=v1] h2#faq-title{
+                                  margin:0 0 1rem; text-align:center;
+                                  font:700 2rem/1.2 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+                                  background:linear-gradient(90deg,#ffcf9a,var(--cuivre));
+                                  -webkit-background-clip:text; background-clip:text; color:transparent;
+                                }
+                            
+                                [data-faq=v1] .intro{
+                                  text-align:center; font-size:1rem; margin:0 0 2rem; color:var(--texte);
+                                }
+                            
+                                [data-faq=v1] .faq-item{
+                                  margin-bottom:1rem;
+                                  border:1px solid rgba(217,144,102,.55);
+                                  border-radius:12px;
+                                  overflow:hidden;
+                                  background:#10132a;
+                                  box-shadow:0 14px 32px rgba(0,0,0,.75);
+                                }
+                            
+                                [data-faq=v1] .faq-question{
+                                  width:100%; text-align:left; padding:1rem 3rem 1rem 1rem;
+                                  font:600 1.05rem/1.4 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+                                  background:#151b38;
+                                  color:var(--titre);
+                                  border:none; cursor:pointer; position:relative;
+                                  transition:background .3s ease,color .3s ease;
+                                  box-shadow:inset 0 0 0 1px rgba(217,144,102,.25);
+                                }
+                            
+                                [data-faq=v1] .faq-question:hover{
+                                  background:#1b2345;
+                                  color:var(--titre);
+                                }
+                            
+                                [data-faq=v1] .faq-question::after{
+                                  content:"+";
+                                  position:absolute; right:1rem; top:50%; transform:translateY(-50%);
+                                  font-weight:700; opacity:.95;
+                                  color:var(--cuivre);
+                                }
+                            
+                                [data-faq=v1] .faq-item.active .faq-question::after{ content:"–" }
+                            
+                                [data-faq=v1] .faq-answer{
+                                  max-height:0; overflow:hidden;
+                                  transition:max-height .35s ease, padding .25s ease;
+                                  background:#0f1730;
+                                  padding:0 1rem;
+                                }
+                            
+                                [data-faq=v1] .faq-item.active .faq-answer{
+                                  padding:0 1rem 1rem;
+                                }
+                            
+                                [data-faq=v1] .faq-answer p{
+                                  margin:1rem 0; line-height:1.65; font-size:1rem; color:var(--texte);
+                                }
+                            
+                                /* Lien cuivré : pas souligné, souligné au survol */
+                                [data-faq=v1] .faq-answer a{
+                                  color:var(--cuivre);
+                                  text-decoration:none;
+                                  font-weight:600;
+                                  transition:opacity .2s ease, text-decoration-color .2s ease;
+                                  text-decoration-thickness:2px;
+                                  text-underline-offset:3px;
+                                  text-decoration-color:rgba(217,144,102,.85);
+                                }
+                                [data-faq=v1] .faq-answer a:hover{
+                                  text-decoration:underline;
+                                  opacity:.95;
+                                }
+                                [data-faq=v1] .faq-answer a:focus-visible{
+                                  outline:2px solid rgba(217,144,102,.75);
+                                  outline-offset:3px;
+                                  border-radius:6px;
+                                }
+                            
+                                /* Hard override – lisibilité / pas d’effets chelou hérités */
+                                [data-faq=v1] .faq-section, [data-faq=v1] .faq-section *{
+                                  text-shadow:none !important;
+                                  filter:none !important;
+                                  opacity:1 !important;
+                                  mix-blend-mode:normal !important;
+                                }
+                                [data-faq=v1] .faq-section p, [data-faq=v1] .faq-section li, [data-faq=v1] .faq-section small{
+                                  color:var(--texte) !important;
+                                }
+                                [data-faq=v1] h2#faq-title, [data-faq=v1] .faq-question{
+                                  color:var(--titre) !important;
+                                }
+                              </style>
+                        <style>
+                          /* Footer Scripts-HTML */
+                          .sh-footer{
+                            position:relative;
+                            background:#0d0d1a;
+                            padding:15px 20px 10px;
+                            font-family:Arial, sans-serif;
+                          }
+                        
+                          /* Barre cuivre pleine largeur */
+                          .sh-footer::before{
+                            content:"";
+                            position:absolute;
+                            top:0;
+                            left:0;
+                            right:0;
+                            height:2px;
+                            background:#d99066;
+                            pointer-events:none;
+                          }
+                        
+                          .sh-footer .sh-inner{
+                            max-width:1200px;
+                            margin:0 auto;
+                            display:flex;
+                            align-items:center;
+                            gap:14px;
+                            flex-wrap:wrap;
+                          }
+                        
+                          .sh-footer img{
+                            width:80px;
+                            height:auto;
+                            display:block;
+                            flex:0 0 auto;
+                          }
+                        
+                          .sh-footer .sh-text{
+                            display:flex;
+                            flex-direction:column;
+                            gap:3px;
+                            min-width:240px;
+                          }
+                        
+                          .sh-footer .brand{
+                            color:#d99066;
+                            font-weight:700;
+                            font-size:1.1rem;
+                            line-height:1.2;
+                          }
+                        
+                          .sh-footer .meta{
+                            font-size:.9rem;
+                            color:#b5b5b5;
+                            line-height:1.35;
+                          }
+                        
+                          .sh-footer .meta a{
+                            color:#d99066;
+                            text-decoration:none;
+                          }
+                          .sh-footer .meta a:hover{
+                            text-decoration:underline;
+                          }
+                        
+                          .sh-footer .copy{
+                            margin-top:10px;
+                            text-align:center;
+                            font-size:.85rem;
+                            color:#888;
+                          }
+                        
+                          /* Lien À propos cuivré */
+                          .sh-footer .copy a{
+                            color:#d99066;
+                            text-decoration:none;
+                          }
+                          .sh-footer .copy a:hover{
+                            text-decoration:underline;
+                          }
+                        </style>
+                        
+                        <style>
+																						   </style>
+
+    
+    <link rel="shortcut icon" type="image/png" href="https://www.scripts-html.com/wa_res/icons/favicon-48.png">
+
+     
+    <link rel="stylesheet" href="./Effetsok_files/wafusion_full.min.css">
+
+    <link rel="stylesheet" href="./Effetsok_files/page_fr.css">
+    <link rel="stylesheet" href="./Effetsok_files/global.css">
+<link rel="stylesheet" href="./Effetsok_files/wafusion_defer.min.css" as="style" onload="this.rel=&#39;stylesheet&#39;">
+<link rel="stylesheet" href="./Effetsok_files/all.min.css" as="style" onload="this.rel=&#39;stylesheet&#39;">
+ <link rel="canonical" href="https://www.scripts-html.com/">
+
+
+<!-- Open Graph -->
+<meta property="og:title" content="Ajoutez du style et de l’interactivité à votre site Web">
+<meta property="og:description" content="Effets visuels modernes, widgets fun et scripts prêts à coller. Pas besoin de coder, testez-les gratuitement en direct.">
+<meta property="og:image" content="wa_res/icons/og-cover.jpg?t=db9038de_ab1b_4f4b_9052_f40568402c5a">
+<meta property="og:image:alt" content="scripts-html.com — Effets visuels et widgets interactifs">
+<meta property="og:url" content="https://www.scripts-html.com/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ajoutez du style et de l’interactivité à votre site Web">
+<meta name="twitter:description" content="Effets visuels modernes, widgets fun et scripts prêts à coller. Pas besoin de coder, testez-les gratuitement en direct.">
+<meta name="twitter:image" content="wa_res/icons/og-cover.jpg?t=db9038de_ab1b_4f4b_9052_f40568402c5a">
+
+<!-- Données structurées (SEO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Scripts HTML",
+  "url": "https://www.scripts-html.com",
+  "logo": "https://www.scripts-html.com/logo512.png",
+  "description": "Scripts HTML, CSS et JavaScript prêts à l’emploi pour tous types de sites web. Ajoutez facilement des effets visuels et widgets interactifs, compatibles WordPress, Wix, Shopify et WebAcappella Fusion."
+}
+</script>
+<!-- Police Inter en local (source unique) -->
+<link rel="stylesheet" href="./Effetsok_files/fonts.css">
+
+<!-- Préchargement WOFF2 -->
+<link rel="preload" href="https://www.scripts-html.com/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin="">
+<link rel="preload" href="https://www.scripts-html.com/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin="">
+
+
+<!-- Favicon (Google + navigateurs) : simple, stable, crawlable -->
+<link rel="icon" href="https://www.scripts-html.com/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="https://www.scripts-html.com/favicon-32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="https://www.scripts-html.com/favicon-48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="https://www.scripts-html.com/favicon-96.png" sizes="96x96">
+<link rel="apple-touch-icon" href="https://www.scripts-html.com/apple-touch-icon-180.png" sizes="180x180">
+
+<!-- Manifest PWA -->
+<link rel="manifest" href="https://www.scripts-html.com/manifest.webmanifest">
+
+
+    <script>
+      var WaComponentContext = {};
+      var WaPageContext = {};
+      var WaContext = {};
+
+      WaContext.wf_nocache_flag="wf-nocache";
+
+      WaContext.app_version="3.4.16";
+      WaContext.app_revision="82aa659a5#4a8a595";
+      WaPageContext.wa_global_relative_folder_for_res="";
+      WaPageContext.multilang_folder="";
+
+      WaPageContext.wa_relative_res_path="";
+
+      WaContext.preview=false;
+
+      WaContext.is_php=false;
+
+      WaPageContext.modified="2026.01.07 20:59";
+      WaPageContext.generated="2026.01.07 21:00";
+
+      WaPageContext.lang="fr";
+      WaPageContext.lang_key="fr";
+      WaPageContext.page_uuid="ded7dcee_1ac6_4622_86b2_f123f43f87d6";
+
+      WaContext.has_feature_shop=true;
+      WaContext.is_home_page=true;
+      WaContext.is_shop_page=false;
+      WaPageContext.shop_cgv_url="";
+      WaPageContext.shop_cgv_url_target="";
+      WaPageContext.shop_anchor_links="#washop-anchor-top";
+
+
+    </script>
+
+    
+    <style>
+
+      :root {
+      --WA_CURRENT_PAGE_BODY_COLOR: #ffffff;
+      --CC_DOMINANT_COLOR: #f39c12;
+      --CC_DOMINANT_COLOR_INVERSE: #ffffff;
+      --CC_COLOR_TEXT_MAIN: #3d3d3d;
+      --CC_COLOR_TEXT_CLAIR: #7a7a7a;
+      --CC_COLOR_TEXT_FONCEE: #000000;
+      --CC_DOMINANT_COLOR_DARK: #a2680c;
+      --CC_COLOR_BACKGROUND: #ffffff;
+      --CC_BG_LEVEL2: #f6f6f6;
+      
+      }
+
+    </style>
+ 
+    <noscript> Your browser does not support JavaScript! </noscript>
+       
+
+    </head><body><div id="anchor-top"></div>
+
+    <main>
+     <div class="comp_0 container-fluid p-0 wa-box wa-box-fluid ">
+    <div class="innerBox ">
+    <div class="row comp_1">
+        <div class="comp_2  col-lg-12 offset-lg-0 col-12 offset-0 d-flex ">
+            <div class="wa_inner_col">
+                <div class="wa_inner_col2">
+                    <div style="width:100%;" class="comp_3">
+                        <div class="blockcomp-0-comp_0 container-fluid p-0  ">
+    <div class="innerBox ">
+    <div class="row blockcomp-0-comp_1">
+        <div class="blockcomp-0-comp_2  col-lg-12 offset-lg-0 col-12 offset-0 d-flex ">
+            <div class="wa_inner_col">
+                <div class="wa_inner_col2">
+                    <div class="wa-comp blockcomp-0-comp_3 effet-ici" data-comp-unid="blockcomp-0-comp_3">
+                        <div id="banniere"></div>
+                        <!-- ===================== BANNIÈRE SCRIPTS-HTML (reflet classique synchro) ===================== -->
+                        <div class="waf-hero" id="hero-catalogue">
+                          <canvas class="hero-canvas" aria-hidden="true" width="2064" height="840" style="width: 1376px; height: 560px; left: -12px; top: -24px; right: 671px;"></canvas>
+                          <div class="hero-gradient"></div>
+                          <div class="hero-grid" aria-hidden="true"></div>
+                        
+                          <div class="hero-content">
+                            <!-- Cube 3D -->
+                        
+                        
+                        <style>
+                          :root{
+                            --scroll-offset: 90px;
+                            --bg-start:#0f1020; --bg-end:#1b1d3a;
+                            --acc-1:#d99066; --acc-2:#00d4ff;
+                            --txt:#f2f5ff; --muted:#b8bfd8;
+                            --hero-h:clamp(520px,70vh,860px); --max-w:1100px;
+                            --shadow-lg:0 20px 45px rgba(0,0,0,.35); --radius-2xl:28px;
+                            --lx:50%; --ly:38%;
+                            --edge:rgba(217,144,102,.9);
+                          }
+                          html { scroll-behavior: smooth; }
+                          [id]{ scroll-margin-top: var(--scroll-offset); }
+                        
+                          /* --- Hero --- */
+                          .waf-hero{position:relative;min-height:560px;height:var(--hero-h);width:100%;
+                            overflow:hidden;isolation:isolate;border-radius:var(--radius-2xl);box-shadow:var(--shadow-lg);
+                            background:linear-gradient(180deg,var(--bg-start),var(--bg-end))}
+                          .hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0}
+                          .hero-gradient{position:absolute;inset:-10% -10% 0 -10%;background:
+                            radial-gradient(1200px 600px at 15% 20%, color-mix(in oklab, var(--acc-2) 22%, transparent), transparent 60%),
+                            radial-gradient(900px 500px at 85% 30%, color-mix(in oklab, var(--acc-1) 34%, transparent), transparent 65%);
+                            filter:saturate(120%);animation:floatGlow 16s ease-in-out infinite alternate;z-index:1;pointer-events:none}
+                          @keyframes floatGlow{0%{transform:translateY(0) scale(1);opacity:.9}100%{transform:translateY(-2%) scale(1.02);opacity:1}}
+                          .hero-grid{position:absolute;inset:0;background-image:
+                            linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
+                            linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
+                            background-size:60px 60px;mask-image:radial-gradient(70% 60% at 50% 45%, black 60%, transparent 100%);
+                            z-index:2;pointer-events:none}
+                        
+                          .hero-content{position:relative;z-index:3;height:100%;display:grid;place-items:center;
+                            text-align:center;color:var(--txt);padding:2rem}
+                          .hero-content>*{max-width:var(--max-w)}
+                        
+                          /* --- Titre 2 lignes --- */
+                          .hero-title{
+                            margin:.6rem auto 1rem;
+                            font-family: system-ui, sans-serif;
+                            font-weight: 800;
+                            line-height: 1.18;
+                          }
+                          .hero-title .line1{
+                            display:block;
+                            font-size: clamp(32px, 6.2vw, 60px);
+                            color: var(--txt);
+                          }
+                          .hero-title .line1 .gradient{
+                            background: linear-gradient(90deg,var(--acc-1),var(--acc-2));
+                            -webkit-background-clip: text;
+                            background-clip: text;
+                            color: transparent;
+                          }
+                          .hero-title .line2{
+                            display:block;
+                            font-size: clamp(22px, 4.2vw, 34px);
+                            color: var(--txt);
+                            font-weight: 750;
+                            margin-top:.18em;
+                          }
+                        
+                          .hero-sub{font:500 clamp(15px,2.4vw,20px)/1.6 system-ui;color:var(--muted);margin:0 auto 1.2rem}
+                          .hero-sub em{color:var(--txt);font-weight:700;font-style:normal;opacity:1}
+                        
+                          /* --- Menu --- */
+                          #hero-catalogue nav.hero-menu ul{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin:1rem 0 0;padding:0;list-style:none}
+                          #hero-catalogue nav.hero-menu li{margin:0;padding:0}
+                          #hero-catalogue nav.hero-menu a,
+                          #hero-catalogue nav.hero-menu a:visited{
+                            display:inline-block;padding:.7rem 1.1rem;border-radius:12px;
+                            border:1px solid rgba(255,255,255,.15);
+                            background:rgba(255,255,255,.06);
+                            color:var(--txt);font:700 15px system-ui;text-decoration:none;
+                            transition:all .3s ease;
+                          }
+                          #hero-catalogue nav.hero-menu a:hover{
+                            background:rgba(255,255,255,.12);
+                            background-image:linear-gradient(90deg,var(--acc-1),var(--acc-2));
+                            -webkit-background-clip:text;background-clip:text;color:transparent;
+                          }
+                        
+                          /* --- Cube cuivre + reflet classique (synchro rotation) --- */
+                          .logo-cube-inline{
+                            --cube-size:110px;
+                            width:var(--cube-size);
+                            height:var(--cube-size);
+                            margin:10px auto 8px;
+                            perspective:calc(var(--cube-size)*9);
+                            display:block;
+                            pointer-events:none;
+                          }
+                          .logo-cube-inline .cube{
+                            width:100%;
+                            height:100%;
+                            transform-style:preserve-3d;
+                            transition:transform 1.8s cubic-bezier(.55,.08,.24,.99);
+                            will-change:transform;
+                          }
+                          .logo-cube-inline .cube .face{
+                            position:absolute;
+                            inset:0;
+                            display:flex;
+                            flex-direction:column;
+                            align-items:center;
+                            justify-content:center;
+                            text-align:center;
+                            line-height:1.15;
+                            font-family:system-ui,monospace;
+                            color:#d99066;
+                            border:1.5px solid var(--edge);
+                            border-radius:14px;
+                            background:
+                              linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,0) 45%),
+                              radial-gradient(120% 120% at 30% 25%, rgba(255,255,255,.08), rgba(255,255,255,0) 60%),
+                              linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.12));
+                            backdrop-filter:blur(4px) saturate(110%);
+                            box-shadow:
+                              inset 0 8px 14px rgba(255,255,255,.08),
+                              inset 0 -12px 20px rgba(0,0,0,.25),
+                              0 0 14px rgba(217,144,102,.35);
+                            backface-visibility:hidden;
+                            overflow:hidden;
+                          }
+                        
+                          /* --- TEXTE DU CUBE : rendu identique </>, mais sans texte dans le HTML --- */
+                          .logo-cube-inline .cube .face .cube-face-text{
+                            font-weight:700;
+                            font-size:clamp(20px,2.9vw,32px);
+                            text-shadow:0 0 8px rgba(217,144,102,.55);
+                            transform:translateY(-2px);
+                            display:block;
+                          }
+                          .logo-cube-inline .cube .face .cube-face-text::before{
+                            content:"</>";
+                            display:block;
+                            line-height:1.15;
+                          }
+                          /* ✅ FIX : "scripts-html" est maintenant en CSS, donc plus présent dans le DOM */
+                          .logo-cube-inline .cube .face .cube-face-text::after{
+                            content:"scripts-html";
+                            display:block;
+                            margin-top:2px;
+                            font-size:clamp(11px,1.5vw,13px);
+                            font-weight:700;
+                            color:#d99066;
+                            opacity:1;
+                            transform:translateY(3px);
+                          }
+                        
+                          /* Reflet mobile : au repos invisible… */
+                          .logo-cube-inline .cube .face::after{
+                            content:"";
+                            position:absolute;
+                            inset:-20% -60%;
+                            pointer-events:none;
+                            border-radius:22px;
+                            background:linear-gradient(100deg,
+                              rgba(255,255,255,0) 0%,
+                              rgba(255,255,255,.25) 46%,
+                              rgba(255,255,255,0) 64%);
+                            transform:rotate(18deg) translateX(-130%);
+                            mix-blend-mode:screen;
+                            filter:blur(1px);
+                            opacity:0;
+                          }
+                          /* …et lancé une seule fois pendant chaque rotation */
+                          #logoCube.is-rotating .cube .face::after{
+                            animation: cubeSweep var(--sweep-duration, 1700ms) ease-out 1 both;
+                            animation-delay: var(--face-delay, 0s);
+                            opacity:.75;
+                          }
+                        
+                          /* léger décalage entre faces */
+                          .logo-cube-inline .cube .face:nth-child(2){ --face-delay: .06s; }
+                          .logo-cube-inline .cube .face:nth-child(3){ --face-delay: .12s; }
+                          .logo-cube-inline .cube .face:nth-child(4){ --face-delay: .18s; }
+                          .logo-cube-inline .cube .face:nth-child(5){ --face-delay: .24s; }
+                          .logo-cube-inline .cube .face:nth-child(6){ --face-delay: .30s; }
+                        
+                          @keyframes cubeSweep{
+                            0%   { transform:rotate(18deg) translateX(-130%); opacity:0; }
+                            10%  { opacity:1; }
+                            45%  { transform:rotate(18deg) translateX(135%); opacity:1; }
+                            70%  { opacity:0; }
+                            100% { transform:rotate(18deg) translateX(135%); opacity:0; }
+                          }
+                        
+                          .logo-cube-inline .cube .face:nth-child(1){transform:rotateY(0deg)translateZ(calc(var(--cube-size)/2))}
+                          .logo-cube-inline .cube .face:nth-child(2){transform:rotateY(180deg)translateZ(calc(var(--cube-size)/2))}
+                          .logo-cube-inline .cube .face:nth-child(3){transform:rotateY(90deg)translateZ(calc(var(--cube-size)/2))}
+                          .logo-cube-inline .cube .face:nth-child(4){transform:rotateY(-90deg)translateZ(calc(var(--cube-size)/2))}
+                          .logo-cube-inline .cube .face:nth-child(5){transform:rotateX(90deg)translateZ(calc(var(--cube-size)/2))}
+                          .logo-cube-inline .cube .face:nth-child(6){transform:rotateX(-90deg)translateZ(calc(var(--cube-size)/2))}
+                        
+                          @media (max-width:1024px){ .logo-cube-inline{ --cube-size:92px; } }
+                          @media (max-width:720px){
+                            .logo-cube-inline{ --cube-size:68px; }
+                            .hero-title .line1{ font-size: clamp(28px, 7vw, 44px); }
+                            .hero-title .line2{ font-size: clamp(18px, 5vw, 26px); }
+                          }
+                        </style>
+                        
+                        <script>
+                        /* ===================== Particules + rotation cube (reflet classique synchro) ===================== */
+                        (function(){
+                          function boot(){
+                            const root=document.getElementById('hero-catalogue');
+                            if(!root) return;
+                        
+                            /* Particules */
+                            const canvas=root.querySelector('.hero-canvas');
+                            const ctx=canvas.getContext('2d');
+                            const dpr=Math.max(1,Math.min(2,window.devicePixelRatio||1));
+                            const DENSITY=0.9, BASE_SPEED=0.45, NOISE=0.35, CONNECT=true;
+                            let w=0,h=0,particles=[],started=false;
+                            const dir={x:0.25,y:0};
+                        
+                            function rand(a,b){return Math.random()*(b-a)+a;}
+                            function initParticles(){
+                              const count=Math.max(120,Math.round((w*h)/(14000/DENSITY)));
+                              particles=new Array(count).fill(0).map(()=>({
+                                x:rand(0,w), y:rand(0,h),
+                                vx:(Math.random()-0.5)*BASE_SPEED*dpr,
+                                vy:(Math.random()-0.5)*BASE_SPEED*dpr,
+                                r:rand(1,2.2), a:rand(0.35,1), phase:rand(0,Math.PI*2)
+                              }));
+                            }
+                            function resize(){
+                              const rect=root.getBoundingClientRect();
+                              canvas.width=Math.floor(rect.width*dpr);
+                              canvas.height=Math.floor(rect.height*dpr);
+                              canvas.style.width=rect.width+'px';
+                              canvas.style.height=rect.height+'px';
+                              w=canvas.width; h=canvas.height;
+                              initParticles();
+                              if(!started){started=true;requestAnimationFrame(step);}
+                            }
+                            function step(now){
+                              const t=now*0.001;
+                              ctx.clearRect(0,0,w,h);
+                              ctx.fillStyle='#fff';
+                              for(const p of particles){
+                                const nx=Math.cos(t*0.9+p.phase)*NOISE*dpr;
+                                const ny=Math.sin(t*0.8+p.phase*1.1)*NOISE*dpr;
+                                p.x+=(p.vx+nx+dir.x*dpr);
+                                p.y+=(p.vy+ny+dir.y*dpr);
+                                if(p.x<-10) p.x=w+10; else if(p.x>w+10) p.x=-10;
+                                if(p.y<-10) p.y=h+10; else if(p.y>h+10) p.y=-10;
+                                ctx.globalAlpha=p.a; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*dpr,0,Math.PI*2); ctx.fill();
+                              }
+                              if(CONNECT){
+                                const maxDist=120*dpr; ctx.lineWidth=1.8*dpr; ctx.strokeStyle='rgba(255,255,255,0.3)';
+                                for(let i=0;i<particles.length;i++){
+                                  const a=particles[i];
+                                  for(let j=i+1;j<particles.length;j++){
+                                    const b=particles[j];
+                                    const dx=a.x-b.x,dy=a.y-b.y; const d2=dx*dx+dy*dy;
+                                    if(d2<maxDist*maxDist){
+                                      const alpha=0.18*(1-Math.sqrt(d2)/maxDist);
+                                      ctx.globalAlpha=alpha; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+                                    }
+                                  }
+                                }
+                                ctx.globalAlpha=1;
+                              }
+                              requestAnimationFrame(step);
+                            }
+                        
+                            /* Rotation du cube + reflet synchronisé */
+                            const logo = root.querySelector('#logoCube');
+                            const cube = logo ? logo.querySelector('.cube') : null;
+                            if(cube && logo){
+                              const faces=[{x:0,y:0},{x:0,y:90},{x:0,y:-90},{x:-90,y:0}];
+                              let cur={x:0,y:0};
+                              let endTimer=null;
+                        
+                              function rot(){
+                                if(document.hidden) return;
+                        
+                                const dur = 1700; // durée stable = cohérence “classique”
+                                cube.style.transitionDuration = dur+'ms';
+                        
+                                // choisit une autre face
+                                let pick;
+                                do{ pick=faces[Math.floor(Math.random()*faces.length)] }while(pick.x===cur.x&&pick.y===cur.y);
+                                cube.style.transform = `rotateX(${pick.x}deg) rotateY(${pick.y}deg)`;
+                                cur=pick;
+                        
+                                // Lance le reflet exactement pendant la rotation
+                                logo.style.setProperty('--sweep-duration', dur+'ms');
+                                logo.classList.remove('is-rotating'); // reset si besoin
+                                // force reflow pour relancer proprement l’animation
+                                // eslint-disable-next-line no-unused-expressions
+                                logo.offsetWidth;
+                                logo.classList.add('is-rotating');
+                        
+                                if(endTimer) clearTimeout(endTimer);
+                                endTimer = setTimeout(()=>{
+                                  logo.classList.remove('is-rotating');
+                                }, dur + 60);
+                              }
+                        
+                              setInterval(rot,6000);
+                            }
+                        
+                            resize(); window.addEventListener('resize',resize,{passive:true});
+                            setTimeout(resize,200); setTimeout(resize,600);
+                          }
+                          if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
+                        })();
+                        </script>
+                        <!-- =================== FIN BANNIÈRE =================== -->
+                        
+                   
+    </div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></main>
+
+</body></html>

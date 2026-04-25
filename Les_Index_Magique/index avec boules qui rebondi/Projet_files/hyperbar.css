@@ -1,0 +1,75 @@
+@import "fonts/BPdots/BPdotsSquares.css";
+
+.hyperbar {
+    color: #000000;
+    width: 100%;
+    font-family: BPdotsSquares, Times, "Times New Roman", serif;
+    font-size: 19px;
+    height: 17px;
+    background-color: #e4e8ed;
+    padding-top: 3px;
+    overflow: hidden;
+}
+
+.hyperbar div {
+    display: inline-block;
+}
+
+.hyperbar a,
+.hyperbar a:visited {
+    color: #17487c;
+    text-decoration: none;
+}
+
+.hyperbar a:hover {
+    color: #1f60a7;
+}
+
+/* Themes */
+
+.hyperbar-hacker {
+    color: #3bf5b7;
+    background-color: #000000;
+}
+
+.hyperbar-2000 {
+    color: #f4ed41;
+    background-color: #4e3e32;
+}
+
+.hyperbar-red {
+    color: #e2c0c7;
+    background-color: #191919;
+}
+
+.hyperbar-lcd {
+    color: #3583c7;
+    background-color: #aee5f8;
+    box-shadow: inset 0px 0px 10px #3895dd;
+}
+
+/* Animations */
+
+.hyperbar-scroll {
+    animation: scrolling 20s linear infinite alternate;
+    width: 100%;
+}
+
+.hyperbar-scroll-fast {
+    animation: scrolling 10s linear infinite alternate;
+    width: 100%;
+}
+
+.hyperbar-scroll-slow {
+    animation: scrolling 30s linear infinite alternate;
+    width: 100%;
+}
+
+@keyframes scrolling {
+    0% {
+        transform: translateX(50%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}

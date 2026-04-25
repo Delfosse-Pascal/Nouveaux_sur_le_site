@@ -1,0 +1,15 @@
+#fp h1 a {
+    background:url('logo.png') no-repeat;
+    width:400px;
+    height:277px; 
+}
+#fp:before {
+    content:"Messieurs et mesdames les ayants droit, pour toute réclamation vous pouvez vous adresser à contact@partipirate.org nous nous ferons un plaisir de vous répondre.";
+    height:20px;
+    line-height:20px; 
+    background-color:#CECECE; 
+    position:fixed ;
+    bottom:0;
+    left:0;
+    right:0;
+}

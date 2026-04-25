@@ -1,0 +1,114 @@
+  <!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <title>Le site de Pascal Delfosse - Artiste Contemporain</title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/favicondepascal.png" type="image/png">
+<link rel="icon" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/favicondepascal.ico" type="image/x-icon">
+<link rel="shortcut icon" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/favicondepascal.ico" type="image/x-icon">
+
+<!-- Lier le menu social -->
+  <link rel="stylesheet" type="text/css" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/style.css">
+  <script src="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/script.js"></script>
+
+<!-- menu social -->              
+  <nav class="social-menu">
+    <ul>
+      <li><a href="https://fr.pinterest.com/pascal509/mes-tableaux-tous-genre/" target="_blank">Pinterest</a></li>
+      <li><a href="https://www.flickr.com/photos/delfossepascal" target="_blank">Flickr</a></li>
+      <li><a href="https://www.tumblr.com/lestoilesdepascal" target="_blank">Tumblr</a></li>
+      <li><a href="https://x.com/PascalDelfossee" target="_blank">X</a></li>
+      <li><a href="https://www.tiktok.com/@delfossepascal" target="_blank">TikTok</a></li>
+      <li><a href="https://www.youtube.com/c/DelfossePascal" target="_blank">YouTube</a></li>
+    </ul> 
+  </nav>
+
+<!-- Lier le fichier JavaScript du menu -->
+<script src="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/menu.js" defer></script>
+<link rel="stylesheet" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/basedusite.css">
+
+   
+  <style>
+    /* Corps général */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Vidéo de fond adaptative */
+    video {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: -1; /* la vidéo reste derrière tout */
+      background-size: cover;
+    }
+
+    /* Titre et texte */
+    h1 {
+      color: #222;
+      background: rgba(255, 255, 255, 0.75);
+      padding: 12px 24px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-top: 50px;
+    }
+
+    /* Liens */
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #0044aa;
+      font-weight: bold;
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      color: #002266;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Menu social */
+    nav.social-menu {
+      margin-top: 10px;
+    }
+  </style>
+  <header></header>
+
+  
+  
+<video autoplay muted loop playsinline>
+  <source src="../Feu_Flamme_Cadre.mp4" type="video/mp4">
+  Votre navigateur ne supporte pas la vidéo.
+</video>
+
+
+
+</body>
+</html>

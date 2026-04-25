@@ -1,0 +1,17 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const customCursor = document.querySelector('.custom-cursor');
+    
+    // Faire suivre le curseur personnalisé
+    document.addEventListener('mousemove', function(e) {
+        customCursor.style.left = (e.clientX - customCursor.width / 2) + 'px';
+        customCursor.style.top = (e.clientY - customCursor.height / 2) + 'px';
+    });
+    
+    // Cacher le curseur par défaut
+    document.body.style.cursor = 'none';
+    
+    // S'assurer que le curseur personnalisé est au-dessus de tout
+    customCursor.style.zIndex = '9999';
+    customCursor.style.position = 'fixed';
+    customCursor.style.pointerEvents = 'none'; // Pour qu'il ne bloque pas les clics
+});

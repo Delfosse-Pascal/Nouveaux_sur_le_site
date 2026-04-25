@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<title>Le site de Pascal Delfosse - Artiste Peintre Contemporain</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <meta http-equiv="Content-Language" content="fr-be">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="Pascal Delfosse, artiste peintre passionné par les arts contemporains et mixtes. Découvrez ses œuvres et services gratuits pour webmasters.">
+ <meta name="robots" content="index, follow">
+ <meta name="author" content="Pascal Delfosse">
+
+<!-- Open Graph / Réseaux sociaux -->
+ <meta property="og:title" content="Le site de Pascal Delfosse - Artiste Peintre Contemporain">
+ <meta property="og:description" content="Découvrez les œuvres de Pascal Delfosse et ses partages sur x.com, pinterest.com, tumblr.com, youtube.com, flickr.com, twitter.com, TikTok.com">
+ <meta property="og:type" content="website">
+ <meta property="og:url" content="https://lestoilesdepascal.be">
+ <meta property="og:image" content="https://lestoilesdepascal.be/pascal.jpg">
+
+<!-- Icon page du site --> 
+<link rel="iconne" href="https://lestoilesdepascal.be/favicondepascal.png" type="image/png">
+
+<!-- Lier le menu social -->
+<link rel="stylesheet" type="text/css" href="https://lestoilesdepascal.be/style.css"><script src="https://lestoilesdepascal.be/script.js"></script>
+
+<!-- menu social --> 
+<nav class="social-menu">
+    <ul>
+      <li><a href="https://fr.pinterest.com/pascal509/mes-tableaux-tous-genre/" target="_blank">
+		Pinterest</a></li>
+      <li><a href="https://www.flickr.com/photos/delfossepascal" target="_blank">
+		Flickr</a></li>
+      <li><a href="https://www.tumblr.com/lestoilesdepascal" target="_blank">
+		Tumblr</a></li>
+      <li><a href="https://x.com/PascalDelfossee" target="_blank">X</a></li>
+      <li><a href="https://www.tiktok.com/@delfossepascal" target="_blank">
+		TikTok</a></li>
+      <li><a href="https://www.youtube.com/c/DelfossePascal" target="_blank">
+		YouTube</a></li>
+    </ul> 
+</nav>
+
+<!-- La sauvegarde est désactivée sur cette page --> 
+<script>
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 's') {
+                event.preventDefault();
+                alert('La sauvegarde est désactivée sur cette page.');
+            }
+        });
+</script>
+
+<!-- securite de bloquage 2 -->	
+<style>
+    .unselectable {
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      color: #cc0000;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
+    }
+</style> 
+
+<!-- Lier le fichier JavaScript du menu -->
+<script src="https://lestoilesdepascal.be/menu.js" defer></script><link rel="stylesheet" href="https://lestoilesdepascal.be/basedusite.css">
+    
+    <title>Floating Music Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .music-note {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            75% {
+                transform: translateY(-20px) translateX(-10px);
+            }
+        }
+
+        .interactive-note {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-note:hover {
+            transform: scale(1.2);
+            background: #ff6b6b;
+        }
+    </style>
+</head>
+
+<body onmousedown="return false" onselectstart="return false">
+
+<!-- Le menu sera injecté ici -->
+<header></header>
+
+    <div class="container">
+        <!-- Add multiple music note elements -->
+        <div class="music-note interactive-note" style="left: 10%;"></div>
+        <div class="music-note interactive-note" style="left: 30%;"></div>
+        <div class="music-note interactive-note" style="left: 50%;"></div>
+        <div class="music-note interactive-note" style="left: 70%;"></div>
+        <div class="music-note interactive-note" style="left: 90%;"></div>
+    </div>
+    
+    
+    
+        <div class="container">
+        <!-- Notes de musique avec liens hypertexte -->
+        <a href="https://www.spotify.com" class="note-link" target="_blank">
+            <div class="music-note interactive-note" style="left: 10%;" data-tooltip="Spotify"></div>
+        </a>
+        
+        <a href="https://www.youtube.com/music" class="note-link" target="_blank">
+            <div class="music-note interactive-note" style="left: 30%;" data-tooltip="YouTube Music"></div>
+        </a>
+        
+        <a href="https://www.deezer.com" class="note-link" target="_blank">
+            <div class="music-note interactive-note" style="left: 50%;" data-tooltip="Deezer"></div>
+        </a>
+        
+        <a href="https://music.apple.com" class="note-link" target="_blank">
+            <div class="music-note interactive-note" style="left: 70%;" data-tooltip="Apple Music"></div>
+        </a>
+        
+        <a href="https://soundcloud.com" class="note-link" target="_blank">
+            <div class="music-note interactive-note" style="left: 90%;" data-tooltip="SoundCloud"></div>
+        </a>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+
+    <script>
+        // Add interactivity to notes
+        document.querySelectorAll('.interactive-note').forEach(note => {
+            note.addEventListener('click', () => {
+                note.style.transform = 'scale(1.5)';
+                setTimeout(() => {
+                    note.style.transform = 'scale(1)';
+                }, 200);
+            });
+        });
+
+        // Add hover effect for notes
+        document.querySelectorAll('.interactive-note').forEach(note => {
+            note.addEventListener('mouseover', () => {
+                note.style.animation = 'none';
+                note.style.transform = 'translateY(-20px) translateX(10px)';
+                setTimeout(() => {
+                    note.style.animation = 'float 8s infinite ease-in-out';
+                }, 50);
+            });
+        });
+    </script>
+</body>
+</html>

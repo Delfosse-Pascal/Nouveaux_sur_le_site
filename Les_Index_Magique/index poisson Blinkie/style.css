@@ -1,0 +1,205 @@
+/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
+   HTML content. To learn how to do something, just try searching Google for questions like
+   "how to change link color." */
+
+body {
+  background-image: url("/ui/eccobg.png");
+  /*background-color: white;*/
+  color: black;
+  font-family: Verdana;
+  pointer-events: none;
+}
+
+img {
+  padding-right: 1px;
+}
+
+.container {
+  display: flex; /* This enables flexbox */
+  justify-content: center; /* This centers the items horizontally */
+  align-items: flex-start; /* This aligns items to the start of the cross axis */
+  pointer-events: none;
+}
+
+.navigation, .content-area, .aquarium {
+  pointer-events: auto;
+}
+
+.fish-container {
+  position: absolute;
+  top: 260px;
+  left: 0;
+  right: 0;
+  height: 508px;
+  overflow: hidden; /* Hide anything going outside this container */
+  pointer-events: auto;
+  z-index: -1;
+}
+
+
+#aquarium {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  width: 200%; /* Double width */
+  overflow: visible; /* Allow contents to go outside */
+}
+
+/* New rule to enable pointer events (clicking) specifically on coolfish */
+#coolfish {
+    pointer-events: auto;
+}
+
+
+.fish {
+    position: absolute;
+    will-change: transform, left, top;
+    /* No transition specified here, it's handled in JavaScript */
+    pointer-events: none;
+    
+    -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+
+   /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+   -ms-user-select: none;
+   user-select: none;
+    
+}
+
+.fish-wrapper {
+    position: absolute;
+    will-change: transform;
+    transition: transform 1000ms linear; /* Transition for moving */
+}
+
+.fish.flipped {
+    transform: scaleX(-1);
+    pointer-events: auto;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100px;
+  padding: 10px;
+  margin-top: 140px; /* Adjust this to align with the top of mainstuff */
+}
+
+.navi {
+  margin-bottom: 10px; /* Adjust spacing between navigation items */
+}
+
+.content-area {
+  /* This will contain the header image and the mainstuff */
+}
+
+.header-image {
+  /* Style for the header image */
+  display: block; /* Ensures the image is a block-level element */
+  margin-top: 100px;
+  margin-bottom: 10px; /* Space between the header image and mainstuff */
+}
+
+.mainstuff {
+  background-color: pink;
+  width: 453px;
+  border: 2px dotted;
+  padding: 20px;
+  margin: 10px;
+}
+
+.warning {
+  border: 2px red;
+  border-style: dotted;
+  margin: 10px;
+  padding: 4px 6px 3px 6px;
+  width: fit-content;
+}
+
+a {
+  pointer-events: auto;
+}
+
+.mobile-only{
+  display: none;
+  }
+
+/* Mobile navigation style */
+.mobile-nav {
+  display: none; /* Hidden by default */
+  /* Add more styles if needed */
+}
+
+@media (max-width: 600px) {
+  /* Styles for screens smaller than 600px */
+  
+  .pc-only {
+        display: none;  /* This will hide pc-only fish on mobile devices */
+    }
+  
+  .mobile-only{
+  display: inline;
+  }
+  
+  .navigation {
+    display: none; /* Hide desktop navigation on small screens */
+  }
+
+  .mobile-nav {
+    display: block; /* Show mobile navigation on small screens */
+    /* Style the mobile navigation as needed */
+  }
+
+  .mainstuff {
+    width: calc(100% - 30px); /* Adjust the width calculation */
+    padding: 5px;
+    margin-left: 10px; /* 10px margin on the left */
+    margin-right: 20px; /* 20px margin on the right */
+  }
+
+  .header-image {
+    
+  }
+}
+
+
+/* divider types */
+.dashed {
+  border-top: 1px dashed #ED1C24;
+  border-bottom: 1px dashed #880017;
+  border-left: 1px solid #880017;
+  border-right: 1px solid #880017;
+}
+
+.dotted {
+  border-top: 1px dotted #ED1C24;
+  border-bottom: 1px dotted #880017;
+  border-left: 1px solid #880017;
+  border-right: 1px solid #880017;
+}
+
+.thin {
+  border-top: 1px solid #ED1C24;
+  border-bottom: 1px solid #880017;
+  border-left: 1px solid #880017;
+  border-right: 1px solid #880017;
+}
+
+.thick {
+  border-top: 2px solid #4a09ba;
+  border-bottom: 1px solid #00078a;
+  border-left: 1px solid #00078a;
+  border-right: 1px solid #00078a;
+}
+
+
+
+

@@ -1,0 +1,63 @@
+var RandomUtil = {};
+RandomUtil.pick = function(pool, exceptions)
+{
+	if (exceptions != null)
+	{
+		var pool2 = [];
+		var n = pool.length;
+		for (var i = 0; i < n; i++)
+		{
+			var item = pool[i];
+			if (exceptions.indexOf(item) == -1) pool2.push(item);
+		}
+		pool = pool2;
+	}
+	return pool[Math.floor(Math.random() * pool.length)];
+}
+RandomUtil.between = function(min, max, integer, extremeFactor)
+{
+	var p = Math.random();
+	if (extremeFactor)
+	{
+		var f = Math.pow((p < .5) ? p * 2 : (1 - p) * 2, extremeFactor);
+		p = (p < .5) ? f / 2 : 1 - (f / 2);
+	}
+	var n = min + p * (max-min);
+	if (integer) return Math.floor(n);
+	else return n;
+}
+
+//Createjs extensions for easier porting:
+Point.distance = function(p0,p1)
+{
+	return Math.sqrt(Math.pow(p0.x-p1.x,2)+Math.pow(p0.y-p1.y,2));
+}
+Rectangle.prototype.offset = function(dx,dy)
+{
+	this.x += dx;
+	this.y += dy;
+}
+Rectangle.prototype.offsetPoint = function(p)
+{
+	this.offset(p.x,p.y);
+}
+Rectangle.prototype.containsPoint = function(p)
+{
+	return this.contains(p.x,p.y);
+}
+Rectangle.prototype.update = function()
+{
+	//add some props that are available in AS3
+	var w = this.width, h = this.height, x = this.x, y = this.y;
+	this.bottom = y+h;
+	this.top = y;
+	this.left = x;
+	this.right = x+w;
+	if (!this.topLeft) this.topLeft = new Point();
+	this.topLeft.x = x;
+	this.topLeft.y = y;
+	if (!this.bottomRight) this.bottomRight = new Point();
+	this.bottomRight.x = this.right;
+	this.bottomRight.y = this.bottom;
+	return this;//for chaining;
+}

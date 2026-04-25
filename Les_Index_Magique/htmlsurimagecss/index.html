@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: rgba(0, 0, 0, 0.6);
+    background-image: url('images/mescategories.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* Image invisible servant à la carte */
+#imageMap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: auto;
+}
+</style>
+
+</head>
+
+<body>
+
+<img id="imageMap"
+     src="images/mescategories.png"
+     usemap="#planetes"
+     alt="Carte des programmes">
+
+<map name="planetes">
+    <!-- Ligne 1 -->
+    <area shape="circle" coords="56,45,155,155" href="html/Musique_Mp3.html" alt="Programme 1">
+    <area shape="circle" coords="279,45,156,155" href="html/Video.html" alt="Programme 2">
+    <area shape="circle" coords="497,45,156,144" href="html/Programme.html" alt="Programme 3">
+    <area shape="circle" coords="725,45,156,144" href="html/images.html" alt="Programme 4">
+    <area shape="circle" coords="950,45,156,144" href="html/E_Books.html" alt="Programme 5">
+    <area shape="circle" coords="1165,45,156,144" href="html/06.html" alt="Programme 6">
+    <area shape="circle" coords="1380,45,156,144" href="html/07.html" alt="Programme 7">
+    <!-- Ligne 2 -->
+    <area shape="circle" coords="50,260,158,158" href="html/08.html" alt="Programme 8">
+    <area shape="circle" coords="278,251,158,158" href="html/09.html" alt="Programme 9">
+    <area shape="circle" coords="500,256,158,158" href="html/10.html" alt="Programme 10">
+    <area shape="circle" coords="725,255,158,158" href="html/11.html" alt="Programme 11">
+    <area shape="circle" coords="945,254,158,158" href="html/12.html" alt="Programme 12">
+    <area shape="circle" coords="1161,250,158,158" href="html/13.html" alt="Programme 13">
+    <area shape="circle" coords="1378,250,158,158" href="html/14.html" alt="Programme 14">
+    <!-- Ligne 3 -->
+    <area shape="circle" coords="55,468,150,157" href="html/15.html" alt="Programme 15">
+    <area shape="circle" coords="316,463,150,157" href="html/16.html" alt="Programme 16">
+    <area shape="circle" coords="565,463,150,157" href="html/17.html" alt="Programme 17">
+    <area shape="circle" coords="834,463,150,157" href="html/18.html" alt="Programme 18">
+    <area shape="circle" coords="1114,463,150,157" href="html/19.html" alt="Programme 19">
+    <area shape="circle" coords="1376,463,150,157" href="html/20.html" alt="Programme 20">
+	
+    <!-- INDEX du site
+    <area shape="circle" coords="172,229,67,66" href="index.html" alt="Programme 22">	 -->
+	
+</map>
+
+<script>
+(function () {
+
+    const img = document.getElementById('imageMap');
+    const areas = document.querySelectorAll('area');
+
+    const originalCoords = Array.from(areas).map(a => a.coords);
+
+    function resizeMap() {
+        if (!img.naturalWidth) return;
+
+        const nw = img.naturalWidth;
+        const nh = img.naturalHeight;
+        const ww = window.innerWidth;
+        const wh = window.innerHeight;
+
+        // Ratios indépendants pour étirer en largeur ET hauteur
+        const rx = ww / nw;
+        const ry = wh / nh;
+
+        areas.forEach((area, i) => {
+            const c = originalCoords[i].split(',').map(Number);
+            const nc = [
+                Math.round(c[0] * rx),  // x étiré selon la largeur
+                Math.round(c[1] * ry),  // y étiré selon la hauteur
+                Math.round(c[2] * Math.min(rx, ry))  // rayon proportionnel
+            ];
+            area.coords = nc.join(',');
+        });
+
+        img.style.width = ww + 'px';
+        img.style.height = wh + 'px';
+    }
+
+    img.addEventListener('load', resizeMap);
+    window.addEventListener('resize', resizeMap);
+    if (img.complete) resizeMap();
+
+})();
+</script>
+
+</body>
+</html>

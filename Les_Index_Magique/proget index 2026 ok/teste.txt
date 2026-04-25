@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Galerie Vivante — Danse Infinie</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #eef2f3, #8e9eab);
+      overflow: hidden;
+      font-family: 'Georgia', serif;
+    }
+
+    .video-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 560px;
+      height: 315px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+      border: 5px double white;
+      background-color: black;
+      z-index: 100;
+    }
+
+    .falling-image {
+      position: absolute;
+      width: 400px;
+      height: 300px;
+      top: -350px;
+      opacity: 0;
+      animation: fallAndBounce 5s ease-in forwards;
+    }
+
+    @keyframes fallAndBounce {
+      0%   { top: -350px; opacity: 0; }
+      10%  { opacity: 1; }
+      60%  { top: calc(100vh - 300px); }
+      75%  { top: calc(100vh - 320px); }
+      90%  { top: calc(100vh - 300px); }
+      100% { top: calc(100vh - 310px); }
+    }
+
+    /* 🎭 Effets individuels */
+    .effect1  { filter: brightness(1.2); }
+    .effect2  { filter: grayscale(100%) contrast(1.2); }
+    .effect3  { transform: rotate(-10deg); }
+    .effect4  { filter: sepia(80%) hue-rotate(30deg); }
+    .effect5  { transform: scale(1.1); opacity: 0.85; }
+    .effect6  { filter: blur(1px); }
+    .effect7  { transform: rotate(20deg) scale(0.9); }
+    .effect8  { filter: contrast(2); }
+    .effect9  { transform: rotateY(180deg); }
+    .effect10 { filter: drop-shadow(0px 0px 10px #333); }
+  </style>
+</head>
+<body>
+
+  <!-- 🎥 Cadre vidéo central -->
+  <div class="video-container">
+    <div id="player"></div>
+  </div>
+
+  <script>
+    // 🎞️ ID de vos vidéos YouTube (excluez tout sauf l'ID)
+    const videos = [
+      "pejGwxKOPs0",
+      "4eVeYKgYHoM",
+      "vQ4Vrj0t1WI",
+      "vQ4Vrj0t1WI",
+      "SjwC229iOZ8",
+      "b_Ft7gxZtEg",
+      "y8N_Qfwiz2s",
+      "v-EIwBFjatw",
+      "87-ETt7IXtQ",
+      "H7DbgjkvXzc"
+
+	  
+    ];
+
+    const randomIndex = Math.floor(Math.random() * videos.length);
+    const selectedVideoId = videos[randomIndex];
+
+    // 🔗 Liens associés aux images
+    const imageLinks = [
+      "https://example.com/page1", "https://example.com/page2",
+      "https://example.com/page3", "https://example.com/page4",
+      "https://example.com/page5", "https://example.com/page6",
+      "https://example.com/page7", "https://example.com/page8",
+      "https://example.com/page9", "https://example.com/page10"
+    ];
+
+    // 🖼️ Génération d’une image avec effet
+    function createFallingImage(i) {
+      const img = document.createElement("img");
+      img.src = `images/image${i}.jpg`;
+      img.className = `falling-image effect${i}`;
+      img.style.left = `${Math.random() * (window.innerWidth - 400)}px`;
+      img.style.animation = `fallAndBounce 5s ease-in forwards`;
+
+      const link = document.createElement("a");
+      link.href = imageLinks[i - 1];
+      link.target = "_blank";
+      link.appendChild(img);
+      document.body.appendChild(link);
+
+      // Nettoyer après animation
+      setTimeout(() => {
+        link.remove();
+      }, 6000);
+    }
+
+    // ♻️ Cycle infini de chute
+    function startFallingLoop() {
+      setInterval(() => {
+        for (let i = 1; i <= 10; i++) {
+          setTimeout(() => {
+            createFallingImage(i);
+          }, i * 1000);
+        }
+      }, 11000); // relance après 11s
+    }
+
+    // 🎬 API YouTube avec votre clé API
+    let player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '315',
+        width: '560',
+        videoId: selectedVideoId,
+        playerVars: {
+          autoplay: 1,
+          controls: 1,
+          rel: 0,
+          modestbranding: 1
+        },
+        events: {
+          onStateChange: onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.ENDED) {
+        setTimeout(() => {
+          location.reload();
+        }, 2000); // Recharge après 2 secondes
+      }
+    }
+
+    // 📜 Charger l'API de YouTube
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+
+    // 🚀 Lancer le cycle de chute d’images
+    startFallingLoop();
+  </script>
+
+  <!-- ✅ API YouTube chargée dynamiquement, pas besoin d'inclure la clé API dans le HTML -->
+</body>
+</html>
+

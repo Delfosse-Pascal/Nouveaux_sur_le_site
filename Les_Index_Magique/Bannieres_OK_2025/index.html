@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <title>Le site de Pascal Delfosse - Artiste Contemporain</title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/favicondepascal.png" type="image/png">
+<link rel="icon" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/favicondepascal.ico" type="image/x-icon">
+<link rel="shortcut icon" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/favicondepascal.ico" type="image/x-icon">
+
+<!-- Lier le menu social -->
+  <link rel="stylesheet" type="text/css" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/style.css">
+  <script src="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/script.js"></script>
+
+<!-- menu social -->              
+  <nav class="social-menu">
+    <ul>
+      <li><a href="https://fr.pinterest.com/pascal509/mes-tableaux-tous-genre/" target="_blank">Pinterest</a></li>
+      <li><a href="https://www.flickr.com/photos/delfossepascal" target="_blank">Flickr</a></li>
+      <li><a href="https://www.tumblr.com/lestoilesdepascal" target="_blank">Tumblr</a></li>
+      <li><a href="https://x.com/PascalDelfossee" target="_blank">X</a></li>
+      <li><a href="https://www.tiktok.com/@delfossepascal" target="_blank">TikTok</a></li>
+      <li><a href="https://www.youtube.com/c/DelfossePascal" target="_blank">YouTube</a></li>
+    </ul> 
+  </nav>
+
+<!-- Lier le fichier JavaScript du menu -->
+<script src="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/menu.js" defer></script>
+<link rel="stylesheet" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/basedusite.css">
+
+<!-- Le JS pour fondu pastel --> 
+<script src="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/couleurs.js"></script>
+    
+
+  <style>
+    body {
+      margin: 0;
+      background: #f8f8f8;
+    }
+
+    /* === BANNIÈRE RESPONSIVE === */
+    .banner-container {
+      width: 100%;
+      height: 35vh; /* 35% de la hauteur de la fenêtre */
+      min-height: 200px;
+      max-height: 350px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* === IMAGE === */
+    .banner-image {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+    }
+
+    /* === EFFETS === */
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+    .effect-fade-in { animation: fadeIn 1.5s forwards; }
+
+    @keyframes zoomIn { from {opacity:0;transform:translate(-50%, -50%) scale(0.5);} to {opacity:1;transform:translate(-50%, -50%) scale(1);} }
+    .effect-zoom-in { animation: zoomIn 2s forwards; }
+
+    @keyframes zoomOut { from {opacity:0;transform:translate(-50%, -50%) scale(1.5);} to {opacity:1;transform:translate(-50%, -50%) scale(1);} }
+    .effect-zoom-out { animation: zoomOut 2s forwards; }
+
+    @keyframes slideLeft { from {opacity:0;transform:translate(-150%, -50%);} to {opacity:1;transform:translate(-50%, -50%);} }
+    .effect-slide-left { animation: slideLeft 1.5s forwards; }
+
+    @keyframes slideRight { from {opacity:0;transform:translate(50%, -50%);} to {opacity:1;transform:translate(-50%, -50%);} }
+    .effect-slide-right { animation: slideRight 1.5s forwards; }
+
+    @keyframes slideTop { from {opacity:0;transform:translate(-50%, -150%);} to {opacity:1;transform:translate(-50%, -50%);} }
+    .effect-slide-top { animation: slideTop 1.5s forwards; }
+
+    @keyframes slideBottom { from {opacity:0;transform:translate(-50%, 50%);} to {opacity:1;transform:translate(-50%, -50%);} }
+    .effect-slide-bottom { animation: slideBottom 1.5s forwards; }
+
+    @keyframes rotate360 { from {opacity:0;transform:translate(-50%, -50%) rotate(-360deg) scale(0);} to {opacity:1;transform:translate(-50%, -50%) rotate(0deg) scale(1);} }
+    .effect-rotate { animation: rotate360 2s forwards; }
+
+    @keyframes flipX { from {opacity:0;transform:translate(-50%, -50%) rotateY(90deg);} to {opacity:1;transform:translate(-50%, -50%) rotateY(0);} }
+    .effect-flip-x { animation: flipX 1.5s forwards; }
+
+    @keyframes flipY { from {opacity:0;transform:translate(-50%, -50%) rotateX(90deg);} to {opacity:1;transform:translate(-50%, -50%) rotateX(0);} }
+    .effect-flip-y { animation: flipY 1.5s forwards; }
+
+    @keyframes bounce { 
+      0% {opacity:0;transform:translate(-50%, -500px);}
+      60% {opacity:1;transform:translate(-50%, -40px);}
+      80% {transform:translate(-50%, -30px);}
+      100% {transform:translate(-50%, -50%);}
+    }
+    .effect-bounce { animation: bounce 2s ease-out forwards; }
+
+    @keyframes swing { 
+      0% {opacity:0;transform:translate(-50%, -50%) rotate(-15deg);}
+      25% {opacity:1;transform:translate(-50%, -50%) rotate(10deg);}
+      50% {transform:translate(-50%, -50%) rotate(-10deg);}
+      75% {transform:translate(-50%, -50%) rotate(5deg);}
+      100% {transform:translate(-50%, -50%) rotate(0deg);}
+    }
+    .effect-swing { animation: swing 2s forwards; transform-origin: top center; }
+
+    @keyframes spiral { 
+      from {opacity:0;transform:translate(-50%, -50%) rotate(720deg) scale(0);}
+      to {opacity:1;transform:translate(-50%, -50%) rotate(0deg) scale(1);}
+    }
+    .effect-spiral { animation: spiral 2.5s ease-out forwards; }
+
+    @keyframes wave { 
+      0% {opacity:0;transform:translate(-150%, -50%) skewX(-20deg);}
+      50% {opacity:1;transform:translate(-50%, -50%) skewX(10deg);}
+      100% {transform:translate(-50%, -50%) skewX(0deg);}
+    }
+    .effect-wave { animation: wave 2s ease-in-out forwards; }
+
+    @keyframes blurFade { 
+      from {opacity:0;filter:blur(15px);}
+      to {opacity:1;filter:blur(0);}
+    }
+    .effect-blur-fade { animation: blurFade 2s ease-out forwards; }
+
+    @keyframes elastic { 
+      0% {opacity:0;transform:translate(-50%, -50%) scaleX(0);}
+      50% {opacity:1;transform:translate(-50%, -50%) scaleX(1.2);}
+      70% {transform:translate(-50%, -50%) scaleX(0.9);}
+      100% {transform:translate(-50%, -50%) scaleX(1);}
+    }
+    .effect-elastic { animation: elastic 2s ease-out forwards; }
+
+  </style>
+</head>
+
+<body>
+
+<!-- Le menu sera injecté ici -->
+<header></header>
+
+  <div class="banner-container">
+    <img class="banner-image" id="bannerImage" alt="Les Toiles de Pascal">
+  </div>
+
+  <script>
+    // === Liste des images ===
+    const images = [
+	
+"001_Les_Toiles_De_Pascal.png",
+"002_Les_Toiles_De_Pascal.png",
+"003_Les_Toiles_De_Pascal.png",
+"004_Les_Toiles_De_Pascal.png",
+"005_Les_Toiles_De_Pascal.png",
+"006_Les_Toiles_De_Pascal.png",
+"007_Les_Toiles_De_Pascal.png",
+"008_Les_Toiles_De_Pascal.png",
+"009_Les_Toiles_De_Pascal.png",
+"010_Les_Toiles_De_Pascal.png",
+"011_Les_Toiles_De_Pascal.png",
+"012_Les_Toiles_De_Pascal.png",
+"013_Les_Toiles_De_Pascal.png",
+"016_Les_Toiles_De_Pascal.png",
+"017_Les_Toiles_De_Pascal.png",
+"018_Les_Toiles_De_Pascal.png",
+"019_Les_Toiles_De_Pascal.png",
+"020_Les_Toiles_De_Pascal.png",
+"021_Les_Toiles_De_Pascal.png",
+"023_Les_Toiles_De_Pascal.png",
+"024_Les_Toiles_De_Pascal.png",
+"025_Les_Toiles_De_Pascal.png",
+"026_Les_Toiles_De_Pascal.png",
+"027_Les_Toiles_De_Pascal.png",
+"028_Les_Toiles_De_Pascal.png",
+"029_Les_Toiles_De_Pascal.png",
+"030_Les_Toiles_De_Pascal.png",
+"031_Les_Toiles_De_Pascal.png",
+"032_Les_Toiles_De_Pascal.png",
+"033_Les_Toiles_De_Pascal.png",
+"034_Les_Toiles_De_Pascal.png",
+"035_Les_Toiles_De_Pascal.png",
+"036_Les_Toiles_De_Pascal.png",
+"037_Les_Toiles_De_Pascal.png",
+"038_Les_Toiles_De_Pascal.png",
+"040_Les_Toiles_De_Pascal.png",
+"041_Les_Toiles_De_Pascal.png",
+"042_Les_Toiles_De_Pascal.png",
+"043_Les_Toiles_De_Pascal.png",
+"044_Les_Toiles_De_Pascal.png",
+"046_Les_Toiles_De_Pascal.png",
+"047_Les_Toiles_De_Pascal.png",
+"048_Les_Toiles_De_Pascal.png",
+"049_Les_Toiles_De_Pascal.png",
+"050_Les_Toiles_De_Pascal.png",
+"051_Les_Toiles_De_Pascal.png",
+"052_Les_Toiles_De_Pascal.png",
+"054_Les_Toiles_De_Pascal.png",
+"055_Les_Toiles_De_Pascal.png",
+"056_Les_Toiles_De_Pascal.png",
+"057_Les_Toiles_De_Pascal.png",
+"058_Les_Toiles_De_Pascal.png",
+"059_Les_Toiles_De_Pascal.png",
+"060_Les_Toiles_De_Pascal.png",
+"061_Les_Toiles_De_Pascal.png",
+"062_Les_Toiles_De_Pascal.png",
+"063_Les_Toiles_De_Pascal.png",
+"064_Les_Toiles_De_Pascal.png",
+"065_Les_Toiles_De_Pascal.png",
+"066_Les_Toiles_De_Pascal.png",
+"067_Les_Toiles_De_Pascal.png",
+"068_Les_Toiles_De_Pascal.png",
+"069_Les_Toiles_De_Pascal.png",
+"070_Les_Toiles_De_Pascal.png",
+"071_Les_Toiles_De_Pascal.png",
+"072_Les_Toiles_De_Pascal.png",
+"073_Les_Toiles_De_Pascal.png",
+"074_Les_Toiles_De_Pascal.png",
+"075_Les_Toiles_De_Pascal.png",
+"076_Les_Toiles_De_Pascal.png",
+"077_Les_Toiles_De_Pascal.png",
+"078_Les_Toiles_De_Pascal.png",
+"079_Les_Toiles_De_Pascal.png",
+"080_Les_Toiles_De_Pascal.png",
+"081_Les_Toiles_De_Pascal.png",
+"082_Les_Toiles_De_Pascal.png",
+"083_Les_Toiles_De_Pascal.png",
+"084_Les_Toiles_De_Pascal.png",
+"085_Les_Toiles_De_Pascal.png",
+"086_Les_Toiles_De_Pascal.png",
+"087_Les_Toiles_De_Pascal.png",
+"088_Les_Toiles_De_Pascal.png",
+"089_Les_Toiles_De_Pascal.png",
+"090_Les_Toiles_De_Pascal.png",
+"091_Les_Toiles_De_Pascal.png",
+"092_Les_Toiles_De_Pascal.png",
+"093_Les_Toiles_De_Pascal.png",
+"094_Les_Toiles_De_Pascal.png",
+"095_Les_Toiles_De_Pascal.png",
+"096_Les_Toiles_De_Pascal.png",
+"097_Les_Toiles_De_Pascal.png",
+"098_Les_Toiles_De_Pascal.png",
+"099_Les_Toiles_De_Pascal.png",
+"100_Les_Toiles_De_Pascal.png",
+"101_Les_Toiles_De_Pascal.png",
+"102_Les_Toiles_De_Pascal.png",
+"103_Les_Toiles_De_Pascal.png",
+"104_Les_Toiles_De_Pascal.png",
+"105_Les_Toiles_De_Pascal.png",
+"107_Les_Toiles_De_Pascal.png",
+"108_Les_Toiles_De_Pascal.png",
+"109_Les_Toiles_De_Pascal.png",
+"110_Les_Toiles_De_Pascal.png",
+"111_Les_Toiles_De_Pascal.png",
+      // ajoutez ici les autres
+    ];
+
+    // === Liste de 15 effets variés ===
+    const effects = [
+      'effect-fade-in', 'effect-zoom-in', 'effect-zoom-out',
+      'effect-slide-left', 'effect-slide-right', 'effect-slide-top', 'effect-slide-bottom',
+      'effect-rotate', 'effect-flip-x', 'effect-flip-y', 'effect-bounce',
+      'effect-swing', 'effect-spiral', 'effect-wave', 'effect-blur-fade', 'effect-elastic'
+    ];
+
+    const bannerImg = document.getElementById('bannerImage');
+    let lastImageIndex = -1;
+
+    function getRandomIndex(max, exclude = -1) {
+      let index;
+      do {
+        index = Math.floor(Math.random() * max);
+      } while (index === exclude && max > 1);
+      return index;
+    }
+
+    function changeImage() {
+      const imgIndex = getRandomIndex(images.length, lastImageIndex);
+      const effect = effects[getRandomIndex(effects.length)];
+      lastImageIndex = imgIndex;
+
+      bannerImg.style.opacity = 0;
+      setTimeout(() => {
+        bannerImg.src = images[imgIndex];
+        bannerImg.className = 'banner-image ' + effect;
+        bannerImg.style.opacity = 1;
+      }, 300);
+    }
+
+    changeImage();
+    setInterval(changeImage, 5000);
+  </script>
+
+</body>
+</html>

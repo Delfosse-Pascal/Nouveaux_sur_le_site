@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <title>Le site de Pascal Delfosse - Artiste Contemporain</title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/favicondepascal.png" type="image/png">
+<link rel="icon" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/favicondepascal.ico" type="image/x-icon">
+<link rel="shortcut icon" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/favicondepascal.ico" type="image/x-icon">
+
+<!-- Lier le menu social -->
+  <link rel="stylesheet" type="text/css" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/style.css">
+  <script src="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/script.js"></script>
+
+<!-- menu social -->              
+  <nav class="social-menu">
+    <ul>
+      <li><a href="https://fr.pinterest.com/pascal509/mes-tableaux-tous-genre/" target="_blank">Pinterest</a></li>
+      <li><a href="https://www.flickr.com/photos/delfossepascal" target="_blank">Flickr</a></li>
+      <li><a href="https://www.tumblr.com/lestoilesdepascal" target="_blank">Tumblr</a></li>
+      <li><a href="https://x.com/PascalDelfossee" target="_blank">X</a></li>
+      <li><a href="https://www.tiktok.com/@delfossepascal" target="_blank">TikTok</a></li>
+      <li><a href="https://www.youtube.com/c/DelfossePascal" target="_blank">YouTube</a></li>
+    </ul> 
+  </nav>
+
+<!-- Lier le fichier JavaScript du menu -->
+<script src="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/menu.js" defer></script>
+<link rel="stylesheet" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/basedusite.css">
+
+<!-- Le JS pour fondu pastel --> 
+<script src="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/couleurs.js"></script>
+    
+</head>
+
+<body>
+
+<!-- Le menu sera injecté ici -->
+<header></header>
+
+<!-- Lecture aleatoire de fond de pages -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+const images = [
+'url("https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/fond/01fond.jpg")',
+'url("https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/fond/02fond.jpg")',
+'url("https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/fond/03fond.jpg")',
+'url("https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/fond/04fond.jpg")',
+'url("https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/fond/05fond.jpg")',
+'url("https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/fond/06fond.jpg")',
+'url("https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/fond/07fond.jpg")',
+'url("https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/fond/08fond.jpg")',
+'url("https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/fond/09fond.jpg")',
+'url("https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/fond/10fond.jpg")',
+
+];
+function changeBackground() {
+const randomIndex = Math.floor(Math.random() * images.length);
+document.body.style.backgroundImage = images[randomIndex];
+}
+changeBackground(); // Changer l'image de fond au chargement
+setInterval(changeBackground, 5000); // Changer l'image de fond toutes les 5 secondes
+});
+</script>
+ 
+</body>
+</html>
+
+***************
+***************
+***************
+**************
+src="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/aaa/index.html
+
+src="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/home.gif"
+**************
+**************
+<p align="center"><a href="index.html"><img border="0" src="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/home.gif" width="60" height="60"></a></p>
+***************
+***************
+
+<script src="couleurs.js"></script>
+https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/couleurs.js
+***************
+***************
+
+
+https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/index.html
+***************
+**************
+**************
+couleur fondu lente
+**************
+
+<script>
+    function getRandomPastelColor() {
+        const r = Math.floor(Math.random() * 96 + 160); // 160-255 (pastels plus doux)
+        const g = Math.floor(Math.random() * 96 + 160);
+        const b = Math.floor(Math.random() * 96 + 160);
+        return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    function applyColorTransition(element, newColor) {
+        element.style.transition = 'background-color 5s linear, color 5s linear';
+        element.style.backgroundColor = newColor;
+        
+        if(element === document.body) {
+            element.style.color = getTextColor(newColor);
+        }
+    }
+
+    function getTextColor(bgColor) {
+        const rgb = bgColor.match(/\d+/g);
+        const brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
+        return brightness > 150 ? 'rgba(20, 20, 20, 0.9)' : 'rgba(255, 255, 255, 0.95)';
+    }
+
+    function changeColors() {
+        // Transition douce du fond
+        applyColorTransition(document.body, getRandomPastelColor());
+        
+        // Transition des cellules avec décalage
+        const cells = document.querySelectorAll('td');
+        let delay = 0;
+        
+        cells.forEach(cell => {
+            setTimeout(() => {
+                applyColorTransition(cell, getRandomPastelColor());
+            }, delay);
+            delay += 200; // Décalage de 200ms entre chaque cellule
+        });
+    }
+
+    // Démarrer le cycle (toutes les 15 secondes)
+    changeColors();
+    setInterval(changeColors, 2000);
+
+    // Style initial
+    document.head.insertAdjacentHTML('beforeend', `
+        <style>
+            body, td {
+                transition: background-color 3s linear, color 3s linear !important;
+            }
+            body {
+                background-color: ${getRandomPastelColor()};
+                color: ${getTextColor(document.body.style.backgroundColor)};
+            }
+            td {
+                background-color: ${getRandomPastelColor()};
+            }
+        </style>
+    `);
+</script>
+   
+   
+   
+</body>
+</html>

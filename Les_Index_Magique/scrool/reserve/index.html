@@ -1,0 +1,363 @@
+<DOCTYPE html> 
+<html lang="fr"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	
+<link rel="icon" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/favicondepascal.png" type="image/png">
+<link rel="icon" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/favicondepascal.ico" type="image/x-icon">
+<link rel="shortcut icon" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/favicondepascal.ico" type="image/x-icon">
+
+<!-- Lier le fichier JavaScript du menu -->
+<script src="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/menu.js" defer></script>
+<link rel="stylesheet" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/basedusite.css">
+
+	
+    <title>Liste des Pages Index</title> 
+    <style> 
+        * { margin: 0; padding: 0; box-sizing: border-box; } 
+        body { 
+            background: linear-gradient(135deg, #1a0000 0%, #330000 50%, #1a0000 100%); 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            min-height: 100vh; 
+            padding: 20px; 
+            overflow-x: hidden; 
+        } 
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            position: relative; 
+            z-index: 10; 
+        } 
+        h1 { 
+            text-align: center; 
+            color: #ff6600; 
+            font-size: 3em; 
+            margin-bottom: 10px; 
+            text-shadow: 0 0 20px #ff3300, 0 0 40px #ff6600; 
+            animation: flicker 2s infinite alternate; 
+        } 
+        .subtitle { 
+            text-align: center; 
+            color: #ffaa00; 
+            font-size: 1.2em; 
+            margin-bottom: 40px; 
+            opacity: 0.9; 
+        } 
+        .link-card { 
+            background: linear-gradient(135deg, #330000 0%, #4d0000 100%); 
+            border: 2px solid #ff6600; 
+            border-radius: 15px; 
+            padding: 20px; 
+            margin: 20px 0; 
+            transition: all 0.3s ease; 
+            position: relative; 
+            overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3); 
+        } 
+        .link-card::before { 
+            content: ''; 
+            position: absolute; 
+            top: -50%; 
+            left: -50%; 
+            width: 200%; 
+            height: 200%; 
+            background: radial-gradient(circle, rgba(255,102,0,0.1) 0%, transparent 70%); 
+            animation: pulse 3s infinite; 
+        } 
+        .link-card:hover { 
+            transform: translateY(-5px) scale(1.02); 
+            border-color: #ffaa00; 
+            box-shadow: 0 10px 30px rgba(255, 170, 0, 0.5); 
+        } 
+        .link-number { 
+            display: inline-block; 
+            background: linear-gradient(135deg, #ff3300, #ff6600); 
+            color: #fff; 
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%; 
+            text-align: center; 
+            line-height: 40px; 
+            font-weight: bold; 
+            margin-right: 15px; 
+            box-shadow: 0 0 15px rgba(255, 51, 0, 0.6); 
+        } 
+        .link-path { 
+            color: #ffcc00; 
+            font-size: 0.9em; 
+            margin-bottom: 10px; 
+            font-family: 'Courier New', monospace; 
+        } 
+        .link-url { 
+            color: #ff9933; 
+            text-decoration: none; 
+            font-size: 1.1em; 
+            font-weight: 500; 
+            transition: all 0.3s ease; 
+            position: relative; 
+            z-index: 1; 
+        } 
+        .link-url:hover { 
+            color: #ffdd00; 
+            text-shadow: 0 0 10px #ff6600; 
+        } 
+        .flame { 
+            position: fixed; 
+            bottom: -50px; 
+            width: 100px; 
+            height: 150px; 
+            background: radial-gradient(ellipse at center, #ff3300 0%, #ff6600 50%, transparent 70%); 
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; 
+            animation: flameMove 5s infinite ease-in-out; 
+            opacity: 0.6; 
+            z-index: 1; 
+        } 
+        .flame:nth-child(odd) { animation-duration: 7s; } 
+        @keyframes flicker { 
+            0%, 100% { text-shadow: 0 0 20px #ff3300, 0 0 40px #ff6600; } 
+            50% { text-shadow: 0 0 30px #ff3300, 0 0 60px #ff6600, 0 0 80px #ffaa00; } 
+        } 
+        @keyframes pulse { 
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; } 
+            50% { transform: scale(1.5) rotate(180deg); opacity: 0.1; } 
+        } 
+        @keyframes flameMove { 
+            0%, 100% { transform: translateY(0) scaleY(1); } 
+            50% { transform: translateY(-30px) scaleY(1.2); } 
+        } 
+    </style> 
+</head> 
+<body> 
+    <div class="flame" style="left: 10%; animation-delay: 0s;"></div> 
+    <div class="flame" style="left: 30%; animation-delay: 1s;"></div> 
+    <div class="flame" style="left: 50%; animation-delay: 2s;"></div> 
+    <div class="flame" style="left: 70%; animation-delay: 1.5s;"></div> 
+    <div class="flame" style="left: 90%; animation-delay: 0.5s;"></div> 
+    <div class="container"> 
+        <h1>🔥 Liste des Pages Index 🔥</h1> 
+        <p class="subtitle">Tous les index de 1000 Dessins a colorié par tiroir. TOTAL 39000</p> 
+
+<div class="link-card"> 
+    <span class="link-number">1</span> 
+    <div class="link-path">📁 index.html</div> 
+    <a href="index.html" class="link-url" target="_blank">🔗 Présentation des 39000 Dessins.</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">2</span> 
+    <div class="link-path">📁 Le proget a 8 millions de fichiers</div> 
+    <a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/proget/index.html" class="link-url" target="_blank">🔗 Le proget a 8 millions de fichiers</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">3</span>
+    <div class="link-path">📁 images/1000/index.html</div> 	
+    <a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/index.html" class="link-url" target="_blank">🔗 Menu sociaux et index important</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">4</span> 
+    <div class="link-path">📁 images/1000/index.html</div> 
+    <a href="images/1000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 1000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">5</span> 
+    <div class="link-path">📁 images/2000/index.html</div> 
+    <a href="images/2000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 2000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">6</span> 
+    <div class="link-path">📁 images/3000/index.html</div> 
+    <a href="images/3000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 3000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">7</span> 
+    <div class="link-path">📁 images/4000/index.html</div> 
+    <a href="images/4000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 4000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">8</span> 
+    <div class="link-path">📁 images/5000/index.html</div> 
+    <a href="images/5000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 5000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">9</span> 
+    <div class="link-path">📁 images/6000/index.html</div> 
+    <a href="images/6000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 6000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">10</span> 
+    <div class="link-path">📁 images/7000/index.html</div> 
+    <a href="images/7000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 7000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">11</span> 
+    <div class="link-path">📁 images/8000/index.html</div> 
+    <a href="images/8000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 8000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">12</span> 
+    <div class="link-path">📁 images/9000/index.html</div> 
+    <a href="images/9000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 9000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">13</span> 
+    <div class="link-path">📁 images/10000/index.html</div> 
+    <a href="images/10000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 10000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">14</span> 
+    <div class="link-path">📁 images/11000/index.html</div> 
+    <a href="images/11000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 11000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">15</span> 
+    <div class="link-path">📁 images/12000/index.html</div> 
+    <a href="images/12000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 12000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">16</span> 
+    <div class="link-path">📁 images/13000/index.html</div> 
+    <a href="images/13000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 13000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">17</span> 
+    <div class="link-path">📁 images/14000/index.html</div> 
+    <a href="images/14000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 14000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">18</span> 
+    <div class="link-path">📁 images/15000/index.html</div> 
+    <a href="images/15000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 15000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">19</span> 
+    <div class="link-path">📁 images/16000/index.html</div> 
+    <a href="images/16000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 16000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">20</span> 
+    <div class="link-path">📁 images/17000/index.html</div> 
+    <a href="images/17000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 17000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">21</span> 
+    <div class="link-path">📁 images/18000/index.html</div> 
+    <a href="images/18000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 18000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">22</span> 
+    <div class="link-path">📁 images/19000/index.html</div> 
+    <a href="images/19000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 19000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">23</span> 
+    <div class="link-path">📁 images/20000/index.html</div> 
+    <a href="images/20000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 20000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">24</span> 
+    <div class="link-path">📁 images/21000/index.html</div> 
+    <a href="images/21000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 21000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">25</span> 
+    <div class="link-path">📁 images/22000/index.html</div> 
+    <a href="images/22000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 22000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">26</span> 
+    <div class="link-path">📁 images/23000/index.html</div> 
+    <a href="images/23000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 23000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">27</span> 
+    <div class="link-path">📁 images/24000/index.html</div> 
+    <a href="images/24000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 24000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">28</span> 
+    <div class="link-path">📁 images/25000/index.html</div> 
+    <a href="images/25000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 25000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">29</span> 
+    <div class="link-path">📁 images/26000/index.html</div> 
+    <a href="images/26000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 26000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">30</span> 
+    <div class="link-path">📁 images/27000/index.html</div> 
+    <a href="images/27000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 27000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">31</span> 
+    <div class="link-path">📁 images/28000/index.html</div> 
+    <a href="images/28000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 28000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">32</span> 
+    <div class="link-path">📁 images/29000/index.html</div> 
+    <a href="images/29000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 29000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">33</span> 
+    <div class="link-path">📁 images/30000/index.html</div> 
+    <a href="images/30000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 30000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">34</span> 
+    <div class="link-path">📁 images/31000/index.html</div> 
+    <a href="images/31000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 31000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">35</span> 
+    <div class="link-path">📁 images/32000/index.html</div> 
+    <a href="images/32000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 32000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">36</span> 
+    <div class="link-path">📁 images/33000/index.html</div> 
+    <a href="images/33000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 33000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">37</span> 
+    <div class="link-path">📁 images/34000/index.html</div> 
+    <a href="images/34000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 34000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">38</span> 
+    <div class="link-path">📁 images/35000/index.html</div> 
+    <a href="images/35000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 35000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">39</span> 
+    <div class="link-path">📁 images/36000/index.html</div> 
+    <a href="images/36000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 36000</a> 
+</div> 
+<div class="link-card"> 
+    <span class="link-number">40</span> 
+    <div class="link-path">📁 images/37000/index.html</div> 
+    <a href="images/37000/index.html" class="link-url" target="_blank">🔗 Ouvrir cette page 37000</a> 
+</div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div> 
+</body> 
+</html> 

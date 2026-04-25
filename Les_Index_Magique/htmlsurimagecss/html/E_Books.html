@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: rgba(0, 0, 0, 0.6);
+    background-image: url('images/mescategories.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* Image invisible servant à la carte */
+#imageMap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: auto;
+}
+.auto-style1 {
+	color: #FFFFFF;
+}
+</style>
+
+</head>
+
+<body>
+
+<span class="auto-style1">&nbsp;</span><map name="planetes"><!-- Ligne 1 --><area shape="circle" coords="56,45,155,155" href="programmes/index.html" alt="Programme 1"><area shape="circle" coords="279,45,156,155" href="programmes/index.html" alt="Programme 2"><area shape="circle" coords="497,45,156,144" href="programmes/index.html" alt="Programme 3"><area shape="circle" coords="725,45,156,144" href="programmes/index.html" alt="Programme 4"><area shape="circle" coords="950,45,156,144" href="programmes/index.html" alt="Programme 5"><area shape="circle" coords="1165,45,156,144" href="programmes/index.html" alt="Programme 6"><area shape="circle" coords="1380,45,156,144" href="programmes/index.html" alt="Programme 7"><!-- Ligne 2 --><area shape="circle" coords="53,260,150" href="programmes/index.html" alt="Programme 8"><area shape="circle" coords="285,260,150" href="programmes/index.html" alt="Programme 9"><area shape="circle" coords="600,260,150" href="programmes/index.html" alt="Programme 10"><area shape="circle" coords="800,260,150" href="programmes/index.html" alt="Programme 11"><area shape="circle" coords="1000,260,150" href="programmes/index.html" alt="Programme 12"><area shape="circle" coords="1200,260,150" href="programmes/index.html" alt="Programme 13"><area shape="circle" coords="1378,260,150" href="programmes/index.html" alt="Programme 14"><!-- Ligne 3 --><area shape="circle" coords="55,463,150" href="programmes/index.html" alt="Programme 15"><area shape="circle" coords="316,463,150" href="programmes/index.html" alt="Programme 16"><area shape="circle" coords="565,463,150" href="programmes/index.html" alt="Programme 17"><area shape="circle" coords="838,463,150" href="programmes/index.html" alt="Programme 18"><area shape="circle" coords="950,463,150" href="programmes/index.html" alt="Programme 19"><area shape="circle" coords="1122,463,150" href="programmes/index.html" alt="Programme 20"><area shape="circle" coords="1381,463,150" href="programmes/index.html" alt="Programme 21"><!-- INDEX du site --><area shape="circle" coords="172,233,150" href="programmes/index.html" alt="Programme 22"></map><script>
+(function () {
+
+    const img = document.getElementById('imageMap');
+    const areas = document.querySelectorAll('area');
+
+    const originalCoords = Array.from(areas).map(a => a.coords);
+
+    function resizeMap() {
+        if (!img.naturalWidth) return;
+
+        const nw = img.naturalWidth;
+        const nh = img.naturalHeight;
+        const ww = window.innerWidth;
+        const wh = window.innerHeight;
+
+        // Ratios indépendants pour étirer en largeur ET hauteur
+        const rx = ww / nw;
+        const ry = wh / nh;
+
+        areas.forEach((area, i) => {
+            const c = originalCoords[i].split(',').map(Number);
+            const nc = [
+                Math.round(c[0] * rx),  // x étiré selon la largeur
+                Math.round(c[1] * ry),  // y étiré selon la hauteur
+                Math.round(c[2] * Math.min(rx, ry))  // rayon proportionnel
+            ];
+            area.coords = nc.join(',');
+        });
+
+        img.style.width = ww + 'px';
+        img.style.height = wh + 'px';
+    }
+
+    img.addEventListener('load', resizeMap);
+    window.addEventListener('resize', resizeMap);
+    if (img.complete) resizeMap();
+
+})();
+</script><p><span class="auto-style1">
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/64_ebookslestoiles/index.html">
+https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/64_ebookslestoiles/index.html</a></span></p>
+<p><br class="auto-style1"><span class="auto-style1">
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/12000-Ebook/index.html">
+https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/12000-Ebook/index.html</a></span></p>
+<p><br class="auto-style1"><span class="auto-style1">
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Book_Gif_Fixe/index.html">
+https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Book_Gif_Fixe/index.html</a></span></p>
+<p>
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/index.html">
+https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/index.html</a></span></p>
+<p>
+
+</body>
+</html>

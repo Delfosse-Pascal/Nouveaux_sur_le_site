@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <title>Galerie Vivante les toiles de pascal — Danse Infinie</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pascal Delfosse, artiste peintre passionné par les arts contemporains et mixtes. Découvrez ses œuvres et services gratuits pour webmasters.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Pascal Delfosse">
+  <meta http-equiv="Content-Language" content="fr">
+  <meta http-equiv="refresh" content="180">
+  <meta property="og:title" content="Le site de Pascal Delfosse - Artiste Peintre Contemporain">
+  <meta property="og:description" content="Découvrez les œuvres de Pascal Delfosse et ses partages sur x.com, pinterest.com, tumblr.com, youtube.com, flickr.com, twitter.com, TikTok.com">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lestoilesdepascal.be">
+  <meta property="og:image" content="https://lestoilesdepascal.be/pascal.jpg">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta name="keywords" content="Pascal Delfosse, peintre contemporain, artiste exceptionnel, talent incroyable, art moderne, tableaux à vendre, peinture acrylique, tableaux contemporains, artiste belge, art abstrait, paysages modernes, toiles colorées, tableaux originaux, art figuratif, peinture sur toile, moderne, peinture contemporaine, art mixte, galerie d'art, tableaux décoratifs, création artistique, artiste admiré, maître de l'art contemporain">
+
+<link rel="icon" href="https://lestoilesdepascal.be/favicondepascal.png" type="image/png">
+<!-- La sauvegarde est désactivée sur cette page --> 
+  <script>
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 's') {
+                event.preventDefault();
+                alert('La sauvegarde est désactivée sur cette page.');
+            }
+        });
+  </script>
+
+<!-- securite de bloquage 2 -->	
+  <style>
+    .unselectable {
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      color: #cc0000;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
+    }
+  </style> 
+
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #eef2f3, #8e9eab);
+      overflow: hidden;
+      font-family: 'Georgia', serif;
+    }
+
+    .falling-image {
+      position: absolute;
+      width: 250px;
+      height: 200px;
+      top: -250px;
+      opacity: 0;
+      animation: fallAndBounce 8s ease-in forwards;
+    }
+
+    @keyframes fallAndBounce {
+      0%   { top: -250px; opacity: 0; }
+      10%  { opacity: 1; }
+      60%  { top: calc(100vh - 200px); }
+      75%  { top: calc(100vh - 220px); }
+      85%  { top: calc(100vh - 200px); }
+      92%  { top: calc(100vh - 210px); }
+      100% { top: calc(100vh - 200px); }
+    }
+
+    .effect1  { filter: brightness(1.2); }
+    .effect2  { filter: grayscale(100%) contrast(1.2); }
+    .effect3  { transform: rotate(-10deg); }
+    .effect4  { filter: sepia(80%) hue-rotate(30deg); }
+    .effect5  { transform: scale(1.1); opacity: 0.85; }
+    .effect6  { filter: blur(1px); }
+    .effect7  { transform: rotate(20deg) scale(0.9); }
+    .effect8  { filter: contrast(2); }
+    .effect9  { transform: rotateY(180deg); }
+    .effect10 { filter: drop-shadow(0px 0px 10px #333); }
+  </style>
+</head>
+<body>
+
+<script>
+  const imageLinks = [
+    "https://lestoilesdepascal.be/56_Video_Tik_Tok_D/sitevideo.html",
+    "https://lestoilesdepascal.be/200_Diverse-Video/index.html",
+    "https://lestoilesdepascal.be/Optical_Full_Life/index.htm",
+    "https://lestoilesdepascal.be/Textures_2026_Fond_Visible_D/online.html",
+    "https://lestoilesdepascal.be/Musique_Finale_2026/index.html",
+    "https://lestoilesdepascal.be/3234_Dolls_Collector/html_output/index.html",
+    "https://lestoilesdepascal.be/Ma_Galerie_Les_Toiles/",
+    "https://lestoilesdepascal.be/3200_PNG_Explosion_A_PNG/index.html",
+    "https://lestoilesdepascal.be/3422_Figurines_3D/index.html",
+    "https://lestoilesdepascal.be/6000_Texture_Pastel/index.html"
+  ];
+
+  const usedPositions = new Set();
+
+  function getUniqueLeftPosition() {
+    let left;
+    let attempts = 0;
+    do {
+      left = Math.floor(Math.random() * (window.innerWidth - 260));
+      attempts++;
+    } while ([...usedPositions].some(pos => Math.abs(pos - left) < 270) && attempts < 20);
+    usedPositions.add(left);
+    setTimeout(() => usedPositions.delete(left), 9000); // libère après la disparition
+    return left;
+  }
+
+  function createFallingImage(i) {
+    const img = document.createElement("img");
+    img.src = `images/image${i}.jpg`;
+    img.className = `falling-image effect${i}`;
+    img.style.left = getUniqueLeftPosition() + "px";
+
+    const link = document.createElement("a");
+    link.href = imageLinks[i - 1];
+    link.target = "_blank";
+    link.appendChild(img);
+    document.body.appendChild(link);
+
+    setTimeout(() => {
+      link.remove();
+    }, 8500); // durée d'affichage + transition
+  }
+
+  function startFallingLoop() {
+    function launchFallingSet() {
+      for (let i = 1; i <= 10; i++) {
+        setTimeout(() => {
+          createFallingImage(i);
+        }, i * 600); // Espacement de 600 ms entre les images
+      }
+    }
+
+    // Début immédiat dès le chargement
+    launchFallingSet();
+
+    // Répétition continue
+    setInterval(launchFallingSet, 10000);
+  }
+
+  startFallingLoop();
+</script>
+
+<script>
+    function getRandomPastelColor() {
+        const r = Math.floor(Math.random() * 96 + 160); // 160-255 (pastels plus doux)
+        const g = Math.floor(Math.random() * 96 + 160);
+        const b = Math.floor(Math.random() * 96 + 160);
+        return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    function applyColorTransition(element, newColor) {
+        element.style.transition = 'background-color 5s linear, color 5s linear';
+        element.style.backgroundColor = newColor;
+        
+        if(element === document.body) {
+            element.style.color = getTextColor(newColor);
+        }
+    }
+
+    function getTextColor(bgColor) {
+        const rgb = bgColor.match(/\d+/g);
+        const brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
+        return brightness > 150 ? 'rgba(20, 20, 20, 0.9)' : 'rgba(255, 255, 255, 0.95)';
+    }
+
+    function changeColors() {
+        // Transition douce du fond
+        applyColorTransition(document.body, getRandomPastelColor());
+        
+        // Transition des cellules avec décalage
+        const cells = document.querySelectorAll('td');
+        let delay = 0;
+        
+        cells.forEach(cell => {
+            setTimeout(() => {
+                applyColorTransition(cell, getRandomPastelColor());
+            }, delay);
+            delay += 200; // Décalage de 200ms entre chaque cellule
+        });
+    }
+
+    // Démarrer le cycle (toutes les 15 secondes)
+    changeColors();
+    setInterval(changeColors, 3000);
+
+    // Style initial
+    document.head.insertAdjacentHTML('beforeend', `
+        <style>
+            body, td {
+                transition: background-color 3s linear, color 3s linear !important;
+            }
+            body {
+                background-color: ${getRandomPastelColor()};
+                color: ${getTextColor(document.body.style.backgroundColor)};
+            }
+            td {
+                background-color: ${getRandomPastelColor()};
+            }
+        </style>
+    `);
+</script>
+   
+
+
+</body>
+</html>

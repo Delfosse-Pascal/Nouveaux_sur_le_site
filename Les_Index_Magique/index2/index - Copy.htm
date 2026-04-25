@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediaVault - La Boîte à Outils Ultime des Webmasters</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("/api/placeholder/1200/300") center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        
+        .tagline {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(247, 37, 133, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(247, 37, 133, 0.5);
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            min-width: 180px;
+        }
+        
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: white;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        .section {
+            margin-bottom: 4rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: block;
+            text-align: center;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
+        }
+        
+        .resource-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .category-img {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+            background-color: #e9ecef;
+        }
+        
+        .category-content {
+            padding: 1.2rem;
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+        
+        .category-icon {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .category-count {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: auto;
+        }
+        
+        .testimonials {
+            background-color: white;
+            padding: 3rem 1rem;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            position: relative;
+        }
+        
+        .quote-icon {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 2rem;
+            color: var(--primary);
+            opacity: 0.2;
+        }
+        
+        .testimonial-text {
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 0.8rem;
+            background-color: #dee2e6;
+        }
+        
+        .author-name {
+            font-weight: 600;
+        }
+        
+        .author-title {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 1rem;
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 0.8rem 0;
+        }
+        
+        .faq-answer {
+            padding: 0.8rem 0;
+            color: #495057;
+        }
+        
+        .cta-section {
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-title {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-text {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 1rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-links h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .resource-counter {
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-weight: 500;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(67, 97, 238, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(67, 97, 238, 0);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .newsletter {
+            display: flex;
+            max-width: 500px;
+            margin: 2rem auto;
+        }
+        
+        .newsletter input {
+            flex-grow: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-size: 1rem;
+        }
+        
+        .newsletter button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 50px 50px 0;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .badge-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .badge-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .counter-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin: 2rem auto;
+            max-width: 500px;
+        }
+        
+        .counter-label {
+            margin-right: 1rem;
+            font-weight: 600;
+        }
+        
+        .counter-value {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .stats {
+                gap: 1rem;
+            }
+            
+            .stat-box {
+                min-width: 140px;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>MediaVault</h1>
+            <p class="tagline">La Boîte à Outils Ultime des Webmasters - 100% Gratuite, Sans Conditions</p>
+            
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-number">500K+</div>
+                    <div class="stat-label">Images HD</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Musiques & Sons</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">5K+</div>
+                    <div class="stat-label">Polices Uniques</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Ressources Pro</div>
+                </div>
+            </div>
+            
+            <a href="#resources" class="cta-button pulse">TÉLÉCHARGEZ MAINTENANT</a>
+            
+            <div class="counter-section">
+                <span class="counter-label">Téléchargements aujourd'hui:</span>
+                <span class="counter-value">12,847</span>
+            </div>
+        </div>
+    </header>
+    
+    <section class="container section">
+        <h2>Pourquoi MediaVault Change la Donne</h2>
+        
+        <div class="features">
+            <div class="feature-card">
+                <span class="feature-icon">⏱️</span>
+                <h3>Gain de Temps Extrême</h3>
+                <p>Fini les recherches interminables sur des dizaines de sites. Tout est centralisé dans une seule bibliothèque intuitive et ultra-rapide.</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">🌟</span>
+                <h3>Qualité Professionnelle</h3>
+                <p>Des fichiers triés sur le volet pour un rendu professionnel. Chaque ressource est vérifiée pour garantir son excellence.</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">🔓</span>
+                <h3>Zéro Restrictions</h3>
+                <p>Pas d'inscription, pas de crédits, pas de limites. Juste du téléchargement instantané pour tous vos projets web.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container section" id="resources">
+        <h2>Explorez Notre Bibliothèque Massive</h2>
+        
+        <div class="resource-categories">
+            <div class="category-card">
+                <img src="/api/placeholder/400/180" alt="Images HD" class="category-img">
+                <div class="category-content">
+                    <div class="category-title">
+                        <span class="category-icon">📸</span>
+                        <h3>Images HD</h3>
+                        <span class="category-count">500K+</span>
+                    </div>
+                    <p>Photos professionnelles, illustrations, mockups et arrière-plans en haute résolution.</p>
+                    <div class="badges">
+                        <span class="badge badge-primary">4K</span>
+                        <span class="badge badge-primary">Vectoriel</span>
+                        <span class="badge badge-success">Libre de droits</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <img src="/api/placeholder/400/180" alt="Musiques & Sons" class="category-img">
+                <div class="category-content">
+                    <div class="category-title">
+                        <span class="category-icon">🎵</span>
+                        <h3>Musiques & Sons</h3>
+                        <span class="category-count">10K+</span>
+                    </div>
+                    <p>Musiques d'ambiance, effets sonores et jingles pour tous vos projets multimédias.</p>
+                    <div class="badges">
+                        <span class="badge badge-primary">Haute Qualité</span>
+                        <span class="badge badge-primary">Tous Genres</span>
+                        <span class="badge badge-success">Libre de droits</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <img src="/api/placeholder/400/180" alt="Polices & Typographies" class="category-img">
+                <div class="category-content">
+                    <div class="category-title">
+                        <span class="category-icon">🔠</span>
+                        <h3>Polices & Typographies</h3>
+                        <span class="category-count">5K+</span>
+                    </div>
+                    <p>Polices modernes, classiques et créatives pour donner du style à vos designs.</p>
+                    <div class="badges">
+                        <span class="badge badge-primary">Exclusives</span>
+                        <span class="badge badge-primary">Web-ready</span>
+                        <span class="badge badge-success">Commercial</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <img src="/api/placeholder/400/180" alt="GIFs & Animations" class="category-img">
+                <div class="category-content">
+                    <div class="category-title">
+                        <span class="category-icon">✨</span>
+                        <h3>GIFs & Animations</h3>
+                        <span class="category-count">1K+</span>
+                    </div>
+                    <p>Animations, icônes animées et GIFs réactifs pour dynamiser vos interfaces.</p>
+                    <div class="badges">
+                        <span class="badge badge-primary">Optimisés</span>
+                        <span class="badge badge-primary">Transparents</span>
+                        <span class="badge badge-success">Responsive</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <div class="container">
+            <h2>Ce que disent nos utilisateurs</h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="quote-icon">❝</div>
+                    <p class="testimonial-text">Cette bibliothèque a révolutionné mon workflow. Je ne passe plus des heures à chercher des ressources de qualité. Tout est là, gratuit et prêt à l'emploi !</p>
+                    <div class="testimonial-author">
+                        <div class="author-img"></div>
+                        <div>
+                            <div class="author-name">Sophie Martin</div>
+                            <div class="author-title">Designer Freelance</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="quote-icon">❝</div>
+                    <p class="testimonial-text">En tant qu'agence web, nous économisons des milliers d'euros chaque mois grâce à cette collection incroyable. La qualité professionnelle est au rendez-vous.</p>
+                    <div class="testimonial-author">
+                        <div class="author-img"></div>
+                        <div>
+                            <div class="author-name">Thomas Dubois</div>
+                            <div class="author-title">Directeur Créatif</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="quote-icon">❝</div>
+                    <p class="testimonial-text">Je recommande MediaVault à tous mes étudiants. C'est une mine d'or pour apprendre et créer sans se ruiner dans des abonnements coûteux.</p>
+                    <div class="testimonial-author">
+                        <div class="author-img"></div>
+                        <div>
+                            <div class="author-name">Claire Leroy</div>
+                            <div class="author-title">Professeur de Web Design</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container section">
+        <h2>Questions Fréquentes</h2>
+        
+        <div class="faq-section">
+            <div class="faq-item">
+                <div class="faq-question">
+                    Est-ce vraiment 100% gratuit ?
+                </div>
+                <div class="faq-answer">
+                    Oui, absolument ! Toutes les ressources sont disponibles gratuitement, sans limitation de téléchargement ni inscription obligatoire. Nous croyons fermement que les meilleurs outils créatifs devraient être accessibles à tous.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Puis-je utiliser ces ressources pour des projets commerciaux ?
+                </div>
+                <div class="faq-answer">
+                    Oui, toutes nos ressources sont libres de droits et peuvent être utilisées pour des projets personnels comme commerciaux. Vous n'avez pas besoin d'attribution, mais elle est toujours appréciée !
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Comment maintenez-vous ce service gratuitement ?
+                </div>
+                <div class="faq-answer">
+                    Notre plateforme est soutenue par une communauté passionnée et des partenaires qui croient en l'accès libre aux ressources créatives. Nous fonctionnons sur un modèle de dons volontaires et de publicités non-intrusives.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    À quelle fréquence ajoutez-vous de nouvelles ressources ?
+                </div>
+                <div class="faq-answer">
+                    Notre bibliothèque est mise à jour quotidiennement ! Nous ajoutons en moyenne 500 nouvelles ressources chaque semaine, réparties dans toutes nos catégories.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Est-ce que je peux contribuer avec mes propres créations ?
+                </div>
+                <div class="faq-answer">
+                    Absolument ! Nous encourageons les créateurs à partager leurs œuvres. Vous pouvez soumettre vos ressources via notre page "Contribuer" et rejoindre notre communauté de créateurs.
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Rejoignez +100,000 Webmasters Satisfaits</h2>
+            <p class="cta-text">Recevez chaque semaine les meilleures ressources directement dans votre boîte mail. Restez à la pointe et économisez des heures de recherche !</p>
+            
+            <form class="newsletter">
+                <input type="email" placeholder="Votre adresse email...">
+                <button type="submit">S'INSCRIRE</button>
+            </form>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-logo">MediaVault</a>
+                <p>La plus grande bibliothèque de ressources gratuites pour créateurs web et designers.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ressources</h4>
+                <ul>
+                    <li><a href="#">Images HD</a></li>
+                    <li><a href="#">Musiques & Sons</a></li>
+                    <li><a href="#">Polices & Typographies</a></li>
+                    <li><a href="#">GIFs & Animations</a></li>
+                    <li><a href="#">Templates</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Communauté</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Contribuer</a></li>
+                    <li><a href="#">Faire un don</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Informations</h4>
+                <ul>
+                    <li><a href="#">À propos</a></li>
+                    <li><a href="#">Licence</a></li>
+                    <li><a href="#">Nous contacter</a></li>
+                    <li><a href="#">Confidentialité</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 MediaVault - Toutes les ressources sont 100% libres de droits.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ toggle
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const isVisible = answer.style.display === 'block';
+                    
+                    answer.style.display = isVisible ? 'none' : 'block';
+                });
+                
+                // Hide answers by default
+                question.nextElementSibling.style.display = 'none';
+            });
+            
+            // Counter animation
+            const counterValue = document.querySelector('.counter-value');
+            const targetValue = parseInt(counterValue.textContent.replace(/,/g, ''));
+            let currentValue = 0;
+            
+            const counterAnimation = setInterval(() => {
+                currentValue += Math.ceil((targetValue - currentValue) / 20);
+                counterValue.textContent = currentValue.toLocaleString();
+                
+                if (currentValue >= targetValue) {
+                    clearInterval(counterAnimation);
+                }
+            }, 30);
+        });
+    </script>
+</body>
+</html>

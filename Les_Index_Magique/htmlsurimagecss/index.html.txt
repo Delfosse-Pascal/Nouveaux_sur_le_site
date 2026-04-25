@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Constellation des programmes</title>
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+body {
+    background-color: #000;
+    background-image: url('images/mescategories.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain; /* L'image s'adapte sans dépasser */
+}
+/* Image invisible pour la carte cliquable */
+#imageMap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    opacity: 0; /* Invisible mais garde la structure pour la carte */
+    pointer-events: none;
+}
+</style>
+</head>
+<body>
+<img id="imageMap" 
+     src="images/mescategories.png"
+     usemap="#planetes"
+     alt="Carte des programmes">
+
+<map name="planetes">
+    <!-- Ligne 1 -->
+    <area shape="circle" coords="200,250,50" href="programmes/index.html" alt="Programme 1">
+    <area shape="circle" coords="400,250,50" href="programmes/index.html" alt="Programme 2">
+    <area shape="circle" coords="600,250,50" href="programmes/index.html" alt="Programme 3">
+    <area shape="circle" coords="800,250,50" href="programmes/index.html" alt="Programme 4">
+    <area shape="circle" coords="1000,250,50" href="programmes/index.html" alt="Programme 5">
+    <area shape="circle" coords="1200,250,50" href="programmes/index.html" alt="Programme 6">
+    <area shape="circle" coords="1400,250,50" href="programmes/index.html" alt="Programme 7">
+    <!-- Ligne 2 -->
+    <area shape="circle" coords="200,450,50" href="programmes/index.html" alt="Programme 8">
+    <area shape="circle" coords="400,450,50" href="programmes/index.html" alt="Programme 9">
+    <area shape="circle" coords="600,450,50" href="programmes/index.html" alt="Programme 10">
+    <area shape="circle" coords="800,450,50" href="programmes/index.html" alt="Programme 11">
+    <area shape="circle" coords="1000,450,50" href="programmes/index.html" alt="Programme 12">
+    <area shape="circle" coords="1200,450,50" href="programmes/index.html" alt="Programme 13">
+    <area shape="circle" coords="1400,450,50" href="programmes/index.html" alt="Programme 14">
+    <!-- Ligne 3 -->
+    <area shape="circle" coords="200,650,50" href="programmes/index.html" alt="Programme 15">
+    <area shape="circle" coords="400,650,50" href="programmes/index.html" alt="Programme 16">
+    <area shape="circle" coords="600,650,50" href="programmes/index.html" alt="Programme 17">
+    <area shape="circle" coords="800,650,50" href="programmes/index.html" alt="Programme 18">
+    <area shape="circle" coords="1000,650,50" href="programmes/index.html" alt="Programme 19">
+    <area shape="circle" coords="1200,650,50" href="programmes/index.html" alt="Programme 20">
+    <area shape="circle" coords="1400,650,50" href="programmes/index.html" alt="Programme 21">
+</map>
+
+<script>
+(function() {
+    const img = document.getElementById('imageMap');
+    const map = document.querySelector('map[name="planetes"]');
+    const areas = map.querySelectorAll('area');
+    
+    // Stocker les coordonnées originales
+    const originalCoords = [];
+    areas.forEach(area => {
+        originalCoords.push(area.getAttribute('coords'));
+    });
+    
+    function resizeMap() {
+        // Attendre que l'image soit chargée pour obtenir ses dimensions naturelles
+        if (!img.naturalWidth) return;
+        
+        const naturalWidth = img.naturalWidth;
+        const naturalHeight = img.naturalHeight;
+        
+        // Calculer les dimensions actuelles de l'image affichée
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        const imageRatio = naturalWidth / naturalHeight;
+        const windowRatio = windowWidth / windowHeight;
+        
+        let displayedWidth, displayedHeight, offsetX, offsetY;
+        
+        if (windowRatio > imageRatio) {
+            // La fenêtre est plus large que l'image
+            displayedHeight = windowHeight;
+            displayedWidth = displayedHeight * imageRatio;
+            offsetX = (windowWidth - displayedWidth) / 2;
+            offsetY = 0;
+        } else {
+            // La fenêtre est plus haute que l'image
+            displayedWidth = windowWidth;
+            displayedHeight = displayedWidth / imageRatio;
+            offsetX = 0;
+            offsetY = (windowHeight - displayedHeight) / 2;
+        }
+        
+        const widthRatio = displayedWidth / naturalWidth;
+        const heightRatio = displayedHeight / naturalHeight;
+        
+        areas.forEach((area, index) => {
+            const coords = originalCoords[index].split(',');
+            const newCoords = coords.map((coord, i) => {
+                if (i === 0) { // x
+                    return Math.round(coord * widthRatio + offsetX);
+                } else if (i === 1) { // y
+                    return Math.round(coord * heightRatio + offsetY);
+                } else { // rayon
+                    return Math.round(coord * Math.min(widthRatio, heightRatio));
+                }
+            });
+            area.setAttribute('coords', newCoords.join(','));
+        });
+        
+        // Repositionner l'image invisible pour la carte
+        img.style.width = displayedWidth + 'px';
+        img.style.height = displayedHeight + 'px';
+        img.style.opacity = '0';
+        img.style.pointerEvents = 'auto';
+    }
+    
+    img.addEventListener('load', resizeMap);
+    window.addEventListener('resize', resizeMap);
+    
+    // Déclencher au chargement
+    if (img.complete) {
+        resizeMap();
+    }
+})();
+</script>
+</body>
+</html>

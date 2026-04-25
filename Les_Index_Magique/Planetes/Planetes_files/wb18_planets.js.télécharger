@@ -1,0 +1,259 @@
+document.addEventListener('DOMContentLoaded', function(event)
+{
+   var Progressbar9 = document.querySelector('#Progressbar9 .progress-bar');
+   var Progressbar9_observer = new window.ResizeObserver(entries => 
+   {
+      var val = Math.round(((entries[0].target.clientWidth/entries[0].target.offsetParent.clientWidth)*100));
+      document.querySelector('#Progressbar9 .progress-bar-text').innerText = val + '%';
+      entries[0].target.setAttribute('aria-valuenow', val);
+   });
+   Progressbar9_observer.observe(Progressbar9);
+   window.addEventListener('scroll', function(event)
+   {
+      var elem = document.querySelector('#Progressbar9');
+      var bounding = elem.getBoundingClientRect();
+      var top = bounding.top*100/window.innerHeight;
+      var bottom = bounding.bottom*100/window.innerHeight;
+      if (top >= 0 && bottom <= 100)
+      {
+         elem.style.setProperty('--percentage', 51);
+      }
+   });
+   window.dispatchEvent(new CustomEvent('scroll'));
+   var Progressbar1 = document.querySelector('#Progressbar1 .progress-bar');
+   var Progressbar1_observer = new window.ResizeObserver(entries => 
+   {
+      var val = Math.round(((entries[0].target.clientWidth/entries[0].target.offsetParent.clientWidth)*100));
+      document.querySelector('#Progressbar1 .progress-bar-text').innerText = val + '%';
+      entries[0].target.setAttribute('aria-valuenow', val);
+   });
+   Progressbar1_observer.observe(Progressbar1);
+   window.addEventListener('scroll', function(event)
+   {
+      var elem = document.querySelector('#Progressbar1');
+      var bounding = elem.getBoundingClientRect();
+      var top = bounding.top*100/window.innerHeight;
+      var bottom = bounding.bottom*100/window.innerHeight;
+      if (top >= 0 && bottom <= 100)
+      {
+         elem.style.setProperty('--percentage', 49);
+      }
+   });
+   window.dispatchEvent(new CustomEvent('scroll'));
+   var Progressbar4 = document.querySelector('#Progressbar4 .progress-bar');
+   window.addEventListener('scroll', function(event)
+   {
+      var bounding = Progressbar4.getBoundingClientRect();
+      var top = bounding.top*100/window.innerHeight;
+      var bottom = bounding.bottom*100/window.innerHeight;
+      if (top >= 0 && bottom <= 100)
+      {
+         Progressbar4.style.width = '95%';
+      }
+   });
+   window.dispatchEvent(new CustomEvent('scroll'));
+   var Progressbar7 = document.querySelector('#Progressbar7 .progress-bar');
+   window.addEventListener('scroll', function(event)
+   {
+      var bounding = Progressbar7.getBoundingClientRect();
+      var top = bounding.top*100/window.innerHeight;
+      var bottom = bounding.bottom*100/window.innerHeight;
+      if (top >= 0 && bottom <= 100)
+      {
+         Progressbar7.style.width = '50%';
+      }
+   });
+   window.dispatchEvent(new CustomEvent('scroll'));
+   var Progressbar8 = document.querySelector('#Progressbar8 .progress-bar');
+   window.addEventListener('scroll', function(event)
+   {
+      var bounding = Progressbar8.getBoundingClientRect();
+      var top = bounding.top*100/window.innerHeight;
+      var bottom = bounding.bottom*100/window.innerHeight;
+      if (top >= 0 && bottom <= 100)
+      {
+         Progressbar8.style.width = '40%';
+      }
+   });
+   window.dispatchEvent(new CustomEvent('scroll'));
+   var headerMenu_dropdownToggle = document.querySelectorAll('#headerMenu .dropdown-toggle');
+   headerMenu_dropdownToggle.forEach(item => 
+   {
+      var dropdown = new bootstrap.Dropdown(item, {popperConfig:{placement:item.getAttribute('data-bs-placement')}});
+   });
+   var headerMenu_dropdown = document.querySelectorAll('#headerMenu .dropdown');
+   headerMenu_dropdown.forEach(item => 
+   {
+      item.addEventListener('shown.bs.dropdown', function(e)
+      {
+         e.currentTarget.classList.add('show');
+      });
+      item.addEventListener('hidden.bs.dropdown', function(e)
+      {
+         e.currentTarget.classList.remove('show');
+      });
+   });
+   var Progressbar2 = document.querySelector('#Progressbar2 .progress-bar');
+   window.addEventListener('scroll', function(event)
+   {
+      var bounding = Progressbar2.getBoundingClientRect();
+      var top = bounding.top*100/window.innerHeight;
+      var bottom = bounding.bottom*100/window.innerHeight;
+      if (top >= 0 && bottom <= 100)
+      {
+         Progressbar2.style.width = '75%';
+      }
+   });
+   window.dispatchEvent(new CustomEvent('scroll'));
+   var Progressbar3 = document.querySelector('#Progressbar3 .progress-bar');
+   window.addEventListener('scroll', function(event)
+   {
+      var bounding = Progressbar3.getBoundingClientRect();
+      var top = bounding.top*100/window.innerHeight;
+      var bottom = bounding.bottom*100/window.innerHeight;
+      if (top >= 0 && bottom <= 100)
+      {
+         Progressbar3.style.width = '66%';
+      }
+   });
+   window.dispatchEvent(new CustomEvent('scroll'));
+   var mouseTrackX = 0;
+   var mouseTrackY = 0;
+   document.addEventListener('mousemove', function(e)
+   {
+      if (mouseTrackX == 0) mouseTrackX = e.pageX;
+      if (mouseTrackY == 0) mouseTrackY = e.pageY;
+      var dx = e.pageX - mouseTrackX;
+      var dy = e.pageY - mouseTrackY;
+      var elements = document.querySelectorAll('[data-mousetrack]');
+      Array.prototype.forEach.call(elements, function(el, i)
+      {
+         var x = el.dataset.mousetrack * dx * 0.0025;
+         var y = el.dataset.mousetrack * dy * 0.0025;
+         el.style.transform = "translate(" + x + "px," + y + "px)";
+      });
+   });
+   VanillaTilt.init(document.querySelectorAll('[data-3dtilt]'));
+});
+$(document).ready(function()
+{
+   $("a[href*='#header']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_header').offset().top }, 600, 'easeOutCirc');
+   });
+   $("a[href*='#LayoutGrid7']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_LayoutGrid7').offset().top-68 }, 600, 'easeOutQuad');
+   });
+   $("a[href*='#facts']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_facts').offset().top-68 }, 600, 'easeOutQuad');
+   });
+function countUpfactsJavaScript1()
+{
+   var $obj = $('#factsJavaScript1');
+   var count = $obj.attr('data-count');
+   var bottomObj = $obj.offset().top + $obj.outerHeight();
+   var bottomWnd = $(window).scrollTop() + $(window).height();
+   if (bottomWnd > bottomObj && count != 0)
+   {
+      $({countUp: $obj.text()}).animate({countUp: count},
+      {
+         duration: 4000,
+         step: function() { $obj.text(Math.floor(this.countUp)); },
+         complete: function() { $obj.text(this.countUp); $obj.attr('data-count', 0); }
+      });  
+   }
+}
+$(window).scroll( function()
+{
+   countUpfactsJavaScript1();
+});
+countUpfactsJavaScript1();
+function countUpfactsJavaScript2()
+{
+   var $obj = $('#factsJavaScript2');
+   var count = $obj.attr('data-count');
+   var bottomObj = $obj.offset().top + $obj.outerHeight();
+   var bottomWnd = $(window).scrollTop() + $(window).height();
+   if (bottomWnd > bottomObj && count != 0)
+   {
+      $({countUp: $obj.text()}).animate({countUp: count},
+      {
+         duration: 4000,
+         step: function() { $obj.text(Math.floor(this.countUp)); },
+         complete: function() { $obj.text(this.countUp); $obj.attr('data-count', 0); }
+      });  
+   }
+}
+$(window).scroll( function()
+{
+   countUpfactsJavaScript2();
+});
+countUpfactsJavaScript2();
+function countUpfactsJavaScript3()
+{
+   var $obj = $('#factsJavaScript3');
+   var count = $obj.attr('data-count');
+   var bottomObj = $obj.offset().top + $obj.outerHeight();
+   var bottomWnd = $(window).scrollTop() + $(window).height();
+   if (bottomWnd > bottomObj && count != 0)
+   {
+      $({countUp: $obj.text()}).animate({countUp: count},
+      {
+         duration: 4000,
+         step: function() { $obj.text(Math.floor(this.countUp)); },
+         complete: function() { $obj.text(this.countUp); $obj.attr('data-count', 0); }
+      });  
+   }
+}
+$(window).scroll( function()
+{
+   countUpfactsJavaScript3();
+});
+countUpfactsJavaScript3();
+function countUpfactsJavaScript4()
+{
+   var $obj = $('#factsJavaScript4');
+   var count = $obj.attr('data-count');
+   var bottomObj = $obj.offset().top + $obj.outerHeight();
+   var bottomWnd = $(window).scrollTop() + $(window).height();
+   if (bottomWnd > bottomObj && count != 0)
+   {
+      $({countUp: $obj.text()}).animate({countUp: count},
+      {
+         duration: 5000,
+         step: function() { $obj.text(Math.floor(this.countUp)); },
+         complete: function() { $obj.text(this.countUp); $obj.attr('data-count', 0); }
+      });  
+   }
+}
+$(window).scroll( function()
+{
+   countUpfactsJavaScript4();
+});
+countUpfactsJavaScript4();
+   $("a[href*='#contact']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_contact').offset().top-68 }, 600, 'easeOutQuad');
+   });
+   $("a[href*='#contactForm']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_contactForm').offset().top-88 }, 600, 'easeOutCirc');
+   });
+   function skrollrInit()
+   {
+      skrollr.init({forceHeight: false, mobileCheck: function() { return false; }, smoothScrolling: false});
+   }
+   skrollrInit();
+   var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+   if (iOS)
+   {
+      $('#wb_Section1,#wb_LayoutGrid7,#wb_facts,#wb_LayoutGrid8,#wb_contact').css('background-attachment', 'scroll');
+   }
+});

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Constellation des catégories</title>
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+}
+
+img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+</style>
+</head>
+<body>
+<img src="images/mescategories.png" usemap="#planetes" alt="Carte des catégories">
+<map name="planetes">
+
+<area shape="circle"
+      coords="300,250,60"
+      href="programmes/index.html"
+      alt="Programmes"
+      title="Accéder aux programmes">
+
+
+    <area shape="circle"
+          coords="600,400,70"
+          href="videos/index.html"
+      alt="videos"
+      title="Accéder aux videos">
+
+    <area shape="circle"
+          coords="1200,500,75"
+          href="ebooks/index.html"
+          alt="E-books">
+
+</map>
+</body>
+</html>

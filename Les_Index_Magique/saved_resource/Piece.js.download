@@ -1,0 +1,805 @@
+(function(window) {
+	var Piece = function(canvas, config)
+	{
+		this.initialize(canvas, config);
+	}
+	var p = Piece.prototype = new BasePiece();
+	//
+	p.initialize = function(canvas, config)
+	{
+		BasePiece.prototype.initialize.call(this, canvas, config);
+		this.cacheOn = true;
+		this.context = this.canvas.getContext('2d');
+		this.context.imageSmoothingEnabled = false;
+	}
+
+
+	p.onKeyUp = function(e)
+	{
+		BasePiece.prototype.onKeyUp.call(this, e);
+		if (!this.config.debug) return;
+		var c = String.fromCharCode(e.which);
+		if (c=="Z") 
+		{
+			var z = 1;
+			if (this.scale!=z)
+			{
+				this.scale = this.stage.scaleX = this.stage.scaleY = z;
+			}
+			else
+			{
+				this.setSize(this.width/this.dpr, this.height/this.dpr, this.dpr);
+			}
+			this.stage.update();
+		}
+		
+		else if (c=="C") 
+		{
+			this.cacheOn = !this.cacheOn;
+			log("cacheOn: "+this.cacheOn);
+			if (!this.cacheOn) this.container.uncache();
+			else this.cache();
+			this.stage.update();
+		}
+		else if (c=="I") 
+		{
+			this.context.imageSmoothingEnabled = !this.context.imageSmoothingEnabled;
+			log("imageSmoothingEnabled: "+this.context.imageSmoothingEnabled);
+			this.stage.update();
+		}
+	}
+
+	
+	p.setSize = function(w,h,dpr)
+	{
+		this.dpr = dpr;
+		w = this.width = Math.floor(w*dpr);
+		h = this.height = Math.floor(h*dpr);
+		var cfg = this.config;
+		var f = 1 + 2* cfg.margin_grid_ratio;
+		var gw = cfg.gridsize[0], gh = cfg.gridsize[1];
+		var sx = w / (gw * f), sy = h / (gh * f);
+		this.scale = (sx < sy)?sx:sy;
+		this.stage.scaleX = this.stage.scaleY = this.scale;
+		log("setSize",w,h,this.scale);
+		//
+		this.stage.x = Math.round(w/2);
+		this.stage.y = Math.round(h/2);
+		this.stage.update();
+		this.context.imageSmoothingEnabled = false;
+	}
+
+	p.start = function()
+	{
+		BasePiece.prototype.start.apply(this);
+		log("start",this.width, this.height, this.dpr);
+		//
+		this.context.imageSmoothingEnabled = false;
+		//create containers
+		this.container = this.stage.addChild(new Container());
+		this.layerRoads = this.container.addChild(new Container());
+		this.layerCars = this.container.addChild(new Container());
+		this.layerCover = this.container.addChild(new Container());
+		//'mask' grid+cars
+		this.createCover(this.layerCover);
+		//create road parts
+		var cfg = this.config;
+		var ps = cfg.roadparts;
+		this.roadparts = [];
+		for (var i=0;i<ps.length;i+=4)
+		{
+			var rp = new RoadPart(this.layerRoads.addChild(new Shape()), ps[i],ps[i+1],ps[i+2],ps[i+3]);
+			this.roadparts.push(rp);
+		}
+		//create road objects
+		var roads = [];
+		var rs = cfg.roads, ds = cfg.directions;
+		for (var i=0;i<rs.length/4;i++)
+		{
+			var k = i*4;
+			var road = new Road(new Point(rs[k],rs[k+1]),new Point(rs[k+2],rs[k+3]), ds[i]);
+			road.id = roads.length;
+			roads.push(road);
+		}
+		//
+		this.grid = new Grid(this.layerCars.addChild(new Shape()), roads, cfg);
+		//
+		if (cfg.debug)
+		{
+			this.dbgg = this.layerCover.addChild(new Shape()).graphics;
+		}
+	}
+	
+	p.createCover = function(container)
+	{
+		var size = this.config.gridsize, w = size[0], h = size[1];
+		var m = w/4, w2= w/2, h2 = h/2, m2 = m*2;
+		var shape = container.addChild(new Shape());
+		var g = shape.graphics.c().f(this.config.backgroundColor)
+		.r(rnd(-w2-m), rnd(-h2-m), rnd(m), rnd(h+m2))
+		.r(rnd(-w2-m), rnd(-h2-m), rnd(w+m2), rnd(m))
+		.r(rnd(w2), rnd(-h2-m), rnd(m), rnd(h+m2))
+		.r(rnd(-w2-m), rnd(h2), rnd(w+m2), rnd(m));
+	}
+
+	p.update = function()
+	{
+		var dt = this.tickDuration;
+		this.roadparts.forEach(function(p) { p.update(dt);});
+		this.grid.update(dt);
+		this.cache();
+		return true;
+	}
+	
+	p.cache = function()
+	{
+		if (this.cacheOn)
+		{
+			var w = this.width/this.scale, h = this.height/this.scale, w2 = Math.ceil(w/2), h2 = Math.ceil(h/2);
+			this.container.cache(-w2,-h2,w,h, 1);
+		}
+	}		
+	
+	
+	/**********************************
+	 *          	Grid
+	 **********************************/
+	
+	var Grid = function(shape, roads, config)
+	{
+		this.config = config;
+		this.shape = shape;//canvas in flash
+		this.roads = roads;
+		this.cars = [];
+		this.car_counter = 0;
+		this.lastCarAdded = 0;
+		this.turnAtIntersection = false;
+		this.road_start_pool = [];
+		this.calculateIntersections();
+		//
+		for (var i = 0; i < roads.length; i++) 
+		{
+			if (config.forced_turns.indexOf(i) == -1) this.road_start_pool.push(i);
+		}
+		//init:
+		//place cars randomly on roads
+		for (var i = 0; i < config.carsAtStart; i++) this.addCar();
+		for (i = 0; i < roads.length; i++) roads[i].spreadCarsRandomly();
+		//initialize traffic lights
+		this.initIntersections();
+	}
+	var gp = Grid.prototype;
+	
+	gp.calculateIntersections = function()
+	{
+		this.intersections = [];
+		var roads = this.roads;
+		var intersectionsPerRoad = [];
+		for (var i = 0; i < roads.length; i++)
+		{
+			var road0 = roads[i];
+			var r0 = road0.rect;
+			for (var j = i + 1; j < roads.length; j++)
+			{
+				var road1 = roads[j];
+				if (road0.orientation == road1.orientation) continue;
+				var r1 = road1.rect;
+				var rect = r0.intersection(r1);
+				if (rect)
+				{
+					var intersection = new Intersection(rect, [roads[i], roads[j]]);
+					//add intersection to both roads
+					if (intersectionsPerRoad[i] == null) intersectionsPerRoad[i] = [];
+					if (intersectionsPerRoad[j] == null) intersectionsPerRoad[j] = [];
+					intersectionsPerRoad[i].push(intersection);
+					intersectionsPerRoad[j].push(intersection);
+					//
+					this.intersections.push(intersection);
+				}
+			}
+		}
+		for (i = 0; i < intersectionsPerRoad.length; i++)
+		{
+			roads[i].setIntersections(intersectionsPerRoad[i]);
+		}
+	}
+	gp.initIntersections = function()
+	{
+		//set initial light colours and instantiate lightcontroller
+		//give every intersection same light in horizontal direction
+		var intersections = this.intersections;
+		var light = Math.random() < .5 ? GREEN:RED;
+		for (var i = 0; i < intersections.length; i++)
+		{
+			intersections[i].light = light;
+			intersections[i].draw(this.shape.graphics);
+		}
+		this.lightController = new LightController(intersections);//add all intersections to same lightcontroller
+		this.lightController.start();
+	}
+	gp.update = function(dt)
+	{
+		this.shape.graphics.clear();
+		this.lightController.update(dt);
+		this.updateCars(dt);		
+	}
+	gp.switchLights = function()
+	{
+		//debug function for switching lights
+		this.lightController.toggle();
+	}
+	gp.turnNextCar = function()
+	{
+		//debug function for turning next car at intersection, dir: 1 or -1, for left or righthand turn
+		this.turnAtIntersection = true;
+	}
+	gp.updateCars = function(dt)
+	{
+		var cars = this.cars, roads = this.roads;
+		//add 1 car?
+		if (cars.length < this.config.carsMax && this.lastCarAdded + this.config.timeBetweenCars < Date.now())
+		{
+			this.addCar();
+		}
+		//remove old graphics
+		var g = this.shape.graphics;
+		//loop through cars list to update cars
+		var carsToRemove = [];
+		var speed = this.config.speed;
+		for (var i = 0; i < cars.length; i++)
+		{
+			var car = cars[i];
+			var road = car.road;
+			car.shift(speed);
+			//check distance to car in front
+			var df = road.getDistanceToCarInFront(car) - this.config.distance_between_cars;
+			if (df < 0) car.shift(df);
+			//
+			var p_front = car.getFront();
+			//check intersections
+			var ints = car.road.intersections;
+			var intersection;
+			//log(car.fase, roads.indexOf(car.road), car.lastIntersectionIndex);
+			if (car.fase == Car.FASE_NORMAL)
+			{
+				labelI:
+				for (var j = car.lastIntersectionIndex+1; j < ints.length; j++)
+				{
+					intersection = ints[j];
+					if (intersection.rect.containsPoint(p_front))
+					{
+						//check red light, if so stop car...
+						if (intersection.getLight(car.road) == RED)
+						{
+							car.shift( -speed);//keep car at same spot
+						}
+						else
+						{
+							car.lastIntersectionIndex = j;
+							//check if intersection is not a false intersection (at end of other road ending in t-crossing)
+							var road_other = intersection.getOtherRoad(car.road);
+							var noTurn = this.config.forced_turns.indexOf(roads.indexOf(road_other)) > -1 && road_other.intersections.indexOf(intersection) == road_other.intersections.length-1;//intersection is at end of other road that has t crossing at end
+							if (!noTurn)
+							{
+								//check normal turn and forced turn (at end of road ending in T crossing)
+								var road_index = roads.indexOf(car.road);
+								var forcedTurn = this.config.forced_turns.indexOf(road_index) > -1 && car.road.intersections.length == car.lastIntersectionIndex + 1;
+								if (forcedTurn || this.turnAtIntersection) car.fase = Car.FASE_TURN;//start executing turn
+								else car.fase = Car.FASE_INTERSECTION;
+								//car.fase = Car.FASE_TURN;//TEMP
+								//determine new turnAtIntersection
+								this.turnAtIntersection = Math.random() <= this.config.turnChance;
+							}
+						}
+					}
+					else 
+					{
+						var prop = car.road.orientation == ORI_HOR?"x":"y";//narrow down intersections to check for optimization
+						if (car.road.direction*(intersection.rect[prop]-car.position[prop])>0) break labelI;
+						else car.lastIntersectionIndex = j;
+					}
+				}
+			}
+			else if (car.fase == Car.FASE_INTERSECTION)
+			{
+				//check no longer on intersection
+				intersection = car.road.intersections[car.lastIntersectionIndex];
+				if (!intersection.rect.containsPoint(car.position)) 
+				{
+					car.setMaskrect(null);//reset maskrect for cars coming out of turn
+					car.fase = Car.FASE_NORMAL;//back to normal
+				}
+			}
+			else if (car.fase == Car.FASE_TURN)
+			{
+				//check if car is completely on intersection
+				intersection = car.road.intersections[car.lastIntersectionIndex];
+				var rect_car = car.getRectOnRoad().update();//update: calc top, bottom etc
+				var rect_int = intersection.rect.update();
+				var front;//:String (propname)
+				var back;//:String (propname)
+				var dist;
+				//determine front and back properties and calc maskrect
+				if (road.direction == 1) // right/down
+				{
+					if (road.orientation == ORI_HOR) 
+					{
+						front = "right";
+						back = "left";
+						//dir 1, ori hor: rect from back of car to front of int
+						car.setMaskrect(new Rectangle(rect_car[back], rect_car.top, rect_int[front]-rect_car[back], rect_car.height));
+					}
+					else
+					{
+						front = "bottom";
+						back = "top";
+						car.setMaskrect(new Rectangle(rect_car.left, rect_car[back], rect_car.width, rect_int[front]-rect_car[back]));
+					}
+				}
+				else //direction == -1 (left/up)
+				{
+					if (road.orientation == ORI_HOR)
+					{
+						front = "left";
+						back = "right";
+						//dir -1, ori hor: rect from front of int to back of car
+						car.setMaskrect(new Rectangle(rect_int[front], rect_car.top, rect_car[back]-rect_int[front], rect_car.height));
+					}
+					else
+					{
+						front = "top";
+						back = "bottom";
+						car.setMaskrect(new Rectangle(rect_car.left, rect_int[front], rect_car.width, rect_car[back]-rect_int[front]));
+					}
+				}
+				//check if car is completely at intersection (=ready to turn)
+				dist = road.direction * (rect_int[back] - rect_car[back]);//multiply by direction to make dist independent of direction
+				if (dist<=speed)
+				{
+					//remove car from road and update cars in front/back
+					road.removeCar(car);
+					//put car on other road with front at front of intersection.
+					var road_new = intersection.getOtherRoad(road);
+					var refCorner = road_new.direction == 1 ? intersection.rect.bottomRight : intersection.rect.topLeft;
+					var offset = road_new.getOffsetForPoint(refCorner);//independent of ori, but dependent on direction of new road
+					road_new.addCarAtOffset(car, offset);
+					//calc new maskrect from back of intersection to end of new road or some other distant point
+					var mask = intersection.rect.clone();
+					if (road_new.orientation == ORI_HOR)
+					{
+						if (road_new.direction == -1) mask.x -= 1000;
+						mask.width += 1000;
+					}
+					else
+					{
+						if (road_new.direction == -1) mask.y -= 1000;
+						mask.height += 1000;
+					}
+					car.setMaskrect(mask);
+					//set car props so it will continue properly on new road
+					car.lastIntersectionIndex = road_new.intersections.indexOf(intersection);
+					car.fase = Car.FASE_NORMAL;
+				}
+			}
+			//check end of road
+			if (!road.rect.intersects(car.getRectOnRoad())) carsToRemove.push(car);
+			else car.draw(g);
+		}
+		//remove cars scheduled for removal
+		this.removeCars(carsToRemove);
+		//
+		this.checkCarsInSamePosition();
+	}
+	gp.removeCars = function(carsToRemove)
+	{
+		var cars = this.cars;
+		for (var i = carsToRemove.length - 1; i >= 0; i--)
+		{
+			var index = cars.indexOf(carsToRemove[i]);
+			var car = cars[index];
+			car.road.removeCar(car);
+			car.destroy();
+			cars.splice(index, 1);
+		}
+	}
+	gp.addCar = function()
+	{
+		var car = new Car();
+		car.id = this.car_counter++;
+		//pick random road from available roads
+		var roadIndex = RandomUtil.pick(this.road_start_pool);
+		//roadIndex = 3;//TEMP
+		var road = this.roads[roadIndex];
+		road.addCarAtOffset(car, 0);
+		var d = this.config.distance_between_cars;
+		// safety check to see if references are properly removed
+		if (road.cars.length>50) log(roadIndex, car.road.cars.length);
+		this.cars.push(car);
+		this.lastCarAdded = Date.now();
+	}
+	gp.checkCarsInSamePosition = function()
+	{
+		var m = 1.2;
+		var carsToRemove = [];
+		var cars = this.cars;
+		var n = cars.length;
+		labelI:
+		for (var i=0;i<n;i++)
+		{
+			var c0 = cars[i], r0 = c0.road.id, p0 = c0.position;
+			for (var j=i+1;j<n;j++)
+			{
+				var c1 = cars[j];
+				if (c1.road.id == r0)
+				{
+					var p1 = c1.position;
+					if (Math.abs(p0.x-p1.x)<m && Math.abs(p0.y-p1.y)<m)
+					{
+						//log("Grid.checkCarsInSamePosition, removing first: ", c0.id, c1.id, r0, p0.x, p0.y);
+						carsToRemove.push(c0);//remove oldest car (rendered lowest)
+						break labelI;
+					}
+				}
+			}
+		}
+		this.removeCars(carsToRemove);
+	}
+	/**********************************
+	 *          	Road
+	 **********************************/
+	
+	var Road = function(pStart,pEnd,dir)
+	{
+		this.direction = dir;
+		this.pStart = pStart;
+		this.pEnd = pEnd;
+		this.rect = new Rectangle(pStart.x, pStart.y, pEnd.x - pStart.x, pEnd.y - pStart.y);
+		var ori = this.orientation = this.rect.width > this.rect.height ? ORI_HOR : ORI_VER;
+		this.length = ori==ORI_HOR ? this.rect.width : this.rect.height;
+		this.breadth = ori==ORI_VER ? this.rect.width : this.rect.height;
+		this.offset = ori==ORI_VER ? new Point(0,dir) : new Point(dir,0);
+		this.cars = [];
+	}
+	
+	var rp = Road.prototype;
+	
+	rp.getDistanceToCarInFront = function(car)
+	{
+		var cars = this.cars;
+		var ind = cars.indexOf(car);
+		var car2 = cars[ind + 1];
+		if (car2 == null) return Infinity;
+		return Point.distance(car2.getBack(), car.getFront());
+	}
+	rp.addCarAtOffset = function(car, dist)
+	{
+		var cars = this.cars;
+		//insert car at right index, so cars are kept in order
+		var n = cars.length;
+		if (n==0 || dist >= this.getOffsetForPoint(cars[n-1].position)) cars.push(car);
+		else if (dist < this.getOffsetForPoint(cars[0].position)) cars.unshift(car);
+		else
+		{
+			for (var i = 1; i < n; i++)
+			{
+				var car2 = cars[i];
+				if (dist < this.getOffsetForPoint(car2.position))
+				{
+					cars.splice(i, 0, car);//insert before this car
+					break;
+				}
+			}
+		}
+		//set car props
+		car.setRoad(this);
+		car.position = this.getStartPos(dist);
+	}
+	rp.removeCar = function(car)
+	{
+		//log("Road.removeCar " + car, cars.indexOf(car));
+		var cars = this.cars;
+		if (cars.indexOf(car)>-1) cars.splice(cars.indexOf(car), 1);//remove ref to car
+	}
+	rp.spreadCarsRandomly = function()
+	{
+		//only called at start
+		var cars = this.cars, cc = cars.length;
+		var spacePerCar = this.length / cc;
+		for (var i = 0; i < cc; i++)
+		{
+			var car =  cars[i];
+			var d = i * spacePerCar + Math.random() * spacePerCar;
+			car.position = this.getStartPos();
+			car.shift(d);
+			//car.position.x = -220;//TEMP
+		}
+	}
+	rp.getStartPos = function(extraOffset)
+	{
+		extraOffset = extraOffset || 0;
+		var dir = this.direction;
+		var p = dir == 1 ? this.pStart : this.pEnd;
+		var offset;
+		if (this.orientation == ORI_HOR)	offset = new Point(p.x + dir * extraOffset, p.y);
+		else offset = new Point(p.x, p.y + dir * extraOffset);
+		return offset;
+	}
+	rp.getOffsetForPoint = function(point)
+	{
+			//calc offset of point on road in pixels
+			var p = this.direction == 1?this.pStart:this.pEnd;
+			var prop = this.orientation == ORI_HOR ? "x" : "y";
+			return this.direction * (point[prop] - p[prop]);
+	}
+	rp.setIntersections = function(intersections)
+	{
+		//order in direction to enable optimization of intersection check for cars
+		var prop = this.orientation == ORI_HOR ? "x" : "y";
+		var orderFn = function(int0, int1) { return (int0.rect[prop] - int1.rect[prop]); }
+		intersections.sort(orderFn);
+		if (this.direction == -1) intersections.reverse();
+		this.intersections = intersections;
+	}
+	rp.draw = function(g)
+	{
+		//for debug purposes
+		var r = this.rect;
+		g.r(r.x, r.y, r.width, r.height);
+	}
+	
+	
+	/**********************************
+	 *          	Car
+	 **********************************/
+	
+	var Car = function(pStart,pEnd,dir)
+	{
+		this.sizeRatio = Config.car_size_ratio;
+		this.fase = Car.FASE_NORMAL;
+		this.lastIntersectionIndex = -1;
+		this.color = RandomUtil.pick(Config.car_colors);
+		//
+		this.length = 0;
+	}
+	var cp = Car.prototype;
+	
+	cp.destroy = function()
+	{
+		this.setRoad(null);
+	}
+	cp.getLength = function()
+	{
+		return this.road.breadth * this.sizeRatio;
+	}
+	cp.getFront = function()
+	{
+		var road = this.road;
+		var p = this.position.clone();
+		var prop = road.orientation != ORI_HOR ? "x" : "y";
+		p[prop] += road.direction * road.breadth / 2;
+		return p;
+	}
+	cp.getBack = function()
+	{
+		var road = this.road, length = this.getLength();
+		var p = this.position.clone();
+		if (road.orientation == ORI_HOR) 
+		{
+			p.x -= length * road.direction;
+			p.y += road.direction * road.breadth / 2;
+		}
+		else 
+		{
+			p.y -= length * road.direction;
+			p.x += road.direction * road.breadth / 2;
+		}
+		return p;
+	}
+	cp.getRectOnRoad = function()
+	{
+		var r = this.rect.clone();
+		r.offsetPoint(this.position);
+		return r;
+	}
+	cp.setRoad = function(road)
+	{
+		this.road = road;
+		this.lastIntersectionIndex = -1;
+		this.rect = null;
+		this.maskrect = null;
+		if (road != null)
+		{
+			var length = this.getLength();
+			//calc rect
+			var dir = road.direction;
+			if (road.orientation == ORI_HOR)
+			{
+				this.rect = new Rectangle(0, -road.breadth, length, road.breadth);
+				if (dir == 1) this.rect.offset(-length, road.breadth);
+			}
+			else
+			{
+				this.rect = new Rectangle(-road.breadth, 0, road.breadth, length);
+				if (dir == 1) this.rect.offset(road.breadth, -length);
+			}
+			//log("Car.road setter: "+this.rect);
+		}
+	}
+	cp.setMaskrect = function(rect)
+	{
+		this.maskrect = rect;
+		//if (rect!=null) log("Car.setMaskrect ",this.id, this.fase, this.road.orientation, rect.toString());
+		if (rect && (rect.width<0 || rect.height<0))
+		{
+			var idx = app.grid.roads.indexOf(this.road);
+			var msg = "Car.setMaskrect, t="+app.tickCount+", negative dimensions: "+this.id+", "+ idx+", "+rect.toString() +", "+ this.position.toString();
+			if (Config.debug) 
+			{
+				app.paused = true;
+				throw(msg);
+			}
+			else
+			{
+				log(msg);
+			}
+		}
+	}
+	cp.draw = function(g)
+	{
+		var r = this.getRectOnRoad();
+		if (this.maskrect != null) 
+		{
+			r = r.intersection(this.maskrect);//mask car on intersections before/while turning
+			//RF: r null, maskrect probably has negative dims
+			if (r==null) log("Car.draw r null: ", this.id, this.road.id, this.getRectOnRoad().toString(), this.maskrect.toString(), this.position.toString());
+			if (r==null) return;
+		}
+		//
+		g.f(this.color)
+		.r(rnd(r.x), rnd(r.y), rnd(r.width),rnd(r.height))
+		.endFill();
+	}
+	
+	cp.shift = function(d)
+	{
+		this.position.x += this.road.offset.x * d;
+		this.position.y += this.road.offset.y * d;
+	}
+	cp.toString = function()
+	{
+		return "[Car "+this.id+", "+this.road.id+", "+this.position.toString()+", "+this.getRectOnRoad().toString()+"]";
+	}
+	Car.FASE_NORMAL = 0;
+	Car.FASE_INTERSECTION = 1;
+	Car.FASE_TURN = 2;
+	
+	/**********************************
+	 *          LightController
+	 **********************************/
+	 
+	var LightController = function(intersections) 
+	{
+		this.intersections = intersections;
+		this.time = 0;
+		//
+		this.start = function()
+		{
+			this.scheduleNextToggle();
+		}
+		this.toggle = function()
+		{
+			this.scheduleNextToggle(true);
+		}
+		this.scheduleNextToggle = function(skipWait)
+		{
+			var d = 0;
+			if (!skipWait)
+			{
+				d = RandomUtil.between(Config.traffic_light_duration_min,Config.traffic_light_duration_max);
+			}
+			d += Config.traffic_light_both_red_duration;
+			this.nextToggleAt = this.time+d;
+		}
+		this.update = function(dt)
+		{
+			this.time += dt;
+			if (this.time>=this.nextToggleAt)
+			{
+				for (var i=0;i<this.intersections.length;i++)
+				{
+					this.intersections[i].toggle();
+				}
+				this.scheduleNextToggle();
+			}
+		}
+	}
+	 
+	/**********************************
+	 *          Intersection
+	 **********************************/
+
+	var Intersection = function(rect, roads) 
+	{
+		this.rect = rect;
+		this.roads = roads[0].orientation == ORI_HOR ? roads : roads.reverse();//hor, ver
+		this.light = INACTIVE;
+		//
+		this.toggle = function()
+		{
+			if (this.light == INACTIVE) return;
+			this.light = (this.light == GREEN)?RED : GREEN;
+		}
+		this.getLight = function(refRoad)
+		{
+			if (this.light == INACTIVE) return this.light;
+			return refRoad.orientation == ORI_HOR ? this.light : 3 - this.light;
+		}
+		this.getOtherRoad = function(refRoad)
+		{
+			return refRoad.orientation==ORI_HOR ? roads[1] : roads[0];
+		}
+		this.draw = function(g)
+		{
+			if (this.light == INACTIVE) return;
+			var r = rect;
+			var color = this.light == GREEN?"#00FF00":"#FF0000";
+			g.f(color).r(r.x, r.y, r.width, r.height).ef();
+		}
+	}		
+	
+	/**********************************
+	 *            RoadPart
+	 **********************************/
+	
+	var RoadPart = function(shape, x,y,w,h)
+	{
+		this.time = 0;
+		this.draw = function()
+		{
+			var m = 0;
+			var g = shape.graphics.c().f(this.color)
+			.r(rnd(x-m), rnd(y-m), rnd(w+2*m),rnd(h+2*m));
+		}
+		this.switchColor = function(initial)
+		{
+			this.color = RandomUtil.pick(Config.road_colors);
+			this.draw();
+			//
+			var min = Config.road_color_switch_duration_min;
+			var max = Config.road_color_switch_duration_max;
+			var d = RandomUtil.between(min,max);
+			if (initial) d -= min;
+			this.nextSwitch = this.time+d;
+		}
+		//
+		this.update = function(dt)
+		{
+			this.time += dt;
+			if (this.time>=this.nextSwitch)
+			{
+				this.switchColor();
+			}
+		}
+		//
+		this.switchColor(true);
+	}
+	
+	/**********************************
+	 *            constants
+	 **********************************/
+	
+	var ORI_HOR = 0;
+	var ORI_VER = 1;
+	
+	var INACTIVE = 0;
+	var GREEN = 1;
+	var RED = 2;
+
+	
+	var rnd = Math.round;
+	
+	window.Piece = Piece;
+	
+
+}(window));
+

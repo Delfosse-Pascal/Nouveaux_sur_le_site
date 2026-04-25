@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galerie des Œuvres en Ligne</title>
+
+  <style>
+    /* 🌌 Style général — fond doux et typographie élégante */
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f0f0ff, #e9f9ff);
+      font-family: "Segoe UI", Verdana, sans-serif;
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 2.2em;
+      letter-spacing: 2px;
+      color: #2a2a72;
+      text-shadow: 0 0 10px rgba(100, 100, 255, 0.2);
+      animation: pulseTitle 5s infinite alternate;
+    }
+
+    /* ✨ Animation subtile du titre principal */
+    @keyframes pulseTitle {
+      from { text-shadow: 0 0 10px rgba(100, 100, 255, 0.2); }
+      to { text-shadow: 0 0 25px rgba(100, 100, 255, 0.5); color: #3b3be0; }
+    }
+
+    /* 🌈 Section contenant toutes les images (effet va-et-vient) */
+    .scroll-container {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      animation: scrollBothWays 40s ease-in-out infinite alternate;
+      padding: 40px;
+    }
+
+    /* 💫 Animation de va-et-vient du carrousel */
+@keyframes scrollBothWays {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-40%); } /* ← change ici -60% → -40% */
+}
+
+    /* 🌺 Chaque vignette */
+    .image-wrapper {
+      display: inline-block;
+      text-align: center;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .image-wrapper:hover {
+      transform: scale(1.1);
+      filter: brightness(1.2);
+    }
+
+    /* 📷 Les images elles-mêmes */
+    .image-wrapper img {
+      width: 220px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .image-wrapper:hover img {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    /* 💬 Légendes sous chaque image */
+    .image-caption {
+      margin-top: 10px;
+      font-size: 0.95em;
+      color: #333;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.6);
+      transition: color 0.5s ease, text-shadow 0.5s ease;
+    }
+
+    .image-wrapper:hover .image-caption {
+      color: #0044cc;
+      text-shadow: 0 0 8px rgba(100,150,255,0.6);
+    }
+
+    /* 🌿 Conteneur global pour centrage */
+    .gallery-container {
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+    }
+	
+	/* 🚫 Supprime le soulignement des titres des liens */
+.image-wrapper {
+  text-decoration: none;
+}
+
+.image-wrapper:link,
+.image-wrapper:visited,
+.image-wrapper:hover,
+.image-wrapper:active {
+  text-decoration: none;
+}
+/* ✨ Texte des légendes : pas de soulignement et effet lumineux au survol */
+.image-caption {
+  margin-top: 10px;
+  font-size: 0.95em;
+  color: #333;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.6);
+  transition: color 0.5s ease, text-shadow 0.5s ease, transform 0.3s ease;
+  text-decoration: none; /* suppression du soulignement */
+}
+
+/* Effet lumineux au survol de la légende */
+.image-wrapper:hover .image-caption {
+  color: #6d28d9; /* violet doux */
+  text-shadow: 0 0 12px rgba(167,139,250,0.8), 0 0 20px rgba(167,139,250,0.5);
+  transform: translateY(-2px); /* léger soulèvement */
+}
+</style>
+
+</head>
+
+<body>
+  <div class="gallery-container">
+    <div class="scroll-container">
+
+      <!-- 🌼 Chaque bloc ci-dessous correspond à un site de ta liste -->
+      <!-- Modèle : lien + image + légende -->
+
+ <!-- LISTE COMPLÈTE DES LIENS AVEC IMAGES ET LÉGENDES -->
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/clipenligne/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/clipenligne.jpg" alt="clipenligne">
+  <div class="image-caption">Clip en Ligne</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Gallery-for-AI-Art/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/Gallery-for-AI-Art.jpg" alt="Gallery for AI Art">
+  <div class="image-caption">Gallery for AI Art</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/60_Alphabet_Animer/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/60_Alphabet_Animer.jpg" alt="60 Alphabet Animer">
+  <div class="image-caption">60 Alphabets Animés</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/proget/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/proget.jpg" alt="proget">
+  <div class="image-caption">Proget</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/474_Gsm_113X200_Transition/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/474_GSM_113_200_Transition.jpg" alt="474 GSM 113X200 Transition">
+  <div class="image-caption">474 GSM 113X200 Transition</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Video_En_Ligne/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/Video_En_Ligne.jpg" alt="Video En Ligne">
+  <div class="image-caption">Vidéo en Ligne</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Optical_Full_Life/index.htm" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/Optical_Full_Life.jpg" alt="Optical Full Life">
+  <div class="image-caption">Optical Full Life</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/8500_Buttons_Du_Wenmaster/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/8500_Buttons_Du_Wenmaster.jpg" alt="8500 Buttons Du Wenmaster">
+  <div class="image-caption">8500 Buttons du Wenmaster</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/1237_Musique_libre_de_droit_Mp3_Ogg/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/1237_Musique_libre_de_droit_Mp3_Ogg.jpg" alt="1237 Musique libre de droit Mp3 Ogg">
+  <div class="image-caption">1237 Musiques Libres de Droit (MP3 / OGG)</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/1449_Figurines_et_personnages_3D/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/1449_Figurines_et_personnages_3D.jpg" alt="1449 Figurines et personnages 3D">
+  <div class="image-caption">1449 Figurines et Personnages 3D</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Musique_Finale_2026/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/Musique_Finale_2026.jpg" alt="Musique Finale 2026">
+  <div class="image-caption">Musique Finale 2026</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/3171_PowerPoint_Animations/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/3171_PowerPoint_Animations.jpg" alt="3171 PowerPoint Animations">
+  <div class="image-caption">3171 PowerPoint Animations</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/1192_Arc_En_Ciel_Png/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/1192_Arc_En_Ciel_Png.jpg" alt="1192 Arc En Ciel PNG">
+  <div class="image-caption">1192 Arc-en-Ciel PNG</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/337_Fluide_Glacial_Collector/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/337_Fluide_Glacial_Collector.jpg" alt="337 Fluide Glacial Collector">
+  <div class="image-caption">337 Fluide Glacial Collector</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Musiques_Gratuite_M4a/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/Musiques_Gratuite_M4a.jpg" alt="Musiques Gratuite M4a">
+  <div class="image-caption">Musiques Gratuites M4A</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/500_Faune_et_nature/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/500_Faune_et_nature.jpg" alt="500 Faune et nature">
+  <div class="image-caption">500 Faune et Nature</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/10000_Fonts_Police_De_Caractere/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/10000_Fonts_Police_De_Caractere.jpg" alt="10000 Fonts Police de Caractère">
+  <div class="image-caption">10000 Polices de Caractères</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/20243_Fichiers_Audio_Mp3_Wav_Ogg_Flac_M4a_Aac/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/Musique-Libre-de-Droit.jpg" alt="20243 Fichiers Audio">
+  <div class="image-caption">20243 Fichiers Audio (MP3 / WAV / FLAC / AAC)</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/3422_Figurines_3D/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/3422_Figurines_3D.jpg" alt="3422 Figurines 3D">
+  <div class="image-caption">3422 Figurines 3D</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/3558_Superbe/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/3558_Superbe.jpg" alt="3558 Superbe">
+  <div class="image-caption">3558 Superbe</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Texture_Webmaster_Rare/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/Texture_Webmaster_Rare.jpg" alt="Texture Webmaster Rare">
+  <div class="image-caption">Texture Webmaster Rare</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/500_Tik_Tok_2025/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/500_Tik_Tok_2025.jpg" alt="500 Tik Tok 2025">
+  <div class="image-caption">500 TikTok 2025</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/19959_GiF_274_Categories/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/19959_GiF_274_Categories.jpg" alt="19959 GIF 274 Catégories">
+  <div class="image-caption">19959 GIF – 274 Catégories</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Html5_Full_Gratuit/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/Html5_Full_Gratuit.jpg" alt="HTML5 Full Gratuit">
+  <div class="image-caption">HTML5 Full Gratuit</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/3600_Avatars_2025_A/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/3600_Avatars_2025_A.jpg" alt="3600 Avatars 2025 A">
+  <div class="image-caption">3600 Avatars 2025 A</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/3660_Cadre_PNG/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/3660_Cadre_PNG.jpg" alt="3660 Cadre PNG">
+  <div class="image-caption">3660 Cadres PNG</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/41000_Titres_Midi_Internationeaux/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/41000_Titres_Midi_Internationeaux.jpg" alt="41000 Titres Midi Internationaux">
+  <div class="image-caption">41000 Titres MIDI Internationaux</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/6000_Texture_Pastel_Bis/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/6000_Texture_Pastel_Bis.jpg" alt="6000 Texture Pastel Bis">
+  <div class="image-caption">6000 Textures Pastel (Bis)</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/aliatoires/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/aliatoires.jpg" alt="aliatoires">
+  <div class="image-caption">Images Aléatoires</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/6000_Texture_Pastel/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/6000_Texture_Pastel.jpg" alt="6000 Texture Pastel">
+  <div class="image-caption">6000 Textures Pastel</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/HTML_Presentation_La_Base_Web/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/HTML_Presentation_La_Base_Web.jpg" alt="HTML Presentation La Base Web">
+  <div class="image-caption">HTML – Présentation de la Base Web</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Online_Textures_2026_A/online.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/Online_Textures_2026_A.jpg" alt="Online Textures 2026 A">
+  <div class="image-caption">Online Textures 2026 A</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/avatars1/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/avatars1.jpg" alt="avatars1">
+  <div class="image-caption">Avatars 1</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/les_chevaliers/blagechevalier.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/les_chevaliers.jpg" alt="les chevaliers">
+  <div class="image-caption">Les Chevaliers</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Les_Toiles_De_Pascal/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/Les_Toiles_De_Pascal.jpg" alt="Les Toiles de Pascal">
+  <div class="image-caption">Les Toiles de Pascal</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/La_Musique_Libre/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/La_Musique_Libre.jpg" alt="La Musique Libre">
+  <div class="image-caption">La Musique Libre</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Transition_Video_F_200/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/Transition_Video_F_200.jpg" alt="Transition Video F 200">
+  <div class="image-caption">Transition Vidéo F 200</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Mots_PnG_A_3600/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/Mots_PnG_A_3600.jpg" alt="Mots PNG A 3600">
+  <div class="image-caption">Mots PNG A 3600</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/lestoilesalbum/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/lestoilesalbum.jpg" alt="lestoilesalbum">
+  <div class="image-caption">Les Toiles – Album</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Mes-videos-Arts/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/Mes-videos-Arts.jpg" alt="Mes vidéos Arts">
+  <div class="image-caption">Mes Vidéos Arts</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Musique_Libre_de_Droit/index.html" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/Musique-Libre-de-Droit.jpg" alt="Musique Libre de Droit">
+  <div class="image-caption">Musique Libre de Droit</div>
+</a>
+
+<a href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/684_Dividers_A/index.htm" target="_blank" class="image-wrapper">
+  <img src="images_Scroll/Tu etait la S1.jpg" alt="684 Dividers A">
+  <div class="image-caption">684 Dividers A</div>
+</a>
+
+    </div>
+  </div>
+  
+  
+</body>
+</html>

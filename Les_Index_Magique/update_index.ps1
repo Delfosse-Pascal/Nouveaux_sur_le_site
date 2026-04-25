@@ -78,9 +78,18 @@ $frCulture = [Globalization.CultureInfo]::GetCultureInfo('fr-FR')
 
 # ---------------------------------------------------------------------------
 # Collecte des entrees
-#   - Fichiers .html (sauf index.html lui-meme)
-#   - Sous-dossiers contenant un index.html
+#   - Fichiers .html du dossier Les_Index_Magique (sauf index.html)
+#   - Fichiers .html des sous-dossiers (1 niveau, "tiroirs") :
+#       * Tous les *.html sont remontes comme cartes
+#       * Titre = "<Dossier> / <Fichier>"
+#       * Tag = nom du dossier (au lieu de "page" / "dossier")
+#       * Sous-dossiers de support (_files, dist, assets, images, etc.)
+#         sont scannes pareil. Pour exclure, ajouter au tableau $skipDirs.
 # ---------------------------------------------------------------------------
+
+# Sous-dossiers a IGNORER (assets non navigables). Adapte a volonte.
+$skipDirs = @('assets','images','css','js','fonts','vendor')
+
 $entries = @()
 
 # Fichiers .html du dossier Les_Index_Magique
@@ -92,21 +101,35 @@ Get-ChildItem -LiteralPath $dir -File -Filter '*.html' |
             Href  = $linkPrefix + [Uri]::EscapeDataString($_.Name)
             Date  = $_.LastWriteTime
             Kind  = 'page'
+            Tag   = 'page'
         }
     }
 
-# Sous-dossiers de Les_Index_Magique contenant un index.html
+# Fichiers .html dans les sous-dossiers (1 niveau)
 Get-ChildItem -LiteralPath $dir -Directory |
+    Where-Object { $skipDirs -notcontains $_.Name.ToLower() } |
     ForEach-Object {
-        $idx = Join-Path $_.FullName 'index.html'
-        if (Test-Path -LiteralPath $idx) {
-            $entries += [pscustomobject]@{
-                Title = $_.Name
-                Href  = $linkPrefix + [Uri]::EscapeDataString($_.Name) + '/index.html'
-                Date  = (Get-Item -LiteralPath $idx).LastWriteTime
-                Kind  = 'folder'
+        $sub = $_
+        $subEsc = [Uri]::EscapeDataString($sub.Name)
+
+        Get-ChildItem -LiteralPath $sub.FullName -File -Filter '*.html' |
+            ForEach-Object {
+                $name = $_.Name
+                $base = [IO.Path]::GetFileNameWithoutExtension($name)
+                # Si le fichier est index.html, titre = nom du dossier seul
+                if ($name -ieq 'index.html') {
+                    $title = $sub.Name
+                } else {
+                    $title = "$($sub.Name) / $base"
+                }
+                $entries += [pscustomobject]@{
+                    Title = $title
+                    Href  = $linkPrefix + $subEsc + '/' + [Uri]::EscapeDataString($name)
+                    Date  = $_.LastWriteTime
+                    Kind  = 'folder'
+                    Tag   = $sub.Name
+                }
             }
-        }
     }
 
 # Tri alphabetique stable
@@ -124,7 +147,7 @@ $cardBlocks = foreach ($e in $entries) {
     $date  = HtmlEncode ($e.Date.ToString('MMMM yyyy', $frCulture))
     $hue1  = HueFromString $e.Title
     $hue2  = ($hue1 + 40) % 360
-    $tag   = if ($e.Kind -eq 'folder') { 'dossier' } else { 'page' }
+    $tag   = HtmlEncode $e.Tag
 
 @"
             <div class="video" id="$id">

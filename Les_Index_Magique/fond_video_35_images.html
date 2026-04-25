@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Page avec fond vidéo</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Georgia', serif;
+    }
+
+    #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .falling-image {
+      position: absolute;
+      width: 250px;
+      height: 200px;
+      top: -250px;
+      opacity: 0;
+      animation: fallAndBounce 8s ease-in forwards;
+    }
+
+    @keyframes fallAndBounce {
+      0%   { top: -250px; opacity: 0; }
+      10%  { opacity: 1; }
+      60%  { top: calc(100vh - 200px); }
+      75%  { top: calc(100vh - 220px); }
+      85%  { top: calc(100vh - 200px); }
+      92%  { top: calc(100vh - 210px); }
+      100% { top: calc(100vh - 200px); }
+    }
+.effect1 { filter: hue-rotate(10deg) brightness(1.1); transform: rotate(-15deg) scale(1.05); }
+.effect2 { filter: hue-rotate(20deg) brightness(1.2); transform: rotate(-10deg) scale(1.1); }
+.effect3 { filter: hue-rotate(30deg) brightness(1.3); transform: rotate(-5deg) scale(1.0); }
+.effect4 { filter: hue-rotate(40deg) brightness(1.4); transform: rotate(0deg) scale(1.05); }
+.effect5 { filter: hue-rotate(50deg) brightness(1.0); transform: rotate(5deg) scale(1.1); }
+.effect6 { filter: hue-rotate(60deg) brightness(1.1); transform: rotate(10deg) scale(1.0); }
+.effect7 { filter: hue-rotate(70deg) brightness(1.2); transform: rotate(15deg) scale(1.05); }
+.effect8 { filter: hue-rotate(80deg) brightness(1.3); transform: rotate(-20deg) scale(1.1); }
+.effect9 { filter: hue-rotate(90deg) brightness(1.4); transform: rotate(-15deg) scale(1.0); }
+.effect10 { filter: hue-rotate(100deg) brightness(1.0); transform: rotate(-10deg) scale(1.05); }
+.effect11 { filter: hue-rotate(110deg) brightness(1.1); transform: rotate(-5deg) scale(1.1); }
+.effect12 { filter: hue-rotate(120deg) brightness(1.2); transform: rotate(0deg) scale(1.0); }
+.effect13 { filter: hue-rotate(130deg) brightness(1.3); transform: rotate(5deg) scale(1.05); }
+.effect14 { filter: hue-rotate(140deg) brightness(1.4); transform: rotate(10deg) scale(1.1); }
+.effect15 { filter: hue-rotate(150deg) brightness(1.0); transform: rotate(15deg) scale(1.0); }
+.effect16 { filter: hue-rotate(160deg) brightness(1.1); transform: rotate(-20deg) scale(1.05); }
+.effect17 { filter: hue-rotate(170deg) brightness(1.2); transform: rotate(-15deg) scale(1.1); }
+.effect18 { filter: hue-rotate(180deg) brightness(1.3); transform: rotate(-10deg) scale(1.0); }
+.effect19 { filter: hue-rotate(190deg) brightness(1.4); transform: rotate(-5deg) scale(1.05); }
+.effect20 { filter: hue-rotate(200deg) brightness(1.0); transform: rotate(0deg) scale(1.1); }
+.effect21 { filter: hue-rotate(210deg) brightness(1.1); transform: rotate(5deg) scale(1.0); }
+.effect22 { filter: hue-rotate(220deg) brightness(1.2); transform: rotate(10deg) scale(1.05); }
+.effect23 { filter: hue-rotate(230deg) brightness(1.3); transform: rotate(15deg) scale(1.1); }
+.effect24 { filter: hue-rotate(240deg) brightness(1.4); transform: rotate(-20deg) scale(1.0); }
+.effect25 { filter: hue-rotate(250deg) brightness(1.0); transform: rotate(-15deg) scale(1.05); }
+.effect26 { filter: hue-rotate(260deg) brightness(1.1); transform: rotate(-10deg) scale(1.1); }
+.effect27 { filter: hue-rotate(270deg) brightness(1.2); transform: rotate(-5deg) scale(1.0); }
+.effect28 { filter: hue-rotate(280deg) brightness(1.3); transform: rotate(0deg) scale(1.05); }
+.effect29 { filter: hue-rotate(290deg) brightness(1.4); transform: rotate(5deg) scale(1.1); }
+.effect30 { filter: hue-rotate(300deg) brightness(1.0); transform: rotate(10deg) scale(1.0); }
+.effect31 { filter: hue-rotate(310deg) brightness(1.1); transform: rotate(15deg) scale(1.05); }
+.effect32 { filter: hue-rotate(320deg) brightness(1.2); transform: rotate(-20deg) scale(1.1); }
+.effect33 { filter: hue-rotate(330deg) brightness(1.3); transform: rotate(-15deg) scale(1.0); }
+.effect34 { filter: hue-rotate(340deg) brightness(1.4); transform: rotate(-10deg) scale(1.05); }
+.effect35 { filter: hue-rotate(350deg) brightness(1.0); transform: rotate(-5deg) scale(1.1); }
+  </style>
+</head>
+<body onmousedown="return false" onselectstart="return false">
+
+  <script>
+    const imageLinks = [
+      "https://lestoilesdepascal.be/56_Video_Tik_Tok_D/sitevideo.html",
+      "https://lestoilesdepascal.be/200_Diverse-Video/index.html",
+      "https://lestoilesdepascal.be/Optical_Full_Life/index.htm",
+      "https://lestoilesdepascal.be/Textures_2026_Fond_Visible_D/online.html",
+      "https://lestoilesdepascal.be/Musique_Finale_2026/index.html",
+      "https://lestoilesdepascal.be/3234_Dolls_Collector/html_output/index.html",
+      "https://lestoilesdepascal.be/Ma_Galerie_Les_Toiles/",
+      "https://lestoilesdepascal.be/3200_PNG_Explosion_A_PNG/index.html",
+      "https://lestoilesdepascal.be/3422_Figurines_3D/index.html",
+      "https://lestoilesdepascal.be/6000_Texture_Pastel/index.html"
+    ];
+
+    const usedPositions = new Set();
+
+    function getUniqueLeftPosition() {
+      let left;
+      let attempts = 0;
+      do {
+        left = Math.floor(Math.random() * (window.innerWidth - 260));
+        attempts++;
+      } while ([...usedPositions].some(pos => Math.abs(pos - left) < 270) && attempts < 20);
+      usedPositions.add(left);
+      setTimeout(() => usedPositions.delete(left), 9000);
+      return left;
+    }
+
+    function createFallingImage(i) {
+      const img = document.createElement("img");
+      img.src = `images/image${i}.jpg`;
+      img.className = `falling-image effect${i}`;
+      img.style.left = getUniqueLeftPosition() + "px";
+
+      const link = document.createElement("a");
+      link.href = imageLinks[(i - 1) % imageLinks.length];
+      link.target = "_blank";
+      link.appendChild(img);
+      document.body.appendChild(link);
+
+      setTimeout(() => {
+        link.remove();
+      }, 8500);
+    }
+
+    function startFallingLoop() {
+      function launchFallingSet() {
+        for (let i = 1; i <= 35; i++) {
+          setTimeout(() => {
+            createFallingImage(i);
+          }, i * 300);
+        }
+      }
+
+      launchFallingSet();
+      setInterval(launchFallingSet, 15000);
+    }
+
+    startFallingLoop();
+  </script>
+</body>
+</html>

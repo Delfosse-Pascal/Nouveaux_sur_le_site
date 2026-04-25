@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merci - Ressources Gratuites</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Particules animées */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            bottom: -10px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float-up linear infinite;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) scale(0.5) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Contenu principal */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Carte glassmorphism principale */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+            animation: card-entry 1.5s ease-out;
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        @keyframes card-entry {
+            0% {
+                opacity: 0;
+                transform: translateY(100px) rotateX(20deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+
+        .icon-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse-glow 2s ease-in-out infinite, float 3s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.5);
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 10px 30px rgba(245, 87, 108, 0.5), 0 0 0 0 rgba(245, 87, 108, 0.7);
+            }
+            50% {
+                box-shadow: 0 15px 40px rgba(245, 87, 108, 0.6), 0 0 0 20px rgba(245, 87, 108, 0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .heart {
+            font-size: 60px;
+            color: white;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.05); }
+        }
+
+        h1 {
+            color: white;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: slide-in-left 1s ease-out 0.5s both;
+            background: linear-gradient(to right, #fff, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes slide-in-left {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            animation: fade-in-up 1s ease-out 0.8s both;
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .thanks-section {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            border-left: 5px solid #ffd700;
+            animation: expand-width 1.2s ease-out 1s both;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .thanks-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes expand-width {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100%;
+                opacity: 1;
+            }
+        }
+
+        .thanks-text {
+            color: white;
+            font-size: 1.2em;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #ffd700;
+            transform: scaleX(0);
+            transform-origin: right;
+            animation: underline-expand 1s ease-out 2s forwards;
+        }
+
+        @keyframes underline-expand {
+            to { transform: scaleX(1); transform-origin: left; }
+        }
+
+        /* GALERIE D'IMAGES SCROLLABLE */
+        .gallery-section {
+            width: 100%;
+            margin: 50px 0;
+            animation: fade-in-up 1s ease-out 1.5s both;
+        }
+
+        .gallery-title {
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .gallery-scroll {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            padding: 20px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.5) transparent;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .gallery-scroll:active {
+            cursor: grabbing;
+        }
+
+        .gallery-scroll::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .gallery-scroll::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+
+        .gallery-scroll::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.5);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .gallery-scroll::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.8);
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .gallery-item {
+            flex: 0 0 auto;
+            width: 300px;
+            height: 400px;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.05) rotateY(5deg);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            z-index: 10;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.2);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 30px 20px 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h3 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+            transform: translateX(-20px);
+            opacity: 0;
+            transition: all 0.3s ease 0.1s;
+        }
+
+        .gallery-overlay p {
+            font-size: 0.9em;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.3s ease 0.2s;
+        }
+
+        .gallery-item:hover .gallery-overlay h3,
+        .gallery-item:hover .gallery-overlay p {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .scroll-hint {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            margin-top: 15px;
+            font-size: 0.9em;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+
+        /* SECTION VIDÉOS YOUTUBE */
+        .videos-section {
+            width: 100%;
+            margin: 50px 0;
+            animation: fade-in-up 1s ease-out 2s both;
+        }
+
+        .videos-title {
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            text-align: center;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            width: 100%;
+        }
+
+        .video-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .video-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Ratio 16:9 */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover .video-wrapper iframe {
+            transform: scale(1.05);
+        }
+
+        .video-info {
+            padding: 20px;
+            color: white;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .video-info h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+
+        .video-info p {
+            font-size: 0.9em;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 0, 0, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .video-card:hover .play-button {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.2);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+        }
+
+        .play-button::after {
+            content: '▶';
+            color: white;
+            font-size: 24px;
+            margin-left: 5px;
+        }
+
+        /* Boutons */
+        .btn-container {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fade-in 1s ease-out 2.5s both;
+        }
+
+        @keyframes fade-in {
+            to { opacity: 1; }
+            from { opacity: 0; }
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .videos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            .glass-card { padding: 30px; }
+            .thanks-section { padding: 20px; }
+            .gallery-item { width: 250px; height: 350px; }
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+            .videos-title, .gallery-title { font-size: 2em; }
+        }
+
+        /* Curseur personnalisé */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        body:hover .cursor-outline.hovered {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: transparent;
+        }
+
+        /* Indicateur de scroll */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd700, #ff6b6b);
+            z-index: 10000;
+            transition: width 0.1s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Particules -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Curseur personnalisé -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <div class="container">
+        <!-- Section principale -->
+        <div class="glass-card" id="card">
+            <div class="icon-wrapper">
+                <div class="heart">❤️</div>
+            </div>
+            
+            <h1>Un Grand Merci !</h1>
+            <p class="subtitle">À tous ceux qui partagent leurs ressources avec la communauté</p>
+            
+            <div class="thanks-section">
+                <p class="thanks-text">
+                    Nous tenons à exprimer notre profonde gratitude envers tous les 
+                    <span class="highlight">créateurs</span>, 
+                    <span class="highlight">développeurs</span> et 
+                    <span class="highlight">artistes</span> qui mettent à disposition 
+                    gratuitement leurs œuvres, outils et connaissances. Votre générosité 
+                    nourrit l'innovation et rend le web meilleur pour tout le monde. 
+                    <span class="highlight">Merci pour votre contribution</span> 
+                    précieuse à l'écosystème numérique ouvert !
+                </p>
+            </div>
+
+            <div class="btn-container">
+                <button class="btn btn-primary" onclick="confetti()">Célébrer ! 🎉</button>
+                <a href="#" class="btn btn-secondary" onclick="smoothScroll('.gallery-section')">Voir la galerie</a>
+            </div>
+        </div>
+
+<!-- GALERIE D'IMAGES SCROLLABLE -->
+<div class="gallery-section">
+    <h2 class="gallery-title">Galerie de Ressources</h2>
+    <div class="gallery-container">
+        <div class="gallery-scroll" id="galleryScroll">
+            
+            <!-- Image 1 -->
+            <div class="gallery-item">
+                <img src="images/scroll/image1.jpg" alt="Description de l'image 1">
+                <div class="gallery-overlay">
+                    <h3>Titre Image 1</h3>
+                    <p>Description détaillée</p>
+                </div>
+            </div>
+
+            <!-- Image 2 -->
+            <div class="gallery-item">
+                <img src="images/scroll/image2.jpg" alt="Description de l'image 2">
+                <div class="gallery-overlay">
+                    <h3>Titre Image 2</h3>
+                    <p>Description détaillée</p>
+                </div>
+            </div>
+
+            <!-- Image 3 -->
+            <div class="gallery-item">
+                <img src="images/scroll/image3.jpg" alt="Description de l'image 3">
+                <div class="gallery-overlay">
+                    <h3>Titre Image 3</h3>
+                    <p>Description détaillée</p>
+                </div>
+            </div>
+
+            <!-- Image 4 -->
+            <div class="gallery-item">
+                <img src="images/scroll/image4.jpg" alt="Description de l'image 4">
+                <div class="gallery-overlay">
+                    <h3>Titre Image 4</h3>
+                    <p>Description détaillée</p>
+                </div>
+            </div>
+
+            <!-- Image 5 -->
+            <div class="gallery-item">
+                <img src="images/scroll/image5.jpg" alt="Description de l'image 5">
+                <div class="gallery-overlay">
+                    <h3>Titre Image 5</h3>
+                    <p>Description détaillée</p>
+                </div>
+            </div>
+
+            <!-- Image 6 -->
+            <div class="gallery-item">
+                <img src="images/scroll/image6.jpg" alt="Description de l'image 6">
+                <div class="gallery-overlay">
+                    <h3>Titre Image 6</h3>
+                    <p>Description détaillée</p>
+                </div>
+            </div>
+
+            <!-- Image 7 -->
+            <div class="gallery-item">
+                <img src="images/scroll/image7.jpg" alt="Description de l'image 7">
+                <div class="gallery-overlay">
+                    <h3>Titre Image 7</h3>
+                    <p>Description détaillée</p>
+                </div>
+            </div>
+
+            <!-- Image 8 -->
+            <div class="gallery-item">
+                <img src="images/scroll/image8.jpg" alt="Description de l'image 8">
+                <div class="gallery-overlay">
+                    <h3>Titre Image 8</h3>
+                    <p>Description détaillée</p>
+                </div>
+            </div>
+
+            <!-- Image 9 -->
+            <div class="gallery-item">
+                <img src="images/scroll/image9.jpg" alt="Description de l'image 9">
+                <div class="gallery-overlay">
+                    <h3>Titre Image 9</h3>
+                    <p>Description détaillée</p>
+                </div>
+            </div>
+
+            <!-- Image 10 -->
+            <div class="gallery-item">
+                <img src="images/scroll/image10.jpg" alt="Description de l'image 10">
+                <div class="gallery-overlay">
+                    <h3>Titre Image 10</h3>
+                    <p>Description détaillée</p>
+                </div>
+            </div>
+
+            <!-- Image 11 -->
+            <div class="gallery-item">
+                <img src="images/scroll/image11.jpg" alt="Description de l'image 11">
+                <div class="gallery-overlay">
+                    <h3>Titre Image 11</h3>
+                    <p>Description détaillée</p>
+                </div>
+            </div>
+
+            <!-- Image 12 -->
+            <div class="gallery-item">
+                <img src="images/scroll/image12.jpg" alt="Description de l'image 12">
+                <div class="gallery-overlay">
+                    <h3>Titre Image 12</h3>
+                    <p>Description détaillée</p>
+                </div>
+            </div>
+
+            <!-- Image 13 -->
+            <div class="gallery-item">
+                <img src="images/scroll/image13.jpg" alt="Description de l'image 13">
+                <div class="gallery-overlay">
+                    <h3>Titre Image 13</h3>
+                    <p>Description détaillée</p>
+                </div>
+            </div>
+
+            <!-- Image 14 -->
+            <div class="gallery-item">
+                <img src="images/scroll/image14.jpg" alt="Description de l'image 14">
+                <div class="gallery-overlay">
+                    <h3>Titre Image 14</h3>
+                    <p>Description détaillée</p>
+                </div>
+            </div>
+
+            <!-- Image 15 -->
+            <div class="gallery-item">
+                <img src="images/scroll/image15.jpg" alt="Description de l'image 15">
+                <div class="gallery-overlay">
+                    <h3>Titre Image 15</h3>
+                    <p>Description détaillée</p>
+                </div>
+            </div>
+
+            <!-- Image 16 -->
+            <div class="gallery-item">
+                <img src="images/scroll/image16.jpg" alt="Description de l'image 16">
+                <div class="gallery-overlay">
+                    <h3>Titre Image 16</h3>
+                    <p>Description détaillée</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <p class="scroll-hint">← Glissez pour voir plus →</p>
+</div>
+
+        <!-- SECTION VIDÉOS YOUTUBE -->
+        <div class="videos-section">
+            <h2 class="videos-title">Tutoriels Vidéo</h2>
+            <div class="videos-grid">
+                <!-- Vidéo 1 -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/MmeAc7IAHfE?si=bVcm1ftxsGXp3GYt=1" 
+                            title="Vidéo 1"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Introduction aux Ressources</h3>
+                        <p>Découvrez comment utiliser efficacement les ressources gratuites dans vos projets créatifs.</p>
+                    </div>
+                </div>
+
+                <!-- Vidéo 2 -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/fD_XRjn1rrA?rel=0&modestbranding=1" 
+                            title="Vidéo 2"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Top 10 Outils Gratuits</h3>
+                        <p>Sélection des meilleurs outils de design et développement disponibles gratuitement.</p>
+                    </div>
+                </div>
+
+                <!-- Vidéo 3 -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/FGIUYmCNnYs?rel=0&modestbranding=1" 
+                            title="Vidéo 3"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Guide de Débutant</h3>
+                        <p>Apprenez à naviguer dans l'univers des ressources libres de droits.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <script>
+        // Génération des particules
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 10 + 5;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // Curseur personnalisé
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+        
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            
+            cursorDot.style.left = posX + 'px';
+            cursorDot.style.top = posY + 'px';
+            
+            cursorOutline.animate({
+                left: posX + 'px',
+                top: posY + 'px'
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Effet hover
+        document.querySelectorAll('.btn, .gallery-item, .video-card').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.classList.add('hovered');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.classList.remove('hovered');
+            });
+        });
+
+        // Effet 3D sur la carte principale
+        const card = document.getElementById('card');
+        
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            if (card) {
+                card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            }
+        });
+
+        // Galerie scrollable avec drag
+        const gallery = document.getElementById('galleryScroll');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        gallery.addEventListener('mousedown', (e) => {
+            isDown = true;
+            gallery.style.cursor = 'grabbing';
+            startX = e.pageX - gallery.offsetLeft;
+            scrollLeft = gallery.scrollLeft;
+        });
+
+        gallery.addEventListener('mouseleave', () => {
+            isDown = false;
+            gallery.style.cursor = 'grab';
+        });
+
+        gallery.addEventListener('mouseup', () => {
+            isDown = false;
+            gallery.style.cursor = 'grab';
+        });
+
+        gallery.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - gallery.offsetLeft;
+            const walk = (x - startX) * 2;
+            gallery.scrollLeft = scrollLeft - walk;
+        });
+
+        // Scroll horizontal avec la molette (shift scroll)
+        gallery.addEventListener('wheel', (e) => {
+            if (e.deltaY !== 0) {
+                e.preventDefault();
+                gallery.scrollLeft += e.deltaY;
+            }
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.gallery-item, .video-card').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            observer.observe(el);
+        });
+
+        // Barre de progression de scroll
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("scrollProgress").style.width = scrolled + "%";
+        });
+
+        // Smooth scroll
+        function smoothScroll(selector) {
+            document.querySelector(selector).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Effet confetti
+        function confetti() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.width = '10px';
+                    confetti.style.height = '10px';
+                    confetti.style.backgroundColor = ['#ff0', '#f00', '#0f0', '#00f', '#f0f'][Math.floor(Math.random() * 5)];
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-10px';
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.zIndex = '9999';
+                    confetti.style.animation = `float-up ${Math.random() * 3 + 2}s linear forwards`;
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 5000);
+                }, i * 50);
+            }
+        }
+
+        // Animation lettre par lettre du sous-titre
+        const subtitle = document.querySelector('.subtitle');
+        const text = subtitle.textContent;
+        subtitle.textContent = '';
+        
+        text.split('').forEach((char, i) => {
+            setTimeout(() => {
+                subtitle.textContent += char;
+            }, i * 50 + 1000);
+        });
+
+        createParticles();
+    </script>
+</body>
+</html>

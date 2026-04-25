@@ -1,0 +1,23 @@
+body,
+html {
+	height: 100%;
+	display: grid;
+	background: linear-gradient(180deg, rgb(0, 172, 193), rgb(6, 66, 115));
+}
+
+p {
+	margin: auto;
+	font-family: "Alegreya Sans SC", sans-serif;
+	text-align: center;
+	font-size: 15vw;
+	color: #fff;
+	opacity: 0.8;
+	line-height: 0.8em;
+}
+.word {
+	display: block !important;
+}
+
+.char {
+	opacity: 0;
+}

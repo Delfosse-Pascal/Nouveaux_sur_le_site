@@ -1,0 +1,207 @@
+/* MelonLand Common styles for all pages, HELLO THERE! */
+
+/* @import url("https://momg.neocities.org/frames.css?v=1"); */
+@import url("fonts/Flavors-Regular.css");
+@import url("fonts/TrashHand.css");
+@import url("fonts/BabyDoll.css");
+
+/* Scrollbar styles */
+* {
+    scrollbar-color: #a2a2a2 #cde8fb;
+}
+
+::-webkit-scrollbar {
+    background: #cde8fb;
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #cde8fb;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a2a2a2;
+    border-radius: 10px;
+}
+
+/* Body styles */
+body {
+    font-family: "Times New Roman", serif;
+    background-color: yellow;
+    margin: 0px;
+    padding: 0px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 11px;
+    clear: both;
+}
+
+audio {
+    display: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    text-shadow: rgba(0, 0, 0, 0.845) 3px 3px;
+}
+
+/* ++++ Elements ++++ */
+
+#back {
+    float: left;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}
+
+#easyhome {
+    float: left;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 100;
+}
+
+#easyhome img {
+    width: 35px;
+}
+
+/* +++ Helper classes +++ */
+
+.center {
+    text-align: center !important;
+}
+
+.right {
+    text-align: right !important;
+}
+
+.san-serif {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+/* ++++ Animations ++++ */
+
+.spin {
+    animation-name: spin;
+    animation-duration: 10000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+.spin-slow {
+    animation-name: spin;
+    animation-duration: 100000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.tilt {
+    transition: 0.2s;
+}
+.tilt:hover {
+    transform: rotate(4deg);
+}
+
+.twist,
+.easyhome {
+    transition: 1.7s;
+}
+.twist:hover,
+.easyhome:hover {
+    transform: rotate(540deg);
+}
+
+.slow-twist {
+    transition: 4s;
+}
+.slow-twist:hover {
+    transform: rotate(540deg);
+}
+
+.blink {
+    animation: blink-animation 0.95s steps(2, start) infinite;
+}
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+.tossing {
+    animation-name: tossing;
+    animation-duration: 9s;
+    animation-iteration-count: infinite;
+}
+@keyframes tossing {
+    0% {
+        transform: rotate(-9deg);
+    }
+    50% {
+        transform: rotate(9deg);
+    }
+    100% {
+        transform: rotate(-9deg);
+    }
+}
+
+.tossing-alt {
+    animation-name: tossing-alt;
+    animation-duration: 9s;
+    animation-iteration-count: infinite;
+}
+@keyframes tossing-alt {
+    0% {
+        transform: rotate(9deg);
+    }
+    50% {
+        transform: rotate(-9deg);
+    }
+    100% {
+        transform: rotate(9deg);
+    }
+}
+
+.bobbing {
+    animation: bobbing 2s ease-in-out infinite;
+    animation-direction: alternate;
+}
+@keyframes bobbing {
+    0% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+.swing {
+    animation-name: swing;
+    animation-duration: 8s;
+    transform-origin: top center;
+    animation-iteration-count: infinite;
+}
+@keyframes swing {
+    0% {
+        transform: rotate(5deg);
+    }
+    50% {
+        transform: rotate(-5deg);
+    }
+    100% {
+        transform: rotate(5deg);
+    }
+}

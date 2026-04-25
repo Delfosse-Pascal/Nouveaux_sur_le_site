@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<title>Le site de Pascal Delfosse - Artiste Peintre Contemporain</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <meta http-equiv="Content-Language" content="fr-be">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="Pascal Delfosse, artiste peintre passionné par les arts contemporains et mixtes. Découvrez ses œuvres et services gratuits pour webmasters.">
+ <meta name="robots" content="index, follow">
+ <meta name="author" content="Pascal Delfosse">
+
+
+<!-- Icon page du site --> 
+<link rel="iconne" href="https://lestoilesdepascal.be/favicondepascal.png" type="image/png">
+
+
+
+	<script>var createjs = window;</script>
+	<script type="text/javascript" src="./libs.min.js.download"></script>
+	<script type="text/javascript" src="./Config.js.download"></script>
+	<script type="text/javascript" src="./Util.js.download"></script>
+	<script type="text/javascript" src="./Piece.js.download"></script>
+
+	<style>
+		body { margin:0; overflow:hidden; }
+		canvas {
+			image-rendering: pixelated;
+			image-rendering: crisp-edges;
+			-ms-interpolation-mode: nearest-neighbor;
+		}
+	</style>
+<!-- Lier le fichier JavaScript du menu -->
+<script src="https://lestoilesdepascal.be/menu.js" defer></script><link rel="stylesheet" href="https://lestoilesdepascal.be/basedusite.css">
+    
+</head>
+
+<body onmousedown="return false" onselectstart="return false">
+
+<!-- Le menu sera injecté ici -->
+<header></header>
+
+<body onload="init(&#39;myCanvas&#39;, Piece, Config);">
+	<canvas id="myCanvas" style="position: absolute; z-index: 2; left: 0px; top: 0px; width: 1462px; height: 1227px;" resize="true" width="2193" height="1840"></canvas>
+	<div id="output" style="color:blue;z-index:3; position:absolute;left:0;top:-30px;font-size:10px;">setSize, 2193, 1840, 2.9977191267513845</div>
+
+
+<script>
+    function getRandomPastelColor() {
+        const r = Math.floor(Math.random() * 96 + 160); // 160-255 (pastels plus doux)
+        const g = Math.floor(Math.random() * 96 + 160);
+        const b = Math.floor(Math.random() * 96 + 160);
+        return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    function applyColorTransition(element, newColor) {
+        element.style.transition = 'background-color 5s linear, color 5s linear';
+        element.style.backgroundColor = newColor;
+        
+        if(element === document.body) {
+            element.style.color = getTextColor(newColor);
+        }
+    }
+
+    function getTextColor(bgColor) {
+        const rgb = bgColor.match(/\d+/g);
+        const brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
+        return brightness > 150 ? 'rgba(20, 20, 20, 0.9)' : 'rgba(255, 255, 255, 0.95)';
+    }
+
+    function changeColors() {
+        // Transition douce du fond
+        applyColorTransition(document.body, getRandomPastelColor());
+        
+        // Transition des cellules avec décalage
+        const cells = document.querySelectorAll('td');
+        let delay = 0;
+        
+        cells.forEach(cell => {
+            setTimeout(() => {
+                applyColorTransition(cell, getRandomPastelColor());
+            }, delay);
+            delay += 200; // Décalage de 200ms entre chaque cellule
+        });
+    }
+
+    // Démarrer le cycle (toutes les 15 secondes)
+    changeColors();
+    setInterval(changeColors, 2000);
+
+    // Style initial
+    document.head.insertAdjacentHTML('beforeend', `
+        <style>
+            body, td {
+                transition: background-color 3s linear, color 3s linear !important;
+            }
+            body {
+                background-color: ${getRandomPastelColor()};
+                color: ${getTextColor(document.body.style.backgroundColor)};
+            }
+            td {
+                background-color: ${getRandomPastelColor()};
+            }
+        </style>
+    `);
+</script>
+   
+   
+   
+</body>
+</html>
