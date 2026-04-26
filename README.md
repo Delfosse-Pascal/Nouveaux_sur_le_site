@@ -1,81 +1,144 @@
 # Nouveaux_sur_le_site
 
-Hub local : `index.html` racine = menu central des galeries / templates / experimentations stockes dans `Les_Index_Magique/`. Genere automatiquement par PowerShell.
+Depot du hub local de Pascal pour organiser les pages HTML, galeries, tests visuels et tiroirs de travail.
 
-## Contenu
+Le depot garde les pages et les scripts utiles, mais exclut volontairement les images, videos, musiques et archives lourdes.
 
-```
+## Structure
+
+```text
 .
-├── index.html                  # Menu central genere (cartes -> Les_Index_Magique/...)
-├── .gitignore                  # Exclut images/videos/musiques/archives
-└── Les_Index_Magique/
-    ├── *.html                  # Pages racine (Claude, Compteurs, L'Arbre, Le Monde Farfelu, ...)
-    ├── <tiroir>/*.html         # Tiroirs : sous-dossiers contenant des .html (templates, gabarits)
-    ├── update_index.ps1        # Generateur de ../index.html (UTF-8 BOM obligatoire)
-    └── update_index.bat        # Lanceur double-clic du generateur
+|-- index.html                 # Menu central genere automatiquement
+|-- index2.html                # Version alternative futuriste / neon
+|-- README.md                  # Documentation du depot
+|-- .gitignore                 # Exclut images, videos, musiques, archives
+`-- Les_Index_Magique/
+    |-- *.html                 # Pages HTML sources
+    |-- <tiroirs>/             # Sous-dossiers conserves
+    |-- update_index.ps1       # Generateur de index.html
+    `-- update_index.bat       # Lanceur double-clic du generateur
 ```
 
-## index.html (menu central)
+## Pages principales
 
-Page racine **regeneree** par `Les_Index_Magique\update_index.bat`.
+### `index.html`
 
-**Comportement du generateur :**
-- Scanne `Les_Index_Magique\*.html` (sauf `index.html` eventuel) -> 1 carte par fichier
-- Scanne sous-dossiers de `Les_Index_Magique` (1 niveau) :
-  - Tous les `*.html` deviennent des cartes
-  - Si `index.html` -> titre = nom du tiroir seul (ex: `dist`, `html5up-multiverse`)
-  - Sinon -> titre = `Tiroir / Fichier` (ex: `Horreur Super / index-1`)
-  - Tag bas-droite = nom du tiroir
-- Sous-dossiers IGNORES : `assets`, `images`, `css`, `js`, `fonts`, `vendor`
-  (modifiable via `$skipDirs` dans `update_index.ps1`)
-- Tiroirs sans `.html` -> auto-skippes (ex: `*_files` exports HTML complet)
-- Tri alphabetique global
-- Hrefs prefixees par `Les_Index_Magique/` (car `index.html` est un cran au-dessus)
-- Vignettes = degrade HSL calcule par hash du titre (pas d'image requise)
+Page centrale generee par :
 
-**Snippet impose (integre tel quel a chaque regeneration) :**
-- `<head>` : `canonical`, favicons png+ico, `style.css`, `script.js`, `menu.js` (defer), `basedusite.css`, `couleurs.js` (tous depuis `https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/`)
-- `<body>` : `<nav class="social-menu">` (Pinterest / Flickr / Tumblr / X / YouTube) + `<header></header>` rempli par `menu.js`
-
-**Mode sombre / clair :**
-- Bouton fixe haut-droite (`Mode sombre` / `Mode clair`)
-- CSS vars (`:root` clair, `html[data-theme="dark"]` sombre)
-- Persistance `localStorage`
-- Pre-application inline en `<head>` -> pas de flash blanc au chargement en mode sombre
-
-**Style cartes :** pellicule cafe (rotation 3deg, bord rose inset, animation film roll au hover), reprise du style original de VideosLoom.
-
-## Generation / mise a jour
-
-```
-double-clic : Les_Index_Magique\update_index.bat
-   |
-   +-> powershell -File update_index.ps1
-         |
-         +-> ecrit Nouveaux_sur_le_site\index.html
+```powershell
+Les_Index_Magique\update_index.bat
 ```
 
-**Important :**
-- `update_index.ps1` doit rester encode en **UTF-8 avec BOM** (sinon PowerShell 5.1 casse les accents francais : `injecte` -> `injectA(c)`).
-- La regeneration **ecrase** `index.html` -> toute edition manuelle est perdue. Customisations a faire dans `update_index.ps1` (template HTML inline, vars `$pageTitle`, `$assetsRoot`, `$canonicalUrl`, `$skipDirs`).
+Elle scanne le dossier `Les_Index_Magique/` et fabrique des cartes vers les pages HTML trouvees.
 
-## .gitignore
+Caracteristiques :
 
-Exclut tous les binaires multimedia / archives :
-- Images : `*.jpg`, `*.png`, `*.gif`, `*.webp`, `*.bmp`, `*.avif`, `*.svg`, `*.ico`, `*.tif`, `*.heic`, `*.psd`, `*.ai`, `*.eps`, `*.raw`
-- Videos : `*.mp4`, `*.mov`, `*.avi`, `*.mkv`, `*.webm`, `*.wmv`, `*.flv`, `*.m4v`, `*.mpg`, `*.3gp`, `*.ts`, `*.vob`
-- Audio : `*.mp3`, `*.wav`, `*.ogg`, `*.flac`, `*.aac`, `*.m4a`, `*.wma`, `*.opus`, `*.aiff`, `*.mid`
-- Archives : `*.rar`, `*.7z`, `*.zip`
-- Garde la structure des tiroirs vides via `!.gitkeep`
+- liens vers les pages de `Les_Index_Magique/`
+- mode sombre / clair avec sauvegarde dans `localStorage`
+- menu social conserve
+- `<header></header>` conserve pour le menu injecte par `menu.js`
+- ressources externes Pascal depuis `https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/`
+- vignettes en degrade, sans image locale necessaire
 
-Pour preserver un dossier vide dans git : creer un fichier `.gitkeep` dedans.
+Important : `index.html` est regenere. Toute modification durable doit etre faite dans `Les_Index_Magique/update_index.ps1`.
 
-## Prerequis
+### `index2.html`
 
-- Windows + PowerShell 5.1+ (pour `update_index.bat` / `update_index.ps1`)
-- Navigateur moderne (CSS vars + `localStorage` + `aspect-ratio`)
+Page alternative creee a la racine du depot.
+
+Style :
+
+- presentation futuriste neon
+- couleurs agressives
+- fond anime
+- scanlines
+- titre glitch
+- bandeau defilant
+- cartes animees
+- canvas lumineux interactif
+
+Les cartes pointent vers :
+
+```text
+Les_Index_Magique/<page>.html
+```
+
+Les deux menus sont conserves :
+
+- menu social `<nav class="social-menu">`
+- menu principal injecte dans `<header></header>`
+
+## Generation de `index.html`
+
+Le generateur est ici :
+
+```text
+Les_Index_Magique/update_index.ps1
+```
+
+Le lanceur double-clic est ici :
+
+```text
+Les_Index_Magique/update_index.bat
+```
+
+Regle importante : `update_index.ps1` doit rester en UTF-8 avec BOM pour eviter les accents casses avec PowerShell 5.1.
+
+## Git
+
+Le depot doit rester leger.
+
+On commit :
+
+- fichiers HTML
+- fichiers CSS
+- fichiers JS
+- scripts PowerShell / batch
+- documentation
+- `.gitkeep` pour garder un tiroir vide
+
+On ne commit pas :
+
+- images
+- videos
+- musiques
+- archives
+
+Le `.gitignore` exclut deja ces formats.
+
+Pour garder un tiroir vide dans Git, placer un fichier vide nomme :
+
+```text
+.gitkeep
+```
+
+## Commandes utiles
+
+Voir les changements :
+
+```powershell
+git status --short
+```
+
+Ajouter uniquement les fichiers textes utiles :
+
+```powershell
+git add README.md index.html index2.html Les_Index_Magique/*.html Les_Index_Magique/*.ps1 Les_Index_Magique/*.bat
+```
+
+Verifier ce qui va etre commite :
+
+```powershell
+git diff --cached --name-only
+```
+
+Commit et push :
+
+```powershell
+git commit -m "Met a jour le site"
+git push origin main
+```
 
 ## Direction
 
-> Penser **outil personnel interactif**, pas site web classique.
-> Priorites : interaction · automatisation · experimentation.
+Ce projet est un outil personnel interactif : beaucoup d'essais, beaucoup de tiroirs, mais un depot Git propre et leger.
